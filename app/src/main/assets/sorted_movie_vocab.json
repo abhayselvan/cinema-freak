@@ -1,0 +1,76 @@
+[
+  {
+    "title": "American Beauty (1999)",
+    "id": 2858,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "count": 3428
+  },
+  {
+    "title": "Star Wars: Episode IV - A New Hope (1977)",
+    "id": 260,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Sci-Fi"
+    ],
+    "count": 2991
+  },
+  {
+    "title": "Star Wars: Episode V - The Empire Strikes Back (1980)",
+    "id": 1196,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Drama",
+      "Sci-Fi",
+      "War"
+    ],
+    "count": 2990
+  },
+  {
+    "title": "Star Wars: Episode VI - Return of the Jedi (1983)",
+    "id": 1210,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Romance",
+      "Sci-Fi",
+      "War"
+    ],
+    "count": 2883
+  },
+  {
+    "title": "Jurassic Park (1993)",
+    "id": 480,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Sci-Fi"
+    ],
+    "count": 2672
+  },
+  {
+    "title": "Saving Private Ryan (1998)",
+    "id": 2028,
+    "genres": [
+      "Action",
+      "Drama",
+      "War"
+    ],
+    "count": 2653
+  },
+  {
+    "title": "Terminator 2: Judgment Day (1991)",
+    "id": 589,
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "count": 2649
+  }
+]
