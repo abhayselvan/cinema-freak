@@ -1,14 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:1-27:12
+ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:1-27:12
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\69d2dd171dab4f080cf4f3918b685c6f\transformed\material-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\7e2c7b8f3ac3ac0c8a2566c932e1256e\transformed\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\shett\.gradle\caches\transforms-3\8d2fa1036397ec8ebe3f36bcb9b70c92\transformed\constraintlayout-1.1.3\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\b13aa9f4562fc9068afd041a50bad596\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [org.tensorflow:tensorflow-lite:2.2.0] C:\Users\shett\.gradle\caches\transforms-3\7338972165c68ea4b939e3ec87eeab59\transformed\tensorflow-lite-2.2.0\AndroidManifest.xml:2:1-12:12
+MERGED from [de.hdodenhof:circleimageview:3.1.0] C:\Users\shett\.gradle\caches\transforms-3\01a4321e0465b453c3c10eec18a1330b\transformed\circleimageview-3.1.0\AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.bumptech.glide:glide:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\01b94529ff612831b44d065b7d3f8a09\transformed\glide-4.12.0\AndroidManifest.xml:2:1-12:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\454519e2ceefe798afbc3376970e3581\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\c4ab2026ff63758a1d02b0b9f92c9000\transformed\appcompat-resources-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\0b2416d5ce90830cf2f3608c8f3ac3d7\transformed\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -28,6 +30,8 @@ MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\sh
 MERGED from [androidx.core:core:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\4e6a446fcb77d98d15232deb5691b840\transformed\core-1.1.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\7745022e8ff9427dbf21ef780fae6359\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\02d87f8324626de75544d21b7168cee1\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\c84ed923e5bb22d3e6a41453fb093889\transformed\gifdecoder-4.12.0\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.exifinterface:exifinterface:1.2.0] C:\Users\shett\.gradle\caches\transforms-3\14f6b544ae130eb9a1dd5612940deb94\transformed\exifinterface-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\a22a41600c0335ebb6a31a21de0274a9\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\fa0c85cce681c8c744fabd49f0bf4f00\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\cd76b7dce36330a98c07532dd4fd74cd\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -39,77 +43,87 @@ MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\shett\.gradle\caches
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\shett\.gradle\caches\transforms-3\5961cb05f5d340e65bb4d76a27ade3fc\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\shett\.gradle\caches\transforms-3\e90d7b98a6c34a190d5c2b77d1d40fc8\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\shett\.gradle\caches\transforms-3\cf49ceb1ade130e9691f825f509e494c\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:1-27:12
 	package
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:3:5-58
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:3:5-58
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:1-27:12
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:1-27:12
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:1-27:12
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:1-27:12
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:4:5-66
+	android:name
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:4:22-64
 application
-ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:5:5-25:19
+ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:5:5-25:19
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\69d2dd171dab4f080cf4f3918b685c6f\transformed\material-1.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\69d2dd171dab4f080cf4f3918b685c6f\transformed\material-1.0.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\shett\.gradle\caches\transforms-3\8d2fa1036397ec8ebe3f36bcb9b70c92\transformed\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\shett\.gradle\caches\transforms-3\8d2fa1036397ec8ebe3f36bcb9b70c92\transformed\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
 MERGED from [org.tensorflow:tensorflow-lite:2.2.0] C:\Users\shett\.gradle\caches\transforms-3\7338972165c68ea4b939e3ec87eeab59\transformed\tensorflow-lite-2.2.0\AndroidManifest.xml:10:5-20
 MERGED from [org.tensorflow:tensorflow-lite:2.2.0] C:\Users\shett\.gradle\caches\transforms-3\7338972165c68ea4b939e3ec87eeab59\transformed\tensorflow-lite-2.2.0\AndroidManifest.xml:10:5-20
+MERGED from [de.hdodenhof:circleimageview:3.1.0] C:\Users\shett\.gradle\caches\transforms-3\01a4321e0465b453c3c10eec18a1330b\transformed\circleimageview-3.1.0\AndroidManifest.xml:9:5-20
+MERGED from [de.hdodenhof:circleimageview:3.1.0] C:\Users\shett\.gradle\caches\transforms-3\01a4321e0465b453c3c10eec18a1330b\transformed\circleimageview-3.1.0\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:glide:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\01b94529ff612831b44d065b7d3f8a09\transformed\glide-4.12.0\AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\01b94529ff612831b44d065b7d3f8a09\transformed\glide-4.12.0\AndroidManifest.xml:10:5-20
 MERGED from [androidx.core:core:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\4e6a446fcb77d98d15232deb5691b840\transformed\core-1.1.0\AndroidManifest.xml:24:5-89
 MERGED from [androidx.core:core:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\4e6a446fcb77d98d15232deb5691b840\transformed\core-1.1.0\AndroidManifest.xml:24:5-89
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\c84ed923e5bb22d3e6a41453fb093889\transformed\gifdecoder-4.12.0\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\c84ed923e5bb22d3e6a41453fb093889\transformed\gifdecoder-4.12.0\AndroidManifest.xml:9:5-20
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\a22a41600c0335ebb6a31a21de0274a9\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\a22a41600c0335ebb6a31a21de0274a9\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\4e6a446fcb77d98d15232deb5691b840\transformed\core-1.1.0\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:10:9-35
 	android:label
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:8:9-48
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:8:9-36
 	android:roundIcon
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:9:9-54
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:9:9-54
 	android:icon
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:7:9-43
 	android:allowBackup
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:11:9-55
-activity#org.tensorflow.lite.examples.recommendation.MovieRecommendation
-ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:12:9-14:39
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:11:9-55
+activity#activity.MovieRecommendation
+ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:12:9-14:39
 	android:exported
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:14:13-36
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:14:13-36
 	android:name
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:13:13-48
-activity#org.tensorflow.lite.examples.recommendation.MovieSelection
-ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:15:9-24:20
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:13:13-56
+activity#activity.MovieSelection
+ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:15:9-24:20
 	android:windowSoftInputMode
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:18:13-55
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:18:13-55
 	android:exported
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:17:13-36
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:17:13-36
 	android:name
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:16:13-43
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:16:13-51
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:19:13-23:29
+ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:20:17-69
+ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:20:25-66
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:22:17-77
+ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:22:27-74
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:22:27-74
 uses-sdk
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\69d2dd171dab4f080cf4f3918b685c6f\transformed\material-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\69d2dd171dab4f080cf4f3918b685c6f\transformed\material-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\7e2c7b8f3ac3ac0c8a2566c932e1256e\transformed\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -120,6 +134,10 @@ MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\shett\.gradle\ca
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\b13aa9f4562fc9068afd041a50bad596\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [org.tensorflow:tensorflow-lite:2.2.0] C:\Users\shett\.gradle\caches\transforms-3\7338972165c68ea4b939e3ec87eeab59\transformed\tensorflow-lite-2.2.0\AndroidManifest.xml:7:5-8:41
 MERGED from [org.tensorflow:tensorflow-lite:2.2.0] C:\Users\shett\.gradle\caches\transforms-3\7338972165c68ea4b939e3ec87eeab59\transformed\tensorflow-lite-2.2.0\AndroidManifest.xml:7:5-8:41
+MERGED from [de.hdodenhof:circleimageview:3.1.0] C:\Users\shett\.gradle\caches\transforms-3\01a4321e0465b453c3c10eec18a1330b\transformed\circleimageview-3.1.0\AndroidManifest.xml:5:5-7:41
+MERGED from [de.hdodenhof:circleimageview:3.1.0] C:\Users\shett\.gradle\caches\transforms-3\01a4321e0465b453c3c10eec18a1330b\transformed\circleimageview-3.1.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:glide:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\01b94529ff612831b44d065b7d3f8a09\transformed\glide-4.12.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\01b94529ff612831b44d065b7d3f8a09\transformed\glide-4.12.0\AndroidManifest.xml:6:5-8:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\454519e2ceefe798afbc3376970e3581\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\454519e2ceefe798afbc3376970e3581\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\c4ab2026ff63758a1d02b0b9f92c9000\transformed\appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -158,6 +176,10 @@ MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\shett\.gradle\
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\7745022e8ff9427dbf21ef780fae6359\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\02d87f8324626de75544d21b7168cee1\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\02d87f8324626de75544d21b7168cee1\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\c84ed923e5bb22d3e6a41453fb093889\transformed\gifdecoder-4.12.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] C:\Users\shett\.gradle\caches\transforms-3\c84ed923e5bb22d3e6a41453fb093889\transformed\gifdecoder-4.12.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.2.0] C:\Users\shett\.gradle\caches\transforms-3\14f6b544ae130eb9a1dd5612940deb94\transformed\exifinterface-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.2.0] C:\Users\shett\.gradle\caches\transforms-3\14f6b544ae130eb9a1dd5612940deb94\transformed\exifinterface-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\a22a41600c0335ebb6a31a21de0274a9\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\a22a41600c0335ebb6a31a21de0274a9\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\shett\.gradle\caches\transforms-3\fa0c85cce681c8c744fabd49f0bf4f00\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
@@ -180,14 +202,14 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\shett\.g
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\shett\.gradle\caches\transforms-3\e90d7b98a6c34a190d5c2b77d1d40fc8\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\shett\.gradle\caches\transforms-3\cf49ceb1ade130e9691f825f509e494c\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\shett\.gradle\caches\transforms-3\cf49ceb1ade130e9691f825f509e494c\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-		MERGED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+		MERGED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml

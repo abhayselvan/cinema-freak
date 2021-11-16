@@ -6,54 +6,58 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
-8-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
+8-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml
+9-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml
 10
-11    <application
-11-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:5:5-25:19
-12        android:allowBackup="true"
-12-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:6:9-35
-13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\4e6a446fcb77d98d15232deb5691b840\transformed\core-1.1.0\AndroidManifest.xml:24:18-86
-14        android:debuggable="true"
-15        android:extractNativeLibs="false"
-16        android:icon="@mipmap/ic_launcher"
-16-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:7:9-43
-17        android:label="@string/tfe_re_app_name"
-17-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:8:9-48
-18        android:roundIcon="@mipmap/ic_launcher_round"
-18-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:9:9-54
-19        android:supportsRtl="true"
-19-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:10:9-35
-20        android:testOnly="true"
-21        android:theme="@style/AppTheme.Recommendation" >
-21-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:11:9-55
-22        <activity
-22-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:12:9-14:39
-23            android:name="org.tensorflow.lite.examples.recommendation.MovieRecommendation"
-23-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:13:13-48
-24            android:exported="true" />
-24-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:14:13-36
-25        <activity
-25-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:15:9-24:20
-26            android:name="org.tensorflow.lite.examples.recommendation.MovieSelection"
-26-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:16:13-43
-27            android:exported="true"
-27-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:17:13-36
-28            android:windowSoftInputMode="adjustResize" >
-28-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:18:13-55
-29            <intent-filter>
-29-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:19:13-23:29
-30                <action android:name="android.intent.action.MAIN" />
-30-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:20:17-69
-30-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:20:25-66
-31
-32                <category android:name="android.intent.category.LAUNCHER" />
-32-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:22:17-77
-32-->C:\Users\shett\examples\lite\examples\recommendation\android\app\src\main\AndroidManifest.xml:22:27-74
-33            </intent-filter>
-34        </activity>
-35    </application>
-36
-37</manifest>
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:4:5-66
+11-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:4:22-64
+12
+13    <application
+13-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:5:5-25:19
+14        android:allowBackup="true"
+14-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:6:9-35
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.1.0] C:\Users\shett\.gradle\caches\transforms-3\4e6a446fcb77d98d15232deb5691b840\transformed\core-1.1.0\AndroidManifest.xml:24:18-86
+16        android:debuggable="true"
+17        android:extractNativeLibs="false"
+18        android:icon="@mipmap/ic_launcher"
+18-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:7:9-43
+19        android:label="CinemaFreak"
+19-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:8:9-36
+20        android:roundIcon="@mipmap/ic_launcher_round"
+20-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:9:9-54
+21        android:supportsRtl="true"
+21-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:10:9-35
+22        android:testOnly="true"
+23        android:theme="@style/AppTheme.Recommendation" >
+23-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:11:9-55
+24        <activity
+24-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:12:9-14:39
+25            android:name="activity.MovieRecommendation"
+25-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:13:13-56
+26            android:exported="true" />
+26-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:14:13-36
+27        <activity
+27-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:15:9-24:20
+28            android:name="activity.MovieSelection"
+28-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:16:13-51
+29            android:exported="true"
+29-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:17:13-36
+30            android:windowSoftInputMode="adjustResize" >
+30-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:18:13-55
+31            <intent-filter>
+31-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:19:13-23:29
+32                <action android:name="android.intent.action.MAIN" />
+32-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:20:17-69
+32-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:20:25-66
+33
+34                <category android:name="android.intent.category.LAUNCHER" />
+34-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:22:17-77
+34-->C:\Users\shett\AndroidStudioProjects\cinema-freak\app\src\main\AndroidManifest.xml:22:27-74
+35            </intent-filter>
+36        </activity>
+37    </application>
+38
+39</manifest>

@@ -1,134 +1,138 @@
 [
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\layout_movie_selection_layout.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\layout\\movie_selection_layout.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_icn_chevron_down.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\drawable-xxhdpi\\icn_chevron_down.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_tfl2_logo.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\drawable-xxhdpi\\tfl2_logo.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable_ironman.jpg.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable\\ironman.jpg"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_icn_chevron_down.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable-xxhdpi\\icn_chevron_down.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\layout_tfe_re_fragment_recommendation.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\layout\\tfe_re_fragment_recommendation.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\layout_tfe_re_fragment_selection.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\tfe_re_fragment_selection.xml"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\layout_movie_recommendation_card.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\movie_recommendation_card.xml"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_icn_chevron_up.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\drawable-xxhdpi\\icn_chevron_up.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\layout_movie_recommendation.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\movie_recommendation.xml"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\layout_tfe_re_fragment_selection.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\layout\\tfe_re_fragment_selection.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\layout_movie_recommendation_genre_list.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\movie_recommendation_genre_list.xml"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\layout_tfe_re_fragment_recommendation.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\tfe_re_fragment_recommendation.xml"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\layout_tfe_re_fragment_recommendation_list.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\layout\\tfe_re_fragment_recommendation_list.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\layout_movie_recommendation_layout.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\layout\\movie_recommendation_layout.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\layout_tfe_re_fragment_selection_list.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\tfe_re_fragment_selection_list.xml"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_tfl2_logo_dark.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\drawable-xxhdpi\\tfl2_logo_dark.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_tfl2_logo.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable-xxhdpi\\tfl2_logo.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\layout_tfe_re_card_fragment_selection_list.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\layout\\tfe_re_card_fragment_selection_list.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_tfl2_logo_dark.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable-xxhdpi\\tfl2_logo_dark.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\layout_tfe_re_fragment_selection_list.xml.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\layout\\tfe_re_fragment_selection_list.xml"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxhdpi_icn_chevron_up.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable-xxhdpi\\icn_chevron_up.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\layout_movie_selection_layout.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\movie_selection_layout.xml"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_foreground.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\shett\\examples\\lite\\examples\\recommendation\\android\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     }
 ]

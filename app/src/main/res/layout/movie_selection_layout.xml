@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/tfe_re_activity_margin"
-    tools:context=".MovieSelection">
+    tools:context="activity.MovieSelection">
 <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:orientation="vertical">
       <fragment
           android:id="@+id/movie_fragment"
-          android:name="org.tensorflow.lite.examples.recommendation.MovieFragment"
+          android:name="activity.MovieFragment"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:baselineAligned="false" />
