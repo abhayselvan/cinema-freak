@@ -8,22 +8,24 @@
         android:minSdkVersion="26"
         android:targetSdkVersion="29" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:extractNativeLibs="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/tfe_re_app_name"
+        android:label="CinemaFreak"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme.Recommendation" >
         <activity
-            android:name="org.tensorflow.lite.examples.recommendation.MovieRecommendation"
+            android:name="activity.MovieRecommendation"
             android:exported="true" />
         <activity
-            android:name="org.tensorflow.lite.examples.recommendation.MovieSelection"
+            android:name="activity.MovieSelection"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" >
             <intent-filter>

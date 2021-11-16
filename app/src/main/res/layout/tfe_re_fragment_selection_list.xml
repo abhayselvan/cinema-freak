@@ -10,5 +10,5 @@
     android:layout_marginRight="16dp"
     android:clipToPadding="true"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".MovieFragment"
+    tools:context="activity.MovieFragment"
     tools:listitem="@layout/tfe_re_fragment_selection" />

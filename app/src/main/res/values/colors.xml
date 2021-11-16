@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="tfe_color_primary">#ffa800</color>
-  <color name="tfe_color_primary_dark">#ff6f00</color>
-  <color name="tfe_color_accent">#425066</color>
+  <color name="red">#ab0800</color>
+  <color name="backgroundBlack">#000000</color>
+  <color name="textColorWhite">#e2e2e2</color>
+  <color name="cardBackgroundGrey">#171616</color>
 </resources>

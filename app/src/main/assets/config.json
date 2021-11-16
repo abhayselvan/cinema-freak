@@ -6,7 +6,7 @@
   ],
   "movieList": "sorted_movie_vocab.json",
   "genreList": "movie_genre_vocab.txt",
-  "topK": 10,
+  "topK": 100,
   "outputLength": 100,
   "outputIdsIndex": 1,
   "outputScoresIndex": 0

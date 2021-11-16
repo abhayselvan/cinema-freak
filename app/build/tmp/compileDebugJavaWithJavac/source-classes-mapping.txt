@@ -1,35 +1,35 @@
+data/FileUtil.java
+ data.FileUtil
+ data.FileUtil$1
+ data.FileUtil$2
+data/Result.java
+ data.Result
+client/RecommendationClient.java
+ client.RecommendationClient
+data/MovieItem.java
+ data.MovieItem
 org/tensorflow/lite/examples/recommendation/BuildConfig.java
  org.tensorflow.lite.examples.recommendation.BuildConfig
-org/tensorflow/lite/examples/recommendation/data/MovieItem.java
- org.tensorflow.lite.examples.recommendation.data.MovieItem
-org/tensorflow/lite/examples/recommendation/ItemDetailsWrapper.java
- org.tensorflow.lite.examples.recommendation.ItemDetailsWrapper
-org/tensorflow/lite/examples/recommendation/Config.java
- org.tensorflow.lite.examples.recommendation.Config
- org.tensorflow.lite.examples.recommendation.Config$Feature
-org/tensorflow/lite/examples/recommendation/RecommendationClient.java
- org.tensorflow.lite.examples.recommendation.RecommendationClient
- org.tensorflow.lite.examples.recommendation.RecommendationClient$Result
-org/tensorflow/lite/examples/recommendation/data/FileUtil.java
- org.tensorflow.lite.examples.recommendation.data.FileUtil
- org.tensorflow.lite.examples.recommendation.data.FileUtil$1
- org.tensorflow.lite.examples.recommendation.data.FileUtil$2
-org/tensorflow/lite/examples/recommendation/MovieSelection.java
- org.tensorflow.lite.examples.recommendation.MovieSelection
-org/tensorflow/lite/examples/recommendation/MovieRecommendation.java
- org.tensorflow.lite.examples.recommendation.MovieRecommendation
-org/tensorflow/lite/examples/recommendation/RecommendationRecyclerViewAdapter.java
- org.tensorflow.lite.examples.recommendation.RecommendationRecyclerViewAdapter
- org.tensorflow.lite.examples.recommendation.RecommendationRecyclerViewAdapter$1
- org.tensorflow.lite.examples.recommendation.RecommendationRecyclerViewAdapter$ViewHolder
-org/tensorflow/lite/examples/recommendation/RecommendationFragment.java
- org.tensorflow.lite.examples.recommendation.RecommendationFragment
- org.tensorflow.lite.examples.recommendation.RecommendationFragment$OnListFragmentInteractionListener
-org/tensorflow/lite/examples/recommendation/MovieRecyclerViewAdapter.java
- org.tensorflow.lite.examples.recommendation.MovieRecyclerViewAdapter
- org.tensorflow.lite.examples.recommendation.MovieRecyclerViewAdapter$1
- org.tensorflow.lite.examples.recommendation.MovieRecyclerViewAdapter$2
- org.tensorflow.lite.examples.recommendation.MovieRecyclerViewAdapter$ViewHolder
-org/tensorflow/lite/examples/recommendation/MovieFragment.java
- org.tensorflow.lite.examples.recommendation.MovieFragment
- org.tensorflow.lite.examples.recommendation.MovieFragment$OnListFragmentInteractionListener
+data/ItemDetailsWrapper.java
+ data.ItemDetailsWrapper
+data/Config.java
+ data.Config
+ data.Config$Feature
+activity/MovieFragment.java
+ activity.MovieFragment
+ activity.MovieFragment$OnListFragmentInteractionListener
+activity/MovieRecommendation.java
+ activity.MovieRecommendation
+activity/MovieSelection.java
+ activity.MovieSelection
+adapter/MovieRecyclerViewAdapter.java
+ adapter.MovieRecyclerViewAdapter
+ adapter.MovieRecyclerViewAdapter$1
+ adapter.MovieRecyclerViewAdapter$2
+ adapter.MovieRecyclerViewAdapter$ViewHolder
+adapter/RecommendationRecyclerViewAdapter.java
+ adapter.RecommendationRecyclerViewAdapter
+ adapter.RecommendationRecyclerViewAdapter$ViewHolder
+adapter/GenreRecyclerViewAdapter.java
+ adapter.GenreRecyclerViewAdapter
+ adapter.GenreRecyclerViewAdapter$ViewHolder

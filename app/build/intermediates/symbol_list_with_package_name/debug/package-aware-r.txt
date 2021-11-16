@@ -160,6 +160,10 @@ attr chipStartPadding
 attr chipStrokeColor
 attr chipStrokeWidth
 attr chipStyle
+attr civ_border_color
+attr civ_border_overlay
+attr civ_border_width
+attr civ_circle_background_color
 attr closeIcon
 attr closeIconEnabled
 attr closeIconEndPadding
@@ -616,6 +620,7 @@ color abc_tint_spinner
 color abc_tint_switch_track
 color accent_material_dark
 color accent_material_light
+color backgroundBlack
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -628,6 +633,7 @@ color bright_foreground_material_dark
 color bright_foreground_material_light
 color button_material_dark
 color button_material_light
+color cardBackgroundGrey
 color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
@@ -703,6 +709,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color red
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -715,9 +722,7 @@ color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
-color tfe_color_accent
-color tfe_color_primary
-color tfe_color_primary_dark
+color textColorWhite
 color tooltip_background_dark
 color tooltip_background_light
 dimen abc_action_bar_content_inset_material
@@ -1052,6 +1057,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable icn_chevron_down
 drawable icn_chevron_up
+drawable ironman
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1140,7 +1146,6 @@ id beginning
 id blocking
 id bottom
 id buttonPanel
-id card_view
 id center
 id center_horizontal
 id center_vertical
@@ -1181,7 +1186,9 @@ id fill_vertical
 id filled
 id fixed
 id forever
+id genreText
 id ghost_view
+id glide_custom_view_target_tag
 id gone
 id group_divider
 id groups
@@ -1192,7 +1199,6 @@ id icon_group
 id ifRoom
 id image
 id info
-id info_text
 id instruction_text_view
 id invisible
 id italic
@@ -1216,6 +1222,7 @@ id movie_title
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
+id name
 id navigation_header_container
 id never
 id none
@@ -1236,12 +1243,10 @@ id pin
 id progress_circular
 id progress_horizontal
 id radio
-id recommendation_fragment
+id recommendation_genre
+id recommendation_list
 id recommendation_movie_title
 id recommendation_score
-id recommendation_text_view
-id result_scroll_view
-id result_text_view
 id right
 id right_icon
 id right_side
@@ -1396,7 +1401,9 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
-layout movie_recommendation_layout
+layout movie_recommendation
+layout movie_recommendation_card
+layout movie_recommendation_genre_list
 layout movie_selection_layout
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
@@ -1410,9 +1417,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
-layout tfe_re_card_fragment_selection_list
 layout tfe_re_fragment_recommendation
-layout tfe_re_fragment_recommendation_list
 layout tfe_re_fragment_selection
 layout tfe_re_fragment_selection_list
 mipmap ic_launcher
@@ -1991,6 +1996,7 @@ styleable ButtonBarLayout allowStacking
 styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable Chip android_textAppearance android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipStartPadding chipStrokeColor chipStrokeWidth closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible hideMotionSpec iconEndPadding iconStartPadding rippleColor showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection
+styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color
 styleable CollapsingToolbarLayout collapsedTitleGravity collapsedTitleTextAppearance contentScrim expandedTitleGravity expandedTitleMargin expandedTitleMarginBottom expandedTitleMarginEnd expandedTitleMarginStart expandedTitleMarginTop expandedTitleTextAppearance scrimAnimationDuration scrimVisibleHeightTrigger statusBarScrim title titleEnabled toolbarId
 styleable CollapsingToolbarLayout_Layout layout_collapseMode layout_collapseParallaxMultiplier
 styleable ColorStateListItem android_color android_alpha alpha
