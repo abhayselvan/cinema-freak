@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "747933789434",
+    "firebase_url": "https://cinema-freak-default-rtdb.firebaseio.com",
+    "project_id": "cinema-freak",
+    "storage_bucket": "cinema-freak.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747933789434:android:92959ef29dd39fdcec6d43",
+        "android_client_info": {
+          "package_name": "org.cinemafreak.android.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747933789434-pn04utl6gn6pb7f7mqujo40q095t8sua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUhLvuJsucquiVEZrcm_dnOwt1VLKEMAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747933789434-pn04utl6gn6pb7f7mqujo40q095t8sua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
