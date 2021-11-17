@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
-        applicationId "org.tensorflow.lite.examples.bertapp"
+        applicationId "org.cinemafreak.android.app"
         minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
@@ -38,6 +38,8 @@ android {
 
 // Download TF Lite model with the following script.
 apply from: 'download.gradle'
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -50,7 +52,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.google.guava:guava:28.1-android'
     implementation 'org.tensorflow:tensorflow-lite:2.2.0'
-
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-analytics'
     testImplementation 'junit:junit:4.12'
     testImplementation 'androidx.test:core:1.2.0'
     testImplementation 'com.google.truth:truth:1.0'

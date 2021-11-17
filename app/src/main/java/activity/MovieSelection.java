@@ -78,6 +78,10 @@ public class MovieSelection extends AppCompatActivity
         handler = new Handler();
         movieFragment =
                 (MovieFragment) getSupportFragmentManager().findFragmentById(R.id.movie_fragment);
+
+//        FirebaseDatabase database = FirebaseDatabase.getInstance("https://cinema-freak-default-rtdb.firebaseio.com/");
+//        DatabaseReference myRef = database.getReference("message");
+//        myRef.setValue("Hello, World!");
     }
 
     @SuppressWarnings("AndroidJdkLibsChecker")
