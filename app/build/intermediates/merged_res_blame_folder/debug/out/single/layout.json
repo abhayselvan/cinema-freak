@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\movie_selection_layout.xml",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\movie_selection_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\tfe_re_fragment_selection_list.xml",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\tfe_re_fragment_selection_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\movie_recommendation.xml",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\movie_recommendation.xml"
+    },
+    {
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\movie_recommendation_genre_list.xml",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\movie_recommendation_genre_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\movie_recommendation_card.xml",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\movie_recommendation_card.xml"
+    },
+    {
+        "merged": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\tfe_re_fragment_selection.xml",
+        "source": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\src\\main\\res\\layout\\tfe_re_fragment_selection.xml"
+    }
+]

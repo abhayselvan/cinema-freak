@@ -22,7 +22,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.tensorflow.lite.examples.recommendation.R;
+import com.cinemaFreak.R;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -52,6 +52,7 @@ public class MovieSelection extends AppCompatActivity
 
     private Handler handler;
     private MovieFragment movieFragment;
+    private int currentApiVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

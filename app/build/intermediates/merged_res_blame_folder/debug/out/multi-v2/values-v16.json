@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\shett\\.gradle\\caches\\transforms-3\\7e2c7b8f3ac3ac0c8a2566c932e1256e\\transformed\\appcompat-1.1.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\shett\\.gradle\\caches\\transforms-3\\0f53474759f3f9b15dfd51d4e81c62a0\\transformed\\appcompat-1.4.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\shett\\.gradle\\caches\\transforms-3\\4e6a446fcb77d98d15232deb5691b840\\transformed\\core-1.1.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\shett\\.gradle\\caches\\transforms-3\\61c7fc744e668d12dd7334b8bd7e8c11\\transformed\\core-1.7.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

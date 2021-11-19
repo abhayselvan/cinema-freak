@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import org.tensorflow.lite.examples.recommendation.R;
+import com.cinemaFreak.R;
 
 import java.util.List;
 
@@ -88,7 +88,6 @@ public class RecommendationRecyclerViewAdapter
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public final View view;
-        public final TextView scoreView;
         public final TextView name;
         public Result result;
         ImageView image;
@@ -96,7 +95,6 @@ public class RecommendationRecyclerViewAdapter
         public ViewHolder(View view) {
             super(view);
             this.view = view;
-            this.scoreView = view.findViewById(R.id.recommendation_score);
             this.name =
                     view.findViewById(R.id.name);
             this.image = view.findViewById(R.id.image);

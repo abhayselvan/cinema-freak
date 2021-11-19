@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/drawable/ic_home_background.xml" value="0.4453125" />
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/drawable/ic_search_background.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/drawable/ic_search_foreground.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/drawable/ic_watchlater_foreground.xml" value="0.4453125" />
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.30104166666666665" />
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/fragment_dashboard.xml" value="0.30104166666666665" />
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/fragment_home.xml" value="0.30104166666666665" />
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/fragment_notifications.xml" value="0.30104166666666665" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/movie_recommendation.xml" value="0.2390625" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/movie_recommendation_card.xml" value="0.3375" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/movie_recommendation_genre_list.xml" value="0.2760416666666667" />
@@ -15,6 +23,7 @@
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/tfe_re_fragment_recommendation_list.xml" value="0.24791666666666667" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/tfe_re_fragment_selection.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/tfe_re_fragment_selection_list.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3171875" />
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/activity_main.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/tfe_re_activity_main.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/tfe_re_card_fragment_selection_list.xml" value="0.27708333333333335" />
@@ -24,6 +33,12 @@
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/tfe_re_fragment_selection_list.xml" value="0.24739583333333334" />
       </map>
     </option>
+  </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_bottom_navigation.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_notifications.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\shett\\AndroidStudioProjects\\cinema-freak\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\shett\\.gradle\\caches\\transforms-3\\69d2dd171dab4f080cf4f3918b685c6f\\transformed\\material-1.0.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\shett\\.gradle\\caches\\transforms-3\\de1773a943010a1df0df81e1d5269e22\\transformed\\material-1.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\shett\\.gradle\\caches\\transforms-3\\7e2c7b8f3ac3ac0c8a2566c932e1256e\\transformed\\appcompat-1.1.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\shett\\.gradle\\caches\\transforms-3\\0f53474759f3f9b15dfd51d4e81c62a0\\transformed\\appcompat-1.4.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

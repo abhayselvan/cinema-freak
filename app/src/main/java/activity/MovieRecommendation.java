@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.tensorflow.lite.examples.recommendation.R;
+import com.cinemaFreak.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,13 +31,11 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
     List<String> genres;
     HashMap<String, List<MovieItem>> movieGenreMap;
-    //private RecommendationFragment recommendationFragment;
     private Handler handler;
     private RecommendationClient client;
     private List<MovieItem> movies;
     private Config config;
     private RecyclerView genreRecyclerView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +43,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
         setContentView(R.layout.movie_recommendation);
         ItemDetailsWrapper wrap = (ItemDetailsWrapper) getIntent().getSerializableExtra("reco");
         movies = wrap.getItemDetails();
+
         // Load config file.
         try {
             config = FileUtil.loadConfig(getAssets(), CONFIG_PATH);
@@ -111,7 +110,10 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                     List<MovieItem> list = new ArrayList<MovieItem>();
                     movieGenreMap.put(genre, list);
                 }
-                movieGenreMap.get(genre).add(res.item);
+                if(!movies.contains(res.item)){
+                    movieGenreMap.get(genre).add(res.item);
+                }
+
             }
         }
     }
@@ -126,4 +128,22 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                     client.load();
                 });
     }
+
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.watch_later:
+//                return true;
+//            case R.id.home:
+//                return true;
+//
+//            case R.id.search:
+//                return true;
+//
+//            case R.id.account:
+//                return true;
+//        }
+//        return false;
+//    }
 }
