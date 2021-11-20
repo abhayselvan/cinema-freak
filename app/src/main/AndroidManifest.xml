@@ -27,7 +27,7 @@
             android:enabled="true"
             android:exported="true" />
         <activity
-            android:name="activity.DescriptionActivity"
+            android:name="activity.MovieDescription"
             android:exported="false" />
         <activity
             android:name="activity.MovieRecommendation"

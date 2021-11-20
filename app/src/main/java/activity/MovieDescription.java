@@ -44,11 +44,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DescriptionActivity extends YouTubeBaseActivity {
+import util.Constants;
+import util.YouTubeConfig;
 
-//    public static final int DEFAULT_UPDATE_INTERVAL = 30;
+public class MovieDescription extends YouTubeBaseActivity {
+
+    //    public static final int DEFAULT_UPDATE_INTERVAL = 30;
 //    public static final int FAST_UPDATE_INTERVAL = 5;
     private static final int PERMISSIONS_COARSE_LOCATION = 1;
+
     String title, description, countryCode;
     String url, posterUrl, trailerLink;
     TextView movieTitle, movieDescription;
@@ -86,8 +90,8 @@ public class DescriptionActivity extends YouTubeBaseActivity {
         linearLayout = (LinearLayout) findViewById(R.id.providers);
         poster.setImageBitmap(null);
 
-        url = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=2b68131ac2dabac3bf7e3dcbc1606c3b&append_to_response=videos,watch/providers";
-        posterUrl = "https://image.tmdb.org/t/p/original";
+        url = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movieId + "?" + Constants.API_KEY_PARAM + "=" +Constants.API_KEY+ Constants.VIDEOS_WATCH_PROVIDERS;
+        posterUrl = Constants.TMDB_POSTER_PATH;
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -152,7 +156,7 @@ public class DescriptionActivity extends YouTubeBaseActivity {
 
         for (int i = 0; i < providerImages.size(); i++){
             int finalI = i;
-            providerImageViews.add(new ImageView(DescriptionActivity.this));
+            providerImageViews.add(new ImageView(MovieDescription.this));
             Thread thread = new Thread(new Runnable() {
 
                 @Override
@@ -275,7 +279,7 @@ public class DescriptionActivity extends YouTubeBaseActivity {
                 @Override
                 public void onSuccess(Location location) {
                     Log.i("DescriptionActivity", "Location received");
-                    Geocoder geocoder = new Geocoder(DescriptionActivity.this);
+                    Geocoder geocoder = new Geocoder(MovieDescription.this);
                     try {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                         countryCode = addresses.get(0).getCountryCode();
