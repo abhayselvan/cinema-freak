@@ -10,8 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-
-import org.tensorflow.lite.examples.recommendation.R;
+import com.cinemaFreak.R;
 
 import java.util.ArrayList;
 import java.util.List;

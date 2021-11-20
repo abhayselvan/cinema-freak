@@ -25,7 +25,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.tensorflow.lite.examples.recommendation.R;
+import com.cinemaFreak.R;
 
 import java.io.IOException;
 import java.io.Serializable;
