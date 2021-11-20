@@ -43,7 +43,7 @@ import data.Result;
  * Interface to load TfLite model and provide recommendations.
  */
 public class RecommendationClient implements Serializable {
-    private static final String TAG = "client.RecommendationClient";
+    private static final String TAG = "CinemaFreak-client.RecommendationClient";
     final Map<Integer, MovieItem> candidates = new HashMap<>();
     final Map<String, Integer> genres = new HashMap<>();
     private final Context context;
@@ -97,7 +97,7 @@ public class RecommendationClient implements Serializable {
             candidates.clear();
             for (MovieItem item : collection) {
                 //Log.d(TAG, String.format("Load candidate: %s", item));
-                candidates.put(item.id, item);
+                candidates.put(item.getId(), item);
             }
             Log.v(TAG, "Candidate list loaded.");
         } catch (IOException ex) {
@@ -140,7 +140,7 @@ public class RecommendationClient implements Serializable {
             if (i >= inputIds.length) {
                 break;
             }
-            inputIds[i] = item.id;
+            inputIds[i] = item.getId();
             ++i;
         }
         return inputIds;
@@ -155,7 +155,7 @@ public class RecommendationClient implements Serializable {
             if (i >= inputGenres.length) {
                 break;
             }
-            for (String genre : item.genres) {
+            for (String genre : item.getGenres()) {
                 if (i >= inputGenres.length) {
                     break;
                 }

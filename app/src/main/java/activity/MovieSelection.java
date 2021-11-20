@@ -14,9 +14,12 @@ package activity;/*
  * limitations under the License.
  */
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 
@@ -93,11 +96,9 @@ public class MovieSelection extends AppCompatActivity implements
         adapter = new MovieSelectionRecyclerViewAdapter(this, allMovies);
         recyclerView.setAdapter(adapter);
 
-
-
     }
 
-    @SuppressWarnings("AndroidJdkLibsChecker")
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -132,7 +133,6 @@ public class MovieSelection extends AppCompatActivity implements
                     // Show result on screen
                     ItemDetailsWrapper wrapper = new ItemDetailsWrapper(movies);
                     Intent intent = new Intent(this, MovieRecommendation.class);
-
                     intent.putExtra("reco", wrapper);
                     startActivity(intent);
                 });
