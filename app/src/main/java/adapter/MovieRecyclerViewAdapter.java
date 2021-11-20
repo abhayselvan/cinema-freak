@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.tensorflow.lite.examples.recommendation.R;
+import com.cinemaFreak.R;
 
 import java.util.List;
 

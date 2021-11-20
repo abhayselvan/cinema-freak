@@ -2,4 +2,8 @@
     <string name="tfe_re_app_name" translatable="false">TFL Recommendation</string>
     <string name="tfe_re_instruction_text" translatable="false">Please select your favorite movies.</string>
     <string name="tfe_re_recommendation_text" translatable="false">Our recommendation for you:</string>
+    <string name="title_activity_bottom_navigation">BottomNavigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

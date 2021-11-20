@@ -90,4 +90,5 @@ public class MovieItem implements Serializable {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
+
 }

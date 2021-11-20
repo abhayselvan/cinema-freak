@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.tensorflow.lite.examples.recommendation.R;
+import com.cinemaFreak.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,6 +75,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                 () -> {
                     client.load();
                 });
+
     }
 
     /**

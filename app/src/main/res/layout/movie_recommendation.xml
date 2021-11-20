@@ -4,24 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="activity.MovieRecommendation"
-    android:background="#000000">
-<!--    <TextView-->
-<!--        android:id="@+id/recommendation_text_view"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:textColor="#e2e2e2"/>-->
+    android:background="#000000"
+    tools:context="activity.MovieRecommendation">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recommendation_genre"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="parent"
-                android:orientation="vertical"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recommendation_genre"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottomNavigationView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="75dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:itemIconTint="@color/textColorWhite"-->
+<!--        app:itemTextColor="@color/textColorWhite"-->
+<!--        android:background="@color/backgroundBlack"-->
+<!--        app:itemTextAppearanceActive="@color/red"-->
+<!--        app:menu="@menu/bottom_nav_menu"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

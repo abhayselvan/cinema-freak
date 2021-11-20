@@ -14,12 +14,9 @@ package activity;/*
  * limitations under the License.
  */
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 
@@ -28,7 +25,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.tensorflow.lite.examples.recommendation.R;
+import com.cinemaFreak.R;
 
 import java.io.IOException;
 import java.io.Serializable;
