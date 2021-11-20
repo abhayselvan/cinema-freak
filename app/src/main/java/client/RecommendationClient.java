@@ -82,7 +82,7 @@ public class RecommendationClient implements Serializable {
                     FileUtil.loadMovieList(this.context.getAssets(), config.movieList);
             candidates.clear();
             for (MovieItem item : collection) {
-                Log.d(TAG, String.format("Load candidate: %s", item));
+                //Log.d(TAG, String.format("Load candidate: %s", item));
                 candidates.put(item.id, item);
             }
             Log.v(TAG, "Candidate list loaded.");

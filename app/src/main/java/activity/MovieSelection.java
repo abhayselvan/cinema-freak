@@ -21,15 +21,18 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.cinemaFreak.R;
+import org.tensorflow.lite.examples.recommendation.R;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import adapter.MovieSelectionRecyclerViewAdapter;
 import client.RecommendationClient;
 import data.Config;
 import data.FileUtil;
@@ -39,20 +42,22 @@ import data.MovieItem;
 /**
  * The main activity to provide interactions with users.
  */
-public class MovieSelection extends AppCompatActivity
-        implements MovieFragment.OnListFragmentInteractionListener,
+public class MovieSelection extends AppCompatActivity implements
          Serializable {
     private static final String TAG = "OnDeviceRecommendationDemo";
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
 
     private Config config;
     private RecommendationClient client;
+    private final List<MovieItem> allMovies1 = new ArrayList<>();
     private final List<MovieItem> allMovies = new ArrayList<>();
     private final List<MovieItem> selectedMovies = new ArrayList<>();
+    private MovieSelectionRecyclerViewAdapter adapter;
 
     private Handler handler;
-    private MovieFragment movieFragment;
-    private int currentApiVersion;
+    private RecyclerView recyclerView;
+    private GridLayoutManager gridLayoutManager;
+    private CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,16 +74,27 @@ public class MovieSelection extends AppCompatActivity
 
         // Load movies list.
         try {
-            allMovies.clear();
-            allMovies.addAll(FileUtil.loadMovieList(getAssets(), config.movieList));
+            allMovies1.clear();
+            allMovies1.addAll(FileUtil.loadMovieList(getAssets(), config.movieSelectionList));
+            for(int i=0; i<21; i++){
+                allMovies.add(allMovies1.get(i));
+            }
         } catch (IOException ex) {
-            Log.e(TAG, String.format("Error occurs when loading movies %s: %s.", config.movieList, ex));
+            Log.e(TAG, String.format("Error occurs when loading movies %s: %s.", config.movieSelectionList, ex));
         }
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        gridLayoutManager = new GridLayoutManager(this,3);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         client = new RecommendationClient(this, config);
         handler = new Handler();
-        movieFragment =
-                (MovieFragment) getSupportFragmentManager().findFragmentById(R.id.movie_fragment);
+
+        adapter = new MovieSelectionRecyclerViewAdapter(this, allMovies);
+        recyclerView.setAdapter(adapter);
+
+
+
     }
 
     @SuppressWarnings("AndroidJdkLibsChecker")
@@ -87,10 +103,6 @@ public class MovieSelection extends AppCompatActivity
         super.onStart();
         Log.v(TAG, "onStart.activity.MovieSelection");
 
-        // Add favorite movies to the fragment.
-        List<MovieItem> favoriteMovies =
-                allMovies.stream().limit(config.favoriteListSize).collect(Collectors.toList());
-        movieFragment.setMovies(favoriteMovies);
 
         handler.post(
                 () -> {
@@ -127,20 +139,8 @@ public class MovieSelection extends AppCompatActivity
 
     }
 
-    @Override
-    public void onItemSelectionChange(MovieItem item) {
-        if (item.selected) {
-            if (!selectedMovies.contains(item)) {
-                selectedMovies.add(item);
-            }
-        } else {
-            selectedMovies.remove(item);
-        }
-
-
-    }
-
     public void onClickRecommend(View view){
+        selectedMovies.addAll(adapter.getSelectedMovies());
         if (!selectedMovies.isEmpty()) {
             // Log selected movies.
             StringBuilder sb = new StringBuilder();
@@ -155,13 +155,4 @@ public class MovieSelection extends AppCompatActivity
         }
     }
 
-    /**
-     * Handles click event of recommended movie.
-     */
-//    @Override
-//    public void onClickRecommendedMovie(MovieItem item) {
-//        // Show message for the clicked movie.
-//        String message = String.format("Clicked recommended movie: %s.", item.title);
-//        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-//    }
 }
