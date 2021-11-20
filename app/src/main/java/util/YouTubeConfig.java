@@ -1,4 +1,4 @@
-package activity;
+package util;
 
 public class YouTubeConfig {
     public YouTubeConfig() {

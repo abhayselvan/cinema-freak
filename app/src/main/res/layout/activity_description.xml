@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:background="#000000"
     android:layout_height="match_parent"
-    tools:context="activity.DescriptionActivity"
+    tools:context="activity.MovieDescription"
     android:orientation="vertical">
 
     <TextView
