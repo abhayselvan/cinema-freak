@@ -59,9 +59,6 @@ public class MovieSelection extends AppCompatActivity implements
     private final List<MovieItem> selectedMovies = new ArrayList<>();
     private MovieSelectionRecyclerViewAdapter adapter;
 
-    private MovieDetailsService movieDetailsService;
-    private boolean isServiceBound = false;
-    private ServiceConnection serviceConnection;
     private Handler handler;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
@@ -103,31 +100,6 @@ public class MovieSelection extends AppCompatActivity implements
 
     }
 
-    private void bindMovieDetailsService(){
-        Intent serviceIntent = new Intent(this, MovieDetailsService.class);
-        startService(serviceIntent);
-
-        if(serviceConnection == null) {
-            serviceConnection = new ServiceConnection() {
-                @Override
-                public void onServiceConnected(ComponentName name, IBinder service) {
-                    Log.i(TAG, "On service connected with component");
-                    isServiceBound = true;
-                    MovieDetailsService.MovieDetailsBinder binder = (MovieDetailsService.MovieDetailsBinder) service;
-                    movieDetailsService = binder.getService();
-                }
-
-                @Override
-                public void onServiceDisconnected(ComponentName name) {
-                    Log.i(TAG, "On service disconnected");
-                    isServiceBound = false;
-                }
-
-            };
-            bindService(serviceIntent, serviceConnection, BIND_AUTO_CREATE);
-        }
-    }
-
 
     @Override
     protected void onStart() {
@@ -139,7 +111,6 @@ public class MovieSelection extends AppCompatActivity implements
                 () -> {
                     client.load();
                 });
-        bindMovieDetailsService();
     }
 
     @Override
