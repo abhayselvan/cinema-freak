@@ -9,4 +9,6 @@ public class Constants {
     public final static String API_KEY_PARAM = "api_key";
 
     public final static String API_KEY = "2b68131ac2dabac3bf7e3dcbc1606c3b";
+
+    public final static String TMDB_POSTER_PATH = "https://image.tmdb.org/t/p/original";
 }

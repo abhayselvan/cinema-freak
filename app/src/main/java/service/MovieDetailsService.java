@@ -9,7 +9,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DataSnapshot;
@@ -18,14 +17,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import service.model.Genre;
 import service.model.MovieDetails;
 import util.MovieDetailsServiceUtil;
 import util.TmdbIdMapper;
@@ -62,7 +59,7 @@ public class MovieDetailsService extends Service {
         return movieDetailsBinder;
     }
 
-    public List<MovieDetails> getMoviesDetails(List<Integer> movieIds){
+    public void getMoviesDetails(List<Integer> movieIds, MovieDetailsCallback callback){
         Log.d(TAG, "Fetch movie details invoked");
         List<Integer> tmdbIds = movieIds.stream()
                 .map(movieId -> TmdbIdMapper.getInstance().getTmdbId(getApplicationContext(), movieId))
@@ -71,32 +68,34 @@ public class MovieDetailsService extends Service {
         List<MovieDetails> moviesInDatabase = new ArrayList<>();
         List<Integer> tmdbIdNotInDatabase =new ArrayList<>();
 
-        for(int tmdbId : tmdbIds){
-            tmdbIdNotInDatabase.add(tmdbId);
-            DatabaseReference childRef = database.getReference("movies");
-            childRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+        DatabaseReference childRef = database.getReference("movies");
+        childRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(int tmdbId: tmdbIds){
                     if(snapshot.hasChild(tmdbId+"")){
                         Log.d(TAG, "Movie exists in DB. Fetching details for "+tmdbId);
-                        MovieDetails md = mapDataToMovieDetails(tmdbId, snapshot);
+                        MovieDetails md = mapDataToMovieDetails(tmdbId, snapshot.child(tmdbId+""));
                         moviesInDatabase.add(md);
 
-                    } else tmdbIdNotInDatabase.add(tmdbId);
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.i(TAG, "error in reading db: "+error.getMessage());
+                    } else {
+                        tmdbIdNotInDatabase.add(tmdbId);
+                    }
                 }
 
-            });
-        }
+                if(tmdbIdNotInDatabase.size() > 0)
+                    fetchDetailsFromTmdb(tmdbIdNotInDatabase);
 
-        if(tmdbIdNotInDatabase.size() > 0)
-            fetchDetailsFromTmdb(tmdbIdNotInDatabase);
+                callback.dbMovieDetails(MovieDetailsServiceUtil.mapMovieDetailsToMovieItem(moviesInDatabase));
 
-        return moviesInDatabase;
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i(TAG, "error in reading db: "+error.getMessage());
+            }
+        });
     }
 
     private MovieDetails mapDataToMovieDetails(int tmdbId, DataSnapshot snapshot){
@@ -104,12 +103,14 @@ public class MovieDetailsService extends Service {
         md.setId(tmdbId);
         md.setOverview(snapshot.child("overview").getValue(String.class));
         md.setTitle(snapshot.child("title").getValue(String.class));
-        md.setPoster_path(snapshot.child("poster").getValue(String.class));
+        md.setPoster(snapshot.child("poster").getValue(String.class));
         String genres = snapshot.child("genres").getValue(String.class);
         if(genres != null){
+            List<Genre> genreList = new ArrayList<>();
             for(String genre: genres.split(",")){
-                md.getGenres().add(genre);
+                genreList.add(new Genre(genre));
             }
+            md.setGenres(genreList);
         }
         Log.d(TAG, "Movie mapped: "+md);
         return md;
@@ -145,7 +146,7 @@ public class MovieDetailsService extends Service {
         DatabaseReference childRef = database.getReference("movies").child(response.getId()+"");
         childRef.child("overview").setValue(response.getOverview());
         childRef.child("title").setValue(response.getTitle());
-        childRef.child("poster").setValue(response.getPosterPath());
+        childRef.child("poster").setValue(response.getPoster());
         StringBuilder sb= new StringBuilder();
         response.getGenres().forEach(m -> sb.append(m).append(","));
         if(sb.length()>0)

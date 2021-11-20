@@ -30,10 +30,10 @@ import data.FileUtil;
 import data.ItemDetailsWrapper;
 import data.MovieItem;
 import data.Result;
+import service.MovieDetailsCallback;
 import service.MovieDetailsService;
-import service.model.MovieDetails;
 
-public class MovieRecommendation extends AppCompatActivity implements Serializable {
+public class MovieRecommendation extends AppCompatActivity implements Serializable, MovieDetailsCallback {
     private static final String TAG = "CinemaFreak-OnDeviceRecommendationDemo";
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
     List<String> genres;
@@ -45,7 +45,6 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     private Config config;
     private RecyclerView genreRecyclerView;
     private MovieDetailsService movieDetailsService;
-    private boolean isServiceBound = false;
     private ServiceConnection serviceConnection;
 
 
@@ -87,16 +86,16 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                     Log.d(TAG, "Run inference with TFLite model.");
                     List<Result> recommendations = client.recommend(movies);
 
-                    movieDetailsService.getMoviesDetails(recommendations.stream().map(r -> r.item.id).collect(Collectors.toList()));
-                    // Show result on screen
-                    showResult(recommendations);
+                    movieDetailsService.getMoviesDetails(
+                            recommendations.stream().map(r -> r.item.getId()).collect(Collectors.toList()), this);
+
                 });
     }
 
     /**
      * Shows result on the screen.
      */
-    private void showResult(final List<Result> recommendations) {
+    private void showResult(final List<MovieItem> recommendations) {
         loadMap(recommendations);
         genreRecyclerView.setAdapter(
                 new GenreRecyclerViewAdapter(MovieRecommendation.this, movieGenreMap, genres));
@@ -115,14 +114,14 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
         }
     }
 
-    private void loadMap(List<Result> recommendations) {
-        for (Result res : recommendations) {
-            for (String genre : res.item.genres) {
+    private void loadMap(List<MovieItem> recommendations) {
+        for (MovieItem movieItem : recommendations) {
+            for (String genre : movieItem.getGenres()) {
                 if (!movieGenreMap.containsKey(genre)) {
-                    List<MovieItem> list = new ArrayList<MovieItem>();
+                    List<MovieItem> list = new ArrayList<>();
                     movieGenreMap.put(genre, list);
                 }
-                movieGenreMap.get(genre).add(res.item);
+                movieGenreMap.get(genre).add(movieItem);
             }
         }
     }
@@ -148,7 +147,6 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                 @Override
                 public void onServiceConnected(ComponentName name, IBinder service) {
                     Log.i(TAG, "On service connected with component");
-                    isServiceBound = true;
                     MovieDetailsService.MovieDetailsBinder binder = (MovieDetailsService.MovieDetailsBinder) service;
                     movieDetailsService = binder.getService();
                     recommend(movies);
@@ -157,12 +155,17 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                 @Override
                 public void onServiceDisconnected(ComponentName name) {
                     Log.i(TAG, "On service disconnected");
-                    isServiceBound = false;
                 }
 
             };
             Log.i(TAG, "Service bound");
             bindService(serviceIntent, serviceConnection, BIND_AUTO_CREATE);
         }
+    }
+
+    @Override
+    public void dbMovieDetails(List<MovieItem> movieItems) {
+        // Show result on screen
+        showResult(movieItems);
     }
 }

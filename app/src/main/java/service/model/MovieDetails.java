@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 public class MovieDetails {
 
     private int id;
-    @SerializedName("original_title")
+    @SerializedName("title")
     private String title;
     private String overview;
-    private String poster_path;
+    @SerializedName("poster_path")
+    private String poster;
     private List<Genre> genres;
 
     public MovieDetails(){
@@ -43,12 +44,12 @@ public class MovieDetails {
         this.overview = overview;
     }
 
-    public String getPosterPath() {
-        return poster_path;
+    public String getPoster() {
+        return poster;
     }
 
-    public void setPoster_path(String poster_path) {
-        this.poster_path = poster_path;
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     public List<String> getGenres() {
@@ -65,7 +66,7 @@ public class MovieDetails {
                 "id=" + id +
                 ", original_title='" + title + '\'' +
                 ", overview='" + overview + '\'' +
-                ", poster_path='" + poster_path + '\'' +
+                ", poster_path='" + poster + '\'' +
                 ", genres=" + genres +
                 '}';
     }

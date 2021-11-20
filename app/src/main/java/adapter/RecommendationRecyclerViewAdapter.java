@@ -32,6 +32,7 @@ import java.util.List;
 
 import data.MovieItem;
 import data.Result;
+import util.Constants;
 
 public class RecommendationRecyclerViewAdapter
         extends RecyclerView.Adapter<RecommendationRecyclerViewAdapter.ViewHolder> {
@@ -55,17 +56,9 @@ public class RecommendationRecyclerViewAdapter
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         MovieItem item = movies.get(position);
-        holder.name.setText(item.title);
-        String imageUrl = "";
-        if (item.imageUrl.equals("")) {
-            imageUrl = "https://images-na.ssl-images-amazon.com/images/M/MV5BNDIwMDIxNzk3Ml5BMl5BanBnXkFtZTgwMTg0MzQ4MDE@._V1_SX1500_CR0,0,1500,999_AL_.jpg";
-        } else {
-            imageUrl = item.imageUrl;
-        }
-        // holder.scoreView.setText(String.format("[%d]", item.id));
-
+        holder.name.setText(item.getTitle());
+        String imageUrl = Constants.TMDB_POSTER_PATH+item.getImageUrl();
         Glide.with(mContext).load(imageUrl).into(holder.image);
-//
         holder.image.setOnClickListener(
                 v -> onClickRecommendedMovie(item));
     }
@@ -73,7 +66,7 @@ public class RecommendationRecyclerViewAdapter
 
     public void onClickRecommendedMovie(MovieItem item) {
         // Show message for the clicked movie.
-        String message = String.format("Clicked recommended movie: %s.", item.title);
+        String message = String.format("Clicked recommended movie: %s.", item.getTitle());
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 

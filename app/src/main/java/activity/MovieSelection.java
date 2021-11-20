@@ -41,8 +41,6 @@ import data.Config;
 import data.FileUtil;
 import data.ItemDetailsWrapper;
 import data.MovieItem;
-import service.MovieDetailsService;
-import service.model.MovieDetails;
 
 /**
  * The main activity to provide interactions with users.

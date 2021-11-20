@@ -4,6 +4,12 @@ import android.util.Log;
 
 import org.apache.http.client.utils.URIBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import data.MovieItem;
+import service.model.MovieDetails;
+
 public class MovieDetailsServiceUtil {
     private static final String TAG = "CinemaFreak-MovieDetailsServiceUtil";
 
@@ -19,9 +25,17 @@ public class MovieDetailsServiceUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.i(TAG, "Url for movie details formed: "+url);
+        Log.d(TAG, "Url for movie details formed: "+url);
         return url;
     }
 
+
+    public static List<MovieItem> mapMovieDetailsToMovieItem(List<MovieDetails> movieDetails){
+        List<MovieItem> movieItems = new ArrayList<>();
+        for(MovieDetails md : movieDetails){
+            movieItems.add(new MovieItem(md.getId(), md.getTitle(), md.getGenres(), md.getPoster(), md.getOverview()));
+        }
+        return movieItems;
+    }
 
 }

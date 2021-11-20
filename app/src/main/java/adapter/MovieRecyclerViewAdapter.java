@@ -66,7 +66,7 @@ public class MovieRecyclerViewAdapter
                         holder.setSelected(selected);
                     }
                 });
-        holder.movieTitle.setText(values.get(position).title);
+        holder.movieTitle.setText(values.get(position).getTitle());
 
         holder.view.setOnClickListener(
                 new View.OnClickListener() {
