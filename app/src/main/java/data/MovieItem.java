@@ -27,42 +27,68 @@ import java.util.List;
 public class MovieItem implements Serializable {
 
     public static final String JOINER = " | ";
-    public static final String DELIMITER_REGEX = "[|]";
 
-    public final int id;
-    public final String title;
-    public final List<String> genres;
-    public final int count;
-    public String imageUrl;
+    private final int id;
+    private final String title;
+    private final List<String> genres;
+    private String imageUrl;
+    private String description;
 
     public boolean selected = false; // For UI selection. Default item is not selected.
 
     private MovieItem() {
-        this(0, "", new ArrayList<>(), 0, "");
+        this(0, "", new ArrayList<>(), "", "");
     }
 
-    public MovieItem(int id, String title, List<String> genres, int count, String imageUrl) {
+    public MovieItem(int id, String title, List<String> genres, String imageUrl, String description) {
         this.id = id;
         this.title = title;
         this.genres = genres;
-        this.count = count;
         this.imageUrl = imageUrl;
+        this.description = description;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Id: %d, title: %s, genres: %s, count: %d, selected: %s",
-                id, title, TextUtils.join(JOINER, genres), count, selected);
+                "Id: %d, title: %s, genres: %s, selected: %s",
+                id, title, TextUtils.join(JOINER, genres), selected);
     }
 
-    @Override
-    public boolean equals(Object o){
-        if(o == this)
-            return true;
-        if(!(o instanceof MovieItem))
-            return false;
-        MovieItem m = (MovieItem) o;
-        return this.title.equals(((MovieItem) o).title);
+    public int getId() {
+        return id;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
 }

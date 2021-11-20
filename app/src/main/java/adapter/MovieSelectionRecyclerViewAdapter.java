@@ -40,8 +40,8 @@ public class MovieSelectionRecyclerViewAdapter extends RecyclerView.Adapter<Movi
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         MovieItem item = my_data.get(position);
-        holder.description.setText(item.title);
-        Glide.with(context).load(item.imageUrl).into(holder.imageView);
+        holder.description.setText(item.getTitle());
+        Glide.with(context).load(item.getImageUrl()).into(holder.imageView);
         holder.imageView.setOnClickListener(
                 v -> onClickRecommendedMovie(item));
 

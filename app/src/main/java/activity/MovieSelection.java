@@ -93,11 +93,9 @@ public class MovieSelection extends AppCompatActivity implements
         adapter = new MovieSelectionRecyclerViewAdapter(this, allMovies);
         recyclerView.setAdapter(adapter);
 
-
-
     }
 
-    @SuppressWarnings("AndroidJdkLibsChecker")
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -132,7 +130,6 @@ public class MovieSelection extends AppCompatActivity implements
                     // Show result on screen
                     ItemDetailsWrapper wrapper = new ItemDetailsWrapper(movies);
                     Intent intent = new Intent(this, MovieRecommendation.class);
-
                     intent.putExtra("reco", wrapper);
                     startActivity(intent);
                 });

@@ -4,6 +4,17 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    package="org.tensorflow.lite.examples.recommendation">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +22,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Recommendation">
-
+        <service
+            android:name="service.MovieDetailsService"
+            android:enabled="true"
+            android:exported="true" />
+        <activity
+            android:name="activity.DescriptionActivity"
+            android:exported="false" />
         <activity
             android:name="activity.MovieRecommendation"
             android:exported="true" />
