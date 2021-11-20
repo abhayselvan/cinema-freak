@@ -75,7 +75,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                 () -> {
                     client.load();
                 });
-        recommend(movies);
+
     }
 
     /**
@@ -125,6 +125,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                     List<MovieItem> list = new ArrayList<>();
                     movieGenreMap.put(genre, list);
                 }
+                movieGenreMap.get(genre).add(movieItem);
             }
         }
     }

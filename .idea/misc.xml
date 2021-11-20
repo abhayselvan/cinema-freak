@@ -17,6 +17,7 @@
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/movie_recommendation_layout.xml" value="0.42916666666666664" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/movie_recommendation_layout_images.xml" value="0.42916666666666664" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/movie_recommendation_list.xml" value="0.24791666666666667" />
+        <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/movie_selection_card.xml" value="0.42916666666666664" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/movie_selection_layout.xml" value="0.42916666666666664" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/tfe_re_card_fragment_selection_list.xml" value="0.42916666666666664" />
         <entry key="..\:/Users/shett/AndroidStudioProjects/cinema-freak/app/src/main/res/layout/tfe_re_fragment_recommendation.xml" value="0.24791666666666667" />
@@ -31,8 +32,6 @@
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/tfe_re_fragment_recommendation_list.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/tfe_re_fragment_selection.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/tfe_re_fragment_selection_list.xml" value="0.24739583333333334" />
-        <entry key="app/src/main/res/layout/activity_description.xml" value="0.11354166666666667" />
-        <entry key="app/src/main/res/layout/movie_recommendation.xml" value="0.12760416666666666" />
       </map>
     </option>
   </component>
