@@ -46,6 +46,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     private RecyclerView genreRecyclerView;
     private MovieDetailsService movieDetailsService;
     private ServiceConnection serviceConnection;
+    private boolean isServiceConnected;
 
 
     @Override
@@ -149,6 +150,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                 @Override
                 public void onServiceConnected(ComponentName name, IBinder service) {
                     Log.i(TAG, "On service connected with component");
+                    isServiceConnected = true;
                     MovieDetailsService.MovieDetailsBinder binder = (MovieDetailsService.MovieDetailsBinder) service;
                     movieDetailsService = binder.getService();
                     recommend(movies);
@@ -157,6 +159,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                 @Override
                 public void onServiceDisconnected(ComponentName name) {
                     Log.i(TAG, "On service disconnected");
+                    isServiceConnected = false;
                 }
 
             };
@@ -169,5 +172,18 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     public void dbMovieDetails(List<MovieItem> movieItems) {
         // Show result on screen
         showResult(movieItems);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(!isServiceConnected){
+            return;
+        }
+        Log.i(TAG, "unbinding service from recommendation page");
+        unbindService(serviceConnection);
+        serviceConnection = null;
+        isServiceConnected = false;
     }
 }
