@@ -15,6 +15,7 @@ package adapter;/*
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.cinemaFreak.R;
 
 import java.util.List;
 
+import activity.DescriptionActivity;
 import data.MovieItem;
 import data.Result;
 import util.Constants;
@@ -66,8 +68,11 @@ public class RecommendationRecyclerViewAdapter
 
     public void onClickRecommendedMovie(MovieItem item) {
         // Show message for the clicked movie.
-        String message = String.format("Clicked recommended movie: %s.", item.getTitle());
-        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+//        String message = String.format("Clicked recommended movie: %s.", item.getTitle());
+//        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(mContext, activity.DescriptionActivity.class);
+        intent.putExtra("movieId",String.valueOf(item.getId()));
+        mContext.startActivity(intent);
     }
 
     @Override
