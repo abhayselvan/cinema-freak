@@ -28,6 +28,7 @@ public final class Config {
     private static final String TAG = "CinemaFreak-data.Config";
     private static final String DEFAULT_MODEL_PATH = "recommendation_rnn_i10o100.tflite";
     private static final String DEFAULT_MOVIE_LIST_PATH = "sorted_movie_vocab.json";
+    private static final String DEFAULT_MOVIE_SELECTION_LIST_PATH = "selected_movie_vocab.json";
     private static final int DEFAULT_OUTPUT_LENGTH = 100;
     private static final int DEFAULT_TOP_K = 100;
     private static final int PAD_ID = 0;
@@ -79,6 +80,10 @@ public final class Config {
      * The number of favorite movies for users to choose from.
      */
     public int favoriteListSize = DEFAULT_FAVORITE_LIST_SIZE;
+    /**
+     * The movies to select from
+     */
+    public String movieSelectionList = DEFAULT_MOVIE_SELECTION_LIST_PATH;
 
     public Config() {
     }
@@ -90,7 +95,7 @@ public final class Config {
         }
 
         boolean hasGenreFeature = false;
-        for (Config.Feature feature : inputs) {
+        for (Feature feature : inputs) {
             if (FEATURE_GENRE.equals(feature.name)) {
                 hasGenreFeature = true;
                 break;
