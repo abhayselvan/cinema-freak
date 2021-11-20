@@ -19,8 +19,8 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import adapter.GenreRecyclerViewAdapter;
@@ -37,7 +37,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     private static final String TAG = "CinemaFreak-OnDeviceRecommendationDemo";
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
     List<String> genres;
-    HashMap<String, List<MovieItem>> movieGenreMap;
+    TreeMap<String, List<MovieItem>> movieGenreMap;
     //private RecommendationFragment recommendationFragment;
     private Handler handler;
     private RecommendationClient client;
@@ -52,7 +52,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        movieGenreMap = new HashMap<>();
+        movieGenreMap = new TreeMap<>();
         setContentView(R.layout.movie_recommendation);
         ItemDetailsWrapper wrap = (ItemDetailsWrapper) getIntent().getSerializableExtra("reco");
         movies = wrap.getItemDetails();

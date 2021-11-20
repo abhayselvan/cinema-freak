@@ -38,7 +38,7 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
 
     @Override
     public void onBindViewHolder(final GenreRecyclerViewAdapter.ViewHolder holder, int position) {
-        String genre = genres.get(position);
+        String genre = (String) movieGenreMap.keySet().toArray()[position];
         if (movieGenreMap.containsKey(genre)) {
             List<MovieItem> movies = movieGenreMap.get(genre);
             holder.genre.setText(genre);
@@ -55,7 +55,7 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
 
     @Override
     public int getItemCount() {
-        return genres.size();
+        return movieGenreMap.size();
     }
 
     /**
@@ -73,6 +73,7 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
             this.genre =
                     view.findViewById(R.id.genreText);
             this.recyclerView = view.findViewById(R.id.recommendation_list);
+            this.setIsRecyclable(false);
         }
     }
 }
