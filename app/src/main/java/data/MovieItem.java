@@ -56,4 +56,13 @@ public class MovieItem implements Serializable {
                 id, title, TextUtils.join(JOINER, genres), count, selected);
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(o == this)
+            return true;
+        if(!(o instanceof MovieItem))
+            return false;
+        MovieItem m = (MovieItem) o;
+        return this.title.equals(((MovieItem) o).title);
+    }
 }

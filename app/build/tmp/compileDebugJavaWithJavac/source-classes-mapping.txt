@@ -2,11 +2,8 @@ com/cinemaFreak/databinding/MovieRecommendationCardBinding.java
  com.cinemaFreak.databinding.MovieRecommendationCardBinding
 data/Result.java
  data.Result
-adapter/MovieRecyclerViewAdapter.java
- adapter.MovieRecyclerViewAdapter
- adapter.MovieRecyclerViewAdapter$1
- adapter.MovieRecyclerViewAdapter$2
- adapter.MovieRecyclerViewAdapter$ViewHolder
+activity/MovieRecommendation.java
+ activity.MovieRecommendation
 com/cinemaFreak/databinding/MovieSelectionLayoutBinding.java
  com.cinemaFreak.databinding.MovieSelectionLayoutBinding
 data/FileUtil.java
@@ -20,13 +17,12 @@ com/cinemaFreak/databinding/TfeReFragmentSelectionListBinding.java
 adapter/RecommendationRecyclerViewAdapter.java
  adapter.RecommendationRecyclerViewAdapter
  adapter.RecommendationRecyclerViewAdapter$ViewHolder
-activity/MovieFragment.java
- activity.MovieFragment
- activity.MovieFragment$OnListFragmentInteractionListener
+client/RecommendationClient.java
+ client.RecommendationClient
 com/cinemaFreak/databinding/MovieRecommendationGenreListBinding.java
  com.cinemaFreak.databinding.MovieRecommendationGenreListBinding
-data/ItemDetailsWrapper.java
- data.ItemDetailsWrapper
+activity/MovieSelection.java
+ activity.MovieSelection
 data/Config.java
  data.Config
  data.Config$Feature
@@ -39,9 +35,13 @@ data/MovieItem.java
  data.MovieItem
 com/cinemaFreak/databinding/TfeReFragmentSelectionBinding.java
  com.cinemaFreak.databinding.TfeReFragmentSelectionBinding
-client/RecommendationClient.java
- client.RecommendationClient
-activity/MovieRecommendation.java
- activity.MovieRecommendation
-activity/MovieSelection.java
- activity.MovieSelection
+data/ItemDetailsWrapper.java
+ data.ItemDetailsWrapper
+adapter/MovieRecyclerViewAdapter.java
+ adapter.MovieRecyclerViewAdapter
+ adapter.MovieRecyclerViewAdapter$1
+ adapter.MovieRecyclerViewAdapter$2
+ adapter.MovieRecyclerViewAdapter$ViewHolder
+activity/MovieFragment.java
+ activity.MovieFragment
+ activity.MovieFragment$OnListFragmentInteractionListener

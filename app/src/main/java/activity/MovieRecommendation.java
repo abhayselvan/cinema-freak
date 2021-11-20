@@ -113,7 +113,6 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                 if(!movies.contains(res.item)){
                     movieGenreMap.get(genre).add(res.item);
                 }
-
             }
         }
     }
