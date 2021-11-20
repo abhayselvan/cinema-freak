@@ -85,6 +85,8 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                     // Run inference with TF Lite.
                     Log.d(TAG, "Run inference with TFLite model.");
                     List<Result> recommendations = client.recommend(movies);
+                    List<Integer> selectedMovies = movies.stream().map(MovieItem::getId).collect(Collectors.toList());
+                    recommendations = recommendations.stream().filter(result -> !selectedMovies.contains(result.item.getId())).collect(Collectors.toList());
 
                     movieDetailsService.getMoviesDetails(
                             recommendations.stream().map(r -> r.item.getId()).collect(Collectors.toList()), this);

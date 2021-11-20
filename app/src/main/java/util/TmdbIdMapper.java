@@ -42,7 +42,6 @@ public class TmdbIdMapper {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(csvSplitBy);
                 if(row.length != 2){
-                    Log.e(TAG, "Invalid Line: "+line);
                     continue;
                 }
                 tmdbMap.put(Integer.parseInt(row[0]), Integer.parseInt(row[1]));
