@@ -43,7 +43,7 @@ import data.Result;
  * Interface to load TfLite model and provide recommendations.
  */
 public class RecommendationClient implements Serializable {
-    private static final String TAG = "client.RecommendationClient";
+    private static final String TAG = "CinemaFreak-client.RecommendationClient";
     final Map<Integer, MovieItem> candidates = new HashMap<>();
     final Map<String, Integer> genres = new HashMap<>();
     private final Context context;

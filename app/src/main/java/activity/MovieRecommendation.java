@@ -27,7 +27,7 @@ import data.MovieItem;
 import data.Result;
 
 public class MovieRecommendation extends AppCompatActivity implements Serializable {
-    private static final String TAG = "OnDeviceRecommendationDemo";
+    private static final String TAG = "CinemaFreak-OnDeviceRecommendationDemo";
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
     List<String> genres;
     HashMap<String, List<MovieItem>> movieGenreMap;

@@ -14,9 +14,12 @@ package activity;/*
  * limitations under the License.
  */
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 
@@ -35,6 +38,8 @@ import data.Config;
 import data.FileUtil;
 import data.ItemDetailsWrapper;
 import data.MovieItem;
+import service.MovieDetailsService;
+import service.model.MovieDetails;
 
 /**
  * The main activity to provide interactions with users.
@@ -49,7 +54,9 @@ public class MovieSelection extends AppCompatActivity
     private RecommendationClient client;
     private final List<MovieItem> allMovies = new ArrayList<>();
     private final List<MovieItem> selectedMovies = new ArrayList<>();
-
+    private MovieDetailsService movieDetailsService;
+    private boolean isServiceBound = false;
+    private ServiceConnection serviceConnection;
     private Handler handler;
     private MovieFragment movieFragment;
 
@@ -79,12 +86,39 @@ public class MovieSelection extends AppCompatActivity
         movieFragment =
                 (MovieFragment) getSupportFragmentManager().findFragmentById(R.id.movie_fragment);
 
+
+
 //        FirebaseDatabase database = FirebaseDatabase.getInstance("https://cinema-freak-default-rtdb.firebaseio.com/");
 //        DatabaseReference myRef = database.getReference("message");
 //        myRef.setValue("Hello, World!");
     }
 
-    @SuppressWarnings("AndroidJdkLibsChecker")
+    private void bindMovieDetailsService(){
+        Intent serviceIntent = new Intent(this, MovieDetailsService.class);
+        startService(serviceIntent);
+
+        if(serviceConnection == null) {
+            serviceConnection = new ServiceConnection() {
+                @Override
+                public void onServiceConnected(ComponentName name, IBinder service) {
+                    Log.i(TAG, "On service connected with component");
+                    isServiceBound = true;
+                    MovieDetailsService.MovieDetailsBinder binder = (MovieDetailsService.MovieDetailsBinder) service;
+                    movieDetailsService = binder.getService();
+                }
+
+                @Override
+                public void onServiceDisconnected(ComponentName name) {
+                    Log.i(TAG, "On service disconnected");
+                    isServiceBound = false;
+                }
+
+            };
+            bindService(serviceIntent, serviceConnection, BIND_AUTO_CREATE);
+        }
+    }
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -99,6 +133,7 @@ public class MovieSelection extends AppCompatActivity
                 () -> {
                     client.load();
                 });
+        bindMovieDetailsService();
     }
 
     @Override
@@ -123,7 +158,6 @@ public class MovieSelection extends AppCompatActivity
                     // Show result on screen
                     ItemDetailsWrapper wrapper = new ItemDetailsWrapper(movies);
                     Intent intent = new Intent(this, MovieRecommendation.class);
-
                     intent.putExtra("reco", wrapper);
                     startActivity(intent);
                 });

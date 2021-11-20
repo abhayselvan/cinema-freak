@@ -25,7 +25,7 @@ import java.util.List;
 public final class Config {
     public static final String FEATURE_MOVIE = "movieFeature";
     public static final String FEATURE_GENRE = "genreFeature";
-    private static final String TAG = "data.Config";
+    private static final String TAG = "CinemaFreak-data.Config";
     private static final String DEFAULT_MODEL_PATH = "recommendation_rnn_i10o100.tflite";
     private static final String DEFAULT_MOVIE_LIST_PATH = "sorted_movie_vocab.json";
     private static final int DEFAULT_OUTPUT_LENGTH = 100;
