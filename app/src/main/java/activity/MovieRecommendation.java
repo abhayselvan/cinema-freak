@@ -56,6 +56,13 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
         setContentView(R.layout.movie_recommendation);
         ItemDetailsWrapper wrap = (ItemDetailsWrapper) getIntent().getSerializableExtra("reco");
         movies = wrap.getItemDetails();
+
+        //bottom navigation
+
+//        bottonNavBar= (LinearLayout) findViewById(R.id.bottonNavBar);
+//        View wizard = getLayoutInflater().inflate(R.layout.movie_recommendation, null);
+       // dynamicContent.addView(wizard);
+
         // Load config file.
         try {
             config = FileUtil.loadConfig(getAssets(), CONFIG_PATH);
