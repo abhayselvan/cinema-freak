@@ -1,5 +1,6 @@
 package activity;
 
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,6 +50,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     private MovieDetailsService movieDetailsService;
     private ServiceConnection serviceConnection;
     private boolean isServiceConnected;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -54,6 +58,8 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
         super.onCreate(savedInstanceState);
         movieGenreMap = new TreeMap<>();
         setContentView(R.layout.movie_recommendation);
+        progressBar = findViewById(R.id.pBar);
+        progressBar.setVisibility(View.VISIBLE);
         ItemDetailsWrapper wrap = (ItemDetailsWrapper) getIntent().getSerializableExtra("reco");
         movies = wrap.getItemDetails();
         // Load config file.
@@ -87,6 +93,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
                     // Run inference with TF Lite.
                     Log.d(TAG, "Run inference with TFLite model.");
                     List<Result> recommendations = client.recommend(movies);
+
                     List<Integer> selectedMovies = movies.stream().map(MovieItem::getId).collect(Collectors.toList());
                     recommendations = recommendations.stream().filter(result -> !selectedMovies.contains(result.item.getId())).collect(Collectors.toList());
 
@@ -103,6 +110,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
         loadMap(recommendations);
         genreRecyclerView.setAdapter(
                 new GenreRecyclerViewAdapter(MovieRecommendation.this, movieGenreMap, genres));
+        progressBar.setVisibility(View.GONE);
     }
 
     private void loadGenres() {
