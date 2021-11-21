@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import database.DatabaseInstance;
 import service.model.Genre;
 import service.model.MovieDetails;
 import util.MovieDetailsServiceUtil;
@@ -32,7 +33,6 @@ public class MovieDetailsService extends Service {
     private Binder movieDetailsBinder;
     private RequestQueue volleyRequestQueue;
     private final String TAG = "CinemaFreak--MovieDetailsService";
-    private FirebaseDatabase database;
 
     public MovieDetailsService() {
         this.movieDetailsBinder = new MovieDetailsBinder();
@@ -43,7 +43,6 @@ public class MovieDetailsService extends Service {
         super.onCreate();
         Log.d(TAG, "Create service invoked");
         volleyRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        database = FirebaseDatabase.getInstance("https://cinema-freak-default-rtdb.firebaseio.com/");
         TmdbIdMapper.getInstance().loadCsv(this);
     }
 
@@ -69,7 +68,7 @@ public class MovieDetailsService extends Service {
         List<Integer> tmdbIdNotInDatabase =new ArrayList<>();
 
 
-        DatabaseReference childRef = database.getReference("movies");
+        DatabaseReference childRef = DatabaseInstance.DATABASE.getReference("movies");
         childRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -143,7 +142,7 @@ public class MovieDetailsService extends Service {
     }
 
     private void insertMovieDetailsInDatabase(MovieDetails response){
-        DatabaseReference childRef = database.getReference("movies").child(response.getId()+"");
+        DatabaseReference childRef = DatabaseInstance.DATABASE.getReference("movies").child(response.getId()+"");
         childRef.child("overview").setValue(response.getOverview());
         childRef.child("title").setValue(response.getTitle());
         childRef.child("poster").setValue(response.getPoster());
