@@ -104,7 +104,21 @@ public class MovieDetailsService extends Service {
         md.setTitle(snapshot.child("title").getValue(String.class));
         md.setPoster(snapshot.child("poster").getValue(String.class));
         md.setWallpaper(snapshot.child("wallpaper").getValue(String.class));
-        md.setTrailer(snapshot.child("trailer").getValue(String.class));
+
+        String wallpaperUrl = snapshot.child("trailer").getValue(String.class);
+        if (wallpaperUrl == null){
+            md.setWallpaper("");
+        } else {
+            md.setWallpaper(wallpaperUrl);
+        }
+
+        String trailerID = snapshot.child("trailer").getValue(String.class);
+        if (trailerID == null){
+            md.setTrailer("");
+        } else {
+            md.setTrailer(trailerID);
+        }
+
         String genres = snapshot.child("genres").getValue(String.class);
         if(genres != null){
             List<Genre> genreList = new ArrayList<>();

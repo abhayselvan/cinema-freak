@@ -14,7 +14,7 @@ public class Constants {
 
     public static final String ACTIVE_USER_KEY = "ActiveUserInstance";
 
-    public static final String VIDEOS_WATCH_PROVIDERS = "&append_to_response=videos";
+    public static final String WATCH_PROVIDERS = "/watch/providers";
 
     public static final String VIDEOS_PARAM = "append_to_response";
 
