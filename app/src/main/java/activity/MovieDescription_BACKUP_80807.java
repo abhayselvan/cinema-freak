@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -45,6 +46,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import data.ItemDetailsWrapper;
 import data.MovieItem;
 import util.Constants;
 import util.YouTubeConfig;
@@ -91,7 +93,21 @@ public class MovieDescription extends YouTubeBaseActivity {
         linearLayout = (LinearLayout) findViewById(R.id.providers);
         poster.setImageBitmap(null);
 
+<<<<<<< HEAD
+
+        List<MovieItem> movieItems = ItemDetailsWrapper.getItemDetails();
+        Log.i("DescriptionActivity",String.valueOf(movieItems.size()));
+        for (int i = 0; i < movieItems.size(); i++){
+            if (movieItems.get(i).getId() == Integer.parseInt(movieId)) {
+                Toast.makeText(getApplicationContext(), movieItems.get(i).getTitle(), Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
+
+        url = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movieId + "?" + Constants.API_KEY_PARAM + "=" +Constants.API_KEY+ Constants.VIDEOS_WATCH_PROVIDERS;
+=======
         url = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movieItem.getId() + "?" + Constants.API_KEY_PARAM + "=" +Constants.API_KEY+ Constants.VIDEOS_WATCH_PROVIDERS;
+>>>>>>> c8cdffcb81e23f64db48ff0fdf3da46a6d9df8f0
         posterUrl = Constants.TMDB_POSTER_PATH;
 
 

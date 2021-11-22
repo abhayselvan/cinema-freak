@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Movie;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -66,7 +65,7 @@ public class MovieDescription extends YouTubeBaseActivity {
     YouTubePlayer.OnInitializedListener mOnInitializedListener;
     RequestQueue queue;
     JsonObjectRequest jsonObjectRequest;
-    
+
     LocationRequest locationRequest;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -80,7 +79,7 @@ public class MovieDescription extends YouTubeBaseActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        MovieItem movieItem = (MovieItem) bundle.get("movieId");
+        String movieId = bundle.getString("movieId");
 
         queue = Volley.newRequestQueue(this);
         movieTitle = (TextView) findViewById(R.id.movie_title);
@@ -91,21 +90,27 @@ public class MovieDescription extends YouTubeBaseActivity {
         linearLayout = (LinearLayout) findViewById(R.id.providers);
         poster.setImageBitmap(null);
 
-        url = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movieItem.getId() + "?" + Constants.API_KEY_PARAM + "=" +Constants.API_KEY+ Constants.VIDEOS_WATCH_PROVIDERS;
+        url = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movieId + "?" + Constants.API_KEY_PARAM + "=" +Constants.API_KEY+ Constants.VIDEOS_WATCH_PROVIDERS;
         posterUrl = Constants.TMDB_POSTER_PATH;
 
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    Log.i("DescriptionActivity", "Movie API received");
-                    movieDetails = response;
-                    getDetails();
-                    getTrailer();
-                    getLocation();
-                }, error -> {
-                    Log.i("DescriptionActivity", "response error");
-                    error.printStackTrace();
-                });
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("DescriptionActivity", "Movie API received");
+                        movieDetails = response;
+                        getDetails();
+                        getTrailer();
+                        getLocation();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("DescriptionActivity", "response error");
+                error.printStackTrace();
+            }
+        });
 
 //        locationRequest = new LocationRequest();
         locationRequest = LocationRequest.create();
@@ -158,23 +163,27 @@ public class MovieDescription extends YouTubeBaseActivity {
         for (int i = 0; i < providerImages.size(); i++){
             int finalI = i;
             providerImageViews.add(new ImageView(MovieDescription.this));
-            Thread thread = new Thread(() -> {
-                try  {
-                    Log.i("DescriptionActivity", "Loading logos");
-                    String imagePath = providerImages.get(finalI);
-                    if (imagePath.length() > 0) {
-                        inputStream = new URL(posterUrl + imagePath).openStream();
-                        bitmap = BitmapFactory.decodeStream(inputStream);
-                        providerLogos.add(bitmap);
+            Thread thread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    try  {
+                        Log.i("DescriptionActivity", "Loading logos");
+                        String imagePath = providerImages.get(finalI);
+                        if (imagePath.length() > 0) {
+                            inputStream = new URL(posterUrl + imagePath).openStream();
+                            bitmap = BitmapFactory.decodeStream(inputStream);
+                            providerLogos.add(bitmap);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             });
             threads.add(thread);
             thread.start();
         }
-        Log.i("DescriptionActivity", "Logo count = " + providerLogos.size());
+        Log.i("DescriptionActivity", "Logo count = " + String.valueOf(providerLogos.size()));
 
         for (int i = 0; i < threads.size(); i++){
             try {

@@ -176,9 +176,9 @@ public class MovieDetailsService extends Service {
     public class MovieDetailsBinder extends Binder {
 
         public MovieDetailsService getService(){
-            Log.d(TAG, "Fetch service called");
             return MovieDetailsService.this;
         }
     }
+
 
 }

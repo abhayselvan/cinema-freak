@@ -29,7 +29,7 @@ import data.Result;
  * Interface to load TfLite model and provide recommendations.
  */
 public class RecommendationClient implements Serializable {
-    private static final String TAG = "CinemaFreak-client.RecommendationClient";
+    private static final String TAG = "Client.RecommendationClient";
     final Map<Integer, MovieItem> candidates = new HashMap<>();
     final Map<String, Integer> genres = new HashMap<>();
     private final Context context;
@@ -100,7 +100,6 @@ public class RecommendationClient implements Serializable {
             List<String> genreList = FileUtil.loadGenreList(this.context.getAssets(), config.genreList);
             genres.clear();
             for (String genre : genreList) {
-                Log.d(TAG, String.format("Load genre: \"%s\"", genre));
                 genres.put(genre, genres.size());
             }
             Log.v(TAG, "Candidate list loaded.");
@@ -186,18 +185,18 @@ public class RecommendationClient implements Serializable {
         // Add recommendation results. Filter null or contained items.
         for (int i = 0; i < outputIds.length; i++) {
             if (results.size() >= config.topK) {
-                Log.v(TAG, String.format("Selected top K: %d. Ignore the rest.", config.topK));
+                Log.d(TAG, String.format("Selected top K: %d. Ignore the rest.", config.topK));
                 break;
             }
 
             int id = outputIds[i];
             MovieItem item = candidates.get(id);
             if (item == null) {
-                Log.v(TAG, String.format("Inference output[%d]. Id: %s is null", i, id));
+                Log.d(TAG, String.format("Inference output[%d]. Id: %s is null", i, id));
                 continue;
             }
             if (selectedMovies.contains(item)) {
-                Log.v(TAG, String.format("Inference output[%d]. Id: %s is contained", i, id));
+                Log.d(TAG, String.format("Inference output[%d]. Id: %s is contained", i, id));
                 continue;
             }
             Result result = new Result(id, item, confidences[i]);
