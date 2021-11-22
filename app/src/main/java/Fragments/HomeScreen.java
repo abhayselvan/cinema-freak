@@ -109,6 +109,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
         movieGenreMap = new TreeMap<>();
 
         userId = getActivity().getIntent().getStringExtra(Constants.ACTIVE_USER_KEY);
+        recommendations = new ArrayList<>();
         loadActiveUser(userId);
 
         // Load config file.

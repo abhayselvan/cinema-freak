@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Movie;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -79,7 +80,7 @@ public class MovieDescription extends YouTubeBaseActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String movieId = bundle.getString("movieId");
+        MovieItem movieItem = (MovieItem) bundle.get("movieId");
 
         queue = Volley.newRequestQueue(this);
         movieTitle = (TextView) findViewById(R.id.movie_title);
@@ -90,7 +91,7 @@ public class MovieDescription extends YouTubeBaseActivity {
         linearLayout = (LinearLayout) findViewById(R.id.providers);
         poster.setImageBitmap(null);
 
-        url = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movieId + "?" + Constants.API_KEY_PARAM + "=" +Constants.API_KEY+ Constants.VIDEOS_WATCH_PROVIDERS;
+        url = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movieItem.getId() + "?" + Constants.API_KEY_PARAM + "=" +Constants.API_KEY+ Constants.VIDEOS_WATCH_PROVIDERS;
         posterUrl = Constants.TMDB_POSTER_PATH;
 
 
