@@ -14,8 +14,8 @@ import com.cinemaFreak.R;
 import java.util.List;
 import java.util.Map;
 
-import data.MovieItem;
 import model.User;
+import data.MovieItem;
 
 public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecyclerViewAdapter.ViewHolder> {
 

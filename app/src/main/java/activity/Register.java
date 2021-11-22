@@ -1,29 +1,28 @@
 package activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cinemaFreak.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import model.User;
+import util.Constants;
+
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "CinemaFreak-Register";
     private FirebaseAuth mAuth;
     private Button Register;
-    private TextView nameTextView,usernameTextView,ageTextView,sexTextView,contactTextView,emailTextView,passwordTextView;
     private EditText editTextName,editTextPassword,editTextAge, editTextContact, editTextEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         editTextAge = (EditText) findViewById(R.id.age);
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextContact = (EditText) findViewById(R.id.contact);
-//
     }
 
     @Override
@@ -108,30 +106,30 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             return;
         }
         mAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            User user = new User(name,age,contact,email,password);
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        User user = new User(userId, name,age,contact,email,password);
+                        FirebaseDatabase.getInstance().getReference("Users")
+                                .child(userId)
+                                .setValue(user).addOnCompleteListener(task1 -> {
+                                    if(task1.isSuccessful()){
                                         Toast.makeText(Register.this,"User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(Register.this,MovieSelection.class));
+
+                                        Intent movieSelectionIntent = new Intent(Register.this, MovieSelection.class);
+                                        movieSelectionIntent.putExtra(Constants.ACTIVE_USER_KEY, user);
+                                        startActivity(movieSelectionIntent);
                                     }
                                     else{
+                                        Log.e(TAG, "Unable to update database with user details: "+task1.getException());
                                         Toast.makeText(Register.this,"Failed to register! Try again!",Toast.LENGTH_LONG).show();
                                     }
 
-                                }
-                            });
+                                });
 
-                        }else{
-                            Toast.makeText(Register.this,"Failed to register! Try again!",Toast.LENGTH_LONG).show();
-                        }
+                    }else{
+                        Log.e(TAG, "Unable to authenticate: "+task.getException());
+                        Toast.makeText(Register.this,"Failed to register! Try again!",Toast.LENGTH_LONG).show();
                     }
                 });
 

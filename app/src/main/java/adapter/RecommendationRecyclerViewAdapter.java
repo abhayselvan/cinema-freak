@@ -31,9 +31,9 @@ import com.cinemaFreak.R;
 import java.util.List;
 
 import activity.MovieDescription;
+import model.User;
 import data.MovieItem;
 import data.Result;
-import model.User;
 import util.Constants;
 
 public class RecommendationRecyclerViewAdapter

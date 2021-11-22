@@ -1,7 +1,5 @@
 package model;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +9,24 @@ import data.MovieItem;
 public class User implements Serializable {
     private String id;
     private String name;
+    private String age;
+    private String contact;
     private String email;
+    private String username;
+    private String password;
     private ArrayList<MovieItem> likedMovies;
 
     public User(){}
 
-    public User(String id, String name, String email) {
+    public User(String id,String name, String age, String contact, String email,  String password){
         this.id = id;
         this.name = name;
+        this.age = age;
+        this.contact = contact;
         this.email = email;
-        this.likedMovies = new ArrayList<>();
+        this.password = password;
+        likedMovies = new ArrayList<>();
+
     }
 
     public String getId() {
@@ -39,6 +45,22 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -47,19 +69,20 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public ArrayList<MovieItem> getLikedMovies() {
-        return likedMovies;
+    public String getUsername() {
+        return username;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", likedMovies=" + likedMovies +
-                '}';
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void addLikedMovieItem(MovieItem movieItem) {
@@ -70,4 +93,21 @@ public class User implements Serializable {
         this.likedMovies.addAll(likedMovieItems);
     }
 
+    public ArrayList<MovieItem> getLikedMovies() {
+        return likedMovies;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", age='" + age + '\'' +
+                ", contact='" + contact + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", likedMovies=" + likedMovies +
+                '}';
+    }
 }

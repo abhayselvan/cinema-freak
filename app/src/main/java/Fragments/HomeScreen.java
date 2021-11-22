@@ -29,15 +29,14 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import model.User;
 import adapter.GenreRecyclerViewAdapter;
 import client.RecommendationClient;
 import data.Config;
 import data.FileUtil;
-import data.ItemDetailsWrapper;
 import data.MovieItem;
 import data.Result;
 import database.DatabaseInstance;
-import model.User;
 import service.MovieDetailsCallback;
 import service.MovieDetailsService;
 import util.Constants;
@@ -53,7 +52,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final String TAG = "CinemaFreak-OnDeviceRecommendationDemo";
+    private static final String TAG = "CinemaFreak-HomeScreen";
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
     List<String> genres;
     TreeMap<String, List<MovieItem>> movieGenreMap;
@@ -253,7 +252,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     private void loadActiveUser(String userId) {
         handler.post(() -> {
             Log.i(TAG, "Fetching user details from database");
-            DatabaseInstance.DATABASE.getReference().child("users").child(userId).get().addOnCompleteListener(task -> {
+            DatabaseInstance.DATABASE.getReference().child("Users").child(userId).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     activeUser = task.getResult().getValue(User.class);
                     Log.d(TAG, "User " + userId + " fetched from database: " + activeUser);

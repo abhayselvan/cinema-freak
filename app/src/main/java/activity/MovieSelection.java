@@ -21,12 +21,10 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cinemaFreak.R;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -37,7 +35,6 @@ import adapter.MovieSelectionRecyclerViewAdapter;
 import client.RecommendationClient;
 import data.Config;
 import data.FileUtil;
-import data.ItemDetailsWrapper;
 import data.MovieItem;
 import database.DatabaseInstance;
 import model.User;
@@ -61,14 +58,14 @@ public class MovieSelection extends AppCompatActivity implements
     private Handler handler;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
-    private CardView cardView;
     private Intent movieRecommendationIntent;
-    private boolean dbFeatureToggle = true;
+    private User activeUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_selection_layout);
+        activeUser = (User) getIntent().getExtras().get(Constants.ACTIVE_USER_KEY);
         Log.v(TAG, "onCreate.activity.MovieSelection");
 
         // Load config file.
@@ -118,15 +115,10 @@ public class MovieSelection extends AppCompatActivity implements
 
     public void onClickRecommend(View view) {
         selectedMovies.addAll(adapter.getSelectedMovies());
-
-        String temporaryUserKey = "dd57d2a4-cd32-481a-a8fc-40d6bab474af";
-        if(dbFeatureToggle) {
-            User user = new User(temporaryUserKey, "sampleName", "sampleEmail");
-            user.addAllLikedMovieItem(selectedMovies);
-            Log.d(TAG, "inserted created user in DB ");
-            DatabaseInstance.DATABASE.getReference().child("users").child(user.getId()).setValue(user);
-        }
-        movieRecommendationIntent.putExtra(Constants.ACTIVE_USER_KEY, temporaryUserKey);
+        activeUser.addAllLikedMovieItem(selectedMovies);
+        Log.d(TAG, "Updating user selected movies in DB");
+        DatabaseInstance.DATABASE.getReference().child("Users").child(activeUser.getId()).setValue(activeUser);
+        movieRecommendationIntent.putExtra(Constants.ACTIVE_USER_KEY, activeUser.getId());
         startActivity(movieRecommendationIntent);
     }
 
