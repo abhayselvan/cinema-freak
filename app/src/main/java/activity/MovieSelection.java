@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -60,6 +61,7 @@ public class MovieSelection extends AppCompatActivity implements
     private GridLayoutManager gridLayoutManager;
     private Intent movieRecommendationIntent;
     private User activeUser;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,8 @@ public class MovieSelection extends AppCompatActivity implements
         setContentView(R.layout.movie_selection_layout);
         activeUser = (User) getIntent().getExtras().get(Constants.ACTIVE_USER_KEY);
         Log.v(TAG, "onCreate.activity.MovieSelection");
+        button = findViewById(R.id.button);
+        button.setVisibility(Button.INVISIBLE);
 
         // Load config file.
         try {
@@ -120,6 +124,14 @@ public class MovieSelection extends AppCompatActivity implements
         DatabaseInstance.DATABASE.getReference().child("Users").child(activeUser.getId()).setValue(activeUser);
         movieRecommendationIntent.putExtra(Constants.ACTIVE_USER_KEY, activeUser.getId());
         startActivity(movieRecommendationIntent);
+    }
+
+    public void setVisibility(){
+        button.setVisibility(Button.VISIBLE);
+    }
+
+    public void setInvisibility(){
+        button.setVisibility(Button.INVISIBLE);
     }
 
 }
