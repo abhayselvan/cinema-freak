@@ -20,8 +20,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Recommendation">
         <activity
-            android:name="activity.Login"
+            android:name="activity.ForgotPassword"
             android:exported="true" />
+        <activity
+            android:name="activity.Register"
+            android:exported="true" />
+        <activity
+            android:name="activity.Login"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
         <service
             android:name="service.MovieDetailsService"
@@ -38,11 +50,11 @@
             android:name="activity.MovieSelection"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 
