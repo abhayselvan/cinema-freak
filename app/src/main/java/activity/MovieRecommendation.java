@@ -1,6 +1,5 @@
 package activity;
 
-import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -16,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cinemaFreak.R;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,11 +33,14 @@ import data.FileUtil;
 import data.ItemDetailsWrapper;
 import data.MovieItem;
 import data.Result;
+import database.DatabaseInstance;
+import model.User;
 import service.MovieDetailsCallback;
 import service.MovieDetailsService;
+import util.Constants;
 
 public class MovieRecommendation extends AppCompatActivity implements Serializable, MovieDetailsCallback {
-    private static final String TAG = "CinemaFreak-OnDeviceRecommendationDemo";
+    private static final String TAG = "CinemaFreak-MovieRecommendationActivity";
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
     List<String> genres;
     TreeMap<String, List<MovieItem>> movieGenreMap;
@@ -51,17 +54,25 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     private ServiceConnection serviceConnection;
     private boolean isServiceConnected;
     private ProgressBar progressBar;
-
+    private String userId;
+    private User activeUser;
+    private List<Result> recommendations;
+    private boolean fetchRecommendations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        movieGenreMap = new TreeMap<>();
         setContentView(R.layout.movie_recommendation);
+
+        movieGenreMap = new TreeMap<>();
+        recommendations = new ArrayList<>();
+        handler = new Handler();
+
         progressBar = findViewById(R.id.pBar);
         progressBar.setVisibility(View.VISIBLE);
-        ItemDetailsWrapper wrap = (ItemDetailsWrapper) getIntent().getSerializableExtra("reco");
-        movies = wrap.getItemDetails();
+
+        userId = getIntent().getStringExtra(Constants.ACTIVE_USER_KEY);
+        loadActiveUser(userId);
         // Load config file.
         try {
             config = FileUtil.loadConfig(getAssets(), CONFIG_PATH);
@@ -75,32 +86,34 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
         genreRecyclerView = findViewById(R.id.recommendation_genre);
         genreRecyclerView.setLayoutManager(layoutManager);
 
-        handler = new Handler();
+
         client = new RecommendationClient(this, config);
-        handler.post(
-                () -> {
-                    client.load();
-                });
+        handler.post(() -> client.load());
 
     }
 
     /**
      * Sends selected movie list and get recommendations.
      */
-    private void recommend(final List<MovieItem> movies) {
-        handler.post(
-                () -> {
-                    // Run inference with TF Lite.
-                    Log.d(TAG, "Run inference with TFLite model.");
-                    List<Result> recommendations = client.recommend(movies);
+    private void executeRecommendationEngine() {
+        Log.i(TAG, "Executing recommendation engine for selected movies");
+            // Run inference with TF Lite.
+            Log.d(TAG, "Run inference with TFLite model.");
+            recommendations = client.recommend(movies);
+            Log.d(TAG, "Recommendations loaded");
+            if (isServiceConnected && !fetchRecommendations) {
+                Log.d(TAG, "Entered from db");
+                fetchMovieDetailsForRecommendations();
+            }
+    }
 
-                    List<Integer> selectedMovies = movies.stream().map(MovieItem::getId).collect(Collectors.toList());
-                    recommendations = recommendations.stream().filter(result -> !selectedMovies.contains(result.item.getId())).collect(Collectors.toList());
-
-                    movieDetailsService.getMoviesDetails(
-                            recommendations.stream().map(r -> r.item.getId()).collect(Collectors.toList()), this);
-
-                });
+    private void fetchMovieDetailsForRecommendations() {
+        fetchRecommendations = true;
+        List<Integer> selectedMovies = movies.stream().map(MovieItem::getId).collect(Collectors.toList());
+        recommendations = recommendations.stream().filter(result -> !selectedMovies.contains(result.item.getId())).collect(Collectors.toList());
+        Log.i(TAG, "Fetching movie details for all recommendations");
+        movieDetailsService.getMoviesDetails(
+                recommendations.stream().map(r -> r.item.getId()).collect(Collectors.toList()), this);
     }
 
     /**
@@ -138,31 +151,46 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
         }
     }
 
+    private void loadActiveUser(String userId) {
+        handler.post(() -> {
+            Log.i(TAG, "Fetching user details from database");
+            DatabaseInstance.DATABASE.getReference().child("users").child(userId).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    activeUser = task.getResult().getValue(User.class);
+                    Log.d(TAG, "User " + userId + " fetched from database: " + activeUser);
+                    movies = activeUser.getLikedMovies();
+                    executeRecommendationEngine();
+                } else {
+                    Log.e(TAG, "Unable to fetch active user");
+                }
+            });
+        });
+    }
+
     @SuppressWarnings("AndroidJdkLibsChecker")
     @Override
     protected void onStart() {
         super.onStart();
         Log.v(TAG, "onStart.activity.MovieRecommendation");
-        handler.post(
-                () -> {
-                    client.load();
-                });
+        handler.post(() -> client.load());
         bindMovieDetailsService();
     }
 
-    private void bindMovieDetailsService(){
+    private void bindMovieDetailsService() {
         Intent serviceIntent = new Intent(this, MovieDetailsService.class);
         startService(serviceIntent);
 
-        if(serviceConnection == null) {
+        if (serviceConnection == null) {
             serviceConnection = new ServiceConnection() {
                 @Override
                 public void onServiceConnected(ComponentName name, IBinder service) {
-                    Log.i(TAG, "On service connected with component");
+                    Log.i(TAG, "Service bound with activity");
                     isServiceConnected = true;
                     MovieDetailsService.MovieDetailsBinder binder = (MovieDetailsService.MovieDetailsBinder) service;
                     movieDetailsService = binder.getService();
-                    recommend(movies);
+                    if (recommendations.size() > 0 && !fetchRecommendations) {
+                        fetchMovieDetailsForRecommendations();
+                    }
                 }
 
                 @Override
@@ -180,14 +208,14 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     @Override
     public void dbMovieDetails(List<MovieItem> movieItems) {
         // Show result on screen
+        Log.i(TAG, "Movie details for recommendations fetched. Displaying cards");
         showResult(movieItems);
     }
-
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(!isServiceConnected){
+        if (!isServiceConnected) {
             return;
         }
         Log.i(TAG, "unbinding service from recommendation page");

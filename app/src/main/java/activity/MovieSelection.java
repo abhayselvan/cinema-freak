@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cinemaFreak.R;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -38,13 +39,16 @@ import data.Config;
 import data.FileUtil;
 import data.ItemDetailsWrapper;
 import data.MovieItem;
+import database.DatabaseInstance;
+import model.User;
+import util.Constants;
 
 /**
  * The main activity to provide interactions with users.
  */
 public class MovieSelection extends AppCompatActivity implements
-         Serializable {
-    private static final String TAG = "OnDeviceRecommendationDemo";
+        Serializable {
+    private static final String TAG = "CinemaFreak-MovieSelectionActivity";
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
 
     private Config config;
@@ -58,6 +62,8 @@ public class MovieSelection extends AppCompatActivity implements
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
     private CardView cardView;
+    private Intent movieRecommendationIntent;
+    private boolean dbFeatureToggle = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +82,7 @@ public class MovieSelection extends AppCompatActivity implements
         try {
             allMovies1.clear();
             allMovies1.addAll(FileUtil.loadMovieList(getAssets(), config.movieSelectionList));
-            for(int i=0; i<21; i++){
+            for (int i = 0; i < 21; i++) {
                 allMovies.add(allMovies1.get(i));
             }
         } catch (IOException ex) {
@@ -84,7 +90,7 @@ public class MovieSelection extends AppCompatActivity implements
         }
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        gridLayoutManager = new GridLayoutManager(this,3);
+        gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         client = new RecommendationClient(this, config);
@@ -92,7 +98,7 @@ public class MovieSelection extends AppCompatActivity implements
 
         adapter = new MovieSelectionRecyclerViewAdapter(this, allMovies);
         recyclerView.setAdapter(adapter);
-
+        movieRecommendationIntent = new Intent(this, MovieRecommendation.class);
     }
 
 
@@ -100,56 +106,28 @@ public class MovieSelection extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
         Log.v(TAG, "onStart.activity.MovieSelection");
-
-
-        handler.post(
-                () -> {
-                    client.load();
-                });
+        handler.post(() -> client.load());
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.v(TAG, "onStop.activity.MovieSelection");
-        handler.post(
-                () -> {
-                    client.unload();
-                });
+        handler.post(() -> client.unload());
     }
 
-    /**
-     * Sends selected movie list and get recommendations.
-     */
-    private void recommend(final List<MovieItem> movies) {
-        handler.post(
-                () -> {
-                    // Run inference with TF Lite.
-                    Log.d(TAG, "Run inference with TFLite model.");
-
-                    // Show result on screen
-                    ItemDetailsWrapper wrapper = new ItemDetailsWrapper(movies);
-                    Intent intent = new Intent(this, MovieRecommendation.class);
-                    intent.putExtra("reco", wrapper);
-                    startActivity(intent);
-                });
-
-    }
-
-    public void onClickRecommend(View view){
+    public void onClickRecommend(View view) {
         selectedMovies.addAll(adapter.getSelectedMovies());
-        if (!selectedMovies.isEmpty()) {
-            // Log selected movies.
-            StringBuilder sb = new StringBuilder();
-            sb.append("Select movies in the following order:\n");
-            for (MovieItem movie : selectedMovies) {
-                sb.append(String.format("  movie: %s\n", movie));
-            }
-            Log.d(TAG, sb.toString());
 
-            // Recommend based on selected movies.
-            recommend(selectedMovies);
+        String temporaryUserKey = "dd57d2a4-cd32-481a-a8fc-40d6bab474af";
+        if(dbFeatureToggle){
+            User user = new User(temporaryUserKey, "sampleName", "sampleEmail");
+            user.addAllLikedMovieItem(selectedMovies);
+            Log.d(TAG, "inserted created user in DB ");
+            DatabaseInstance.DATABASE.getReference().child("users").child(user.getId()).setValue(user);
         }
+        movieRecommendationIntent.putExtra(Constants.ACTIVE_USER_KEY, temporaryUserKey);
+        startActivity(movieRecommendationIntent);
     }
 
 }
