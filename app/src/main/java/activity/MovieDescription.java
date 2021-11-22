@@ -96,22 +96,16 @@ public class MovieDescription extends YouTubeBaseActivity {
 
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.i("DescriptionActivity", "Movie API received");
-                        movieDetails = response;
-                        getDetails();
-                        getTrailer();
-                        getLocation();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("DescriptionActivity", "response error");
-                error.printStackTrace();
-            }
-        });
+                response -> {
+                    Log.i("DescriptionActivity", "Movie API received");
+                    movieDetails = response;
+                    getDetails();
+                    getTrailer();
+                    getLocation();
+                }, error -> {
+                    Log.i("DescriptionActivity", "response error");
+                    error.printStackTrace();
+                });
 
 //        locationRequest = new LocationRequest();
         locationRequest = LocationRequest.create();
