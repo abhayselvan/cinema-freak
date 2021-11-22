@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -89,6 +90,15 @@ public class MovieDescription extends YouTubeBaseActivity {
         poster = (ImageView) findViewById(R.id.poster);
         linearLayout = (LinearLayout) findViewById(R.id.providers);
         poster.setImageBitmap(null);
+
+//        List<MovieItem> movieItems = new ArrayList<>();
+//        Log.i("DescriptionActivity",String.valueOf(movieItems.size()));
+//        for (int i = 0; i < movieItems.size(); i++){
+//            if (movieItems.get(i).getId() == Integer.parseInt(movieId)) {
+//                Toast.makeText(getApplicationContext(), movieItems.get(i).getTitle(), Toast.LENGTH_SHORT).show();
+//                break;
+//            }
+//        }
 
         url = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movieId + "?" + Constants.API_KEY_PARAM + "=" +Constants.API_KEY+ Constants.VIDEOS_WATCH_PROVIDERS;
         posterUrl = Constants.TMDB_POSTER_PATH;
