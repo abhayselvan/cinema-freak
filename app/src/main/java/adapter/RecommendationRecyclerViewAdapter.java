@@ -50,7 +50,7 @@ public class RecommendationRecyclerViewAdapter
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view =
                 LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.movie_recommendation_card, parent, false);
+                        .inflate(R.layout.movie_selection_card, parent, false);
         return new ViewHolder(view);
     }
 

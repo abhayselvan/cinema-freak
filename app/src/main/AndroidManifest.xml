@@ -3,11 +3,8 @@
     package="com.cinemaFreak">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    package="org.tensorflow.lite.examples.recommendation">
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <queries>
         <intent>
@@ -22,10 +19,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Recommendation">
+
+
         <service
             android:name="service.MovieDetailsService"
             android:enabled="true"
             android:exported="true" />
+
         <activity
             android:name="activity.MovieDescription"
             android:exported="false" />
