@@ -61,6 +61,11 @@
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/tfe_re_fragment_recommendation_list.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/tfe_re_fragment_selection.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/shett/examples/lite/examples/recommendation/android/app/src/main/res/layout/tfe_re_fragment_selection_list.xml" value="0.24739583333333334" />
+        <entry key="app/src/main/res/drawable/edittext_frame.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.12462006079027356" />
+        <entry key="app/src/main/res/layout/movie_recommendation.xml" value="0.12462006079027356" />
       </map>
     </option>
   </component>
