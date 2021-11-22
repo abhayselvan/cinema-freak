@@ -65,7 +65,7 @@ public class MovieDescription extends YouTubeBaseActivity {
     YouTubePlayer.OnInitializedListener mOnInitializedListener;
     RequestQueue queue;
     JsonObjectRequest jsonObjectRequest;
-
+    
     LocationRequest locationRequest;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -163,27 +163,23 @@ public class MovieDescription extends YouTubeBaseActivity {
         for (int i = 0; i < providerImages.size(); i++){
             int finalI = i;
             providerImageViews.add(new ImageView(MovieDescription.this));
-            Thread thread = new Thread(new Runnable() {
-
-                @Override
-                public void run() {
-                    try  {
-                        Log.i("DescriptionActivity", "Loading logos");
-                        String imagePath = providerImages.get(finalI);
-                        if (imagePath.length() > 0) {
-                            inputStream = new URL(posterUrl + imagePath).openStream();
-                            bitmap = BitmapFactory.decodeStream(inputStream);
-                            providerLogos.add(bitmap);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+            Thread thread = new Thread(() -> {
+                try  {
+                    Log.i("DescriptionActivity", "Loading logos");
+                    String imagePath = providerImages.get(finalI);
+                    if (imagePath.length() > 0) {
+                        inputStream = new URL(posterUrl + imagePath).openStream();
+                        bitmap = BitmapFactory.decodeStream(inputStream);
+                        providerLogos.add(bitmap);
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             });
             threads.add(thread);
             thread.start();
         }
-        Log.i("DescriptionActivity", "Logo count = " + String.valueOf(providerLogos.size()));
+        Log.i("DescriptionActivity", "Logo count = " + providerLogos.size());
 
         for (int i = 0; i < threads.size(); i++){
             try {

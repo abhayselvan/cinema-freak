@@ -120,7 +120,7 @@ public class MovieSelection extends AppCompatActivity implements
         selectedMovies.addAll(adapter.getSelectedMovies());
 
         String temporaryUserKey = "dd57d2a4-cd32-481a-a8fc-40d6bab474af";
-        if(dbFeatureToggle){
+        if(dbFeatureToggle) {
             User user = new User(temporaryUserKey, "sampleName", "sampleEmail");
             user.addAllLikedMovieItem(selectedMovies);
             Log.d(TAG, "inserted created user in DB ");

@@ -2,12 +2,13 @@ package model;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import data.MovieItem;
 
-public class User {
+public class User implements Serializable {
     private String id;
     private String name;
     private String email;

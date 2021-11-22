@@ -122,7 +122,7 @@ public class MovieRecommendation extends AppCompatActivity implements Serializab
     private void showResult(final List<MovieItem> recommendations) {
         loadMap(recommendations);
         genreRecyclerView.setAdapter(
-                new GenreRecyclerViewAdapter(MovieRecommendation.this, movieGenreMap, genres));
+                new GenreRecyclerViewAdapter(MovieRecommendation.this, movieGenreMap, genres, activeUser));
         progressBar.setVisibility(View.GONE);
     }
 
