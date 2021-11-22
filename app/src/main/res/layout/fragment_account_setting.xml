@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:backgroundTint="#000000"
+    tools:context="activity.MovieRecommendation">
+
+
+    <TextView
+        android:id="@+id/accountDetailsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Details"
+        android:layout_marginLeft="10dp"
+        android:textColor="#E2E2E2"
+        android:textSize="24sp"
+        android:layout_margin="30dp"
+        android:layout_marginTop="30dp"/>
+    <Button
+        android:id="@+id/editBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="EDIT"
+        android:textColor="#E2E2E2"
+        android:textSize="19sp"
+        android:backgroundTint="#AB0800"
+        android:layout_toRightOf="@id/accountDetailsView"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="70dp"/>
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:layout_marginLeft="10dp">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/nameView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_below="@id/editBtn"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+
+            <EditText
+                android:id="@+id/name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:layout_toRightOf="@+id/nameView2"
+                android:layout_below="@id/accountDetailsView"
+                android:background="@drawable/edittext_frame"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:id="@+id/userNameView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+
+            <EditText
+                android:id="@+id/userName3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:background="@drawable/edittext_frame"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/emailView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+
+            <EditText
+                android:id="@+id/editTextTextPersonName3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:background="@drawable/edittext_frame"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/ageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+
+            <EditText
+                android:id="@+id/age3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:background="@drawable/edittext_frame"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/sexView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sex"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+
+            <EditText
+                android:id="@+id/sex3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:background="@drawable/edittext_frame"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/contactView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+
+            <EditText
+                android:id="@+id/contact3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:background="@drawable/edittext_frame"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/passwordView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+
+            <EditText
+                android:id="@+id/password3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="#E2E2E2"
+                android:textSize="19sp"
+                android:background="@drawable/edittext_frame"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"/>
+        </TableRow>
+    </TableLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/save"
+        android:text="SAVE"
+        android:textColor="#E2E2E2"
+        android:textSize="19sp"
+        android:backgroundTint="#AB0800"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="500dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textColor="#E2E2E2"
+        android:textSize="19sp"
+        android:backgroundTint="#AB0800"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="500dp"/>
+</RelativeLayout>

@@ -19,9 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Recommendation">
-        <activity
-            android:name="activity.BottomNavigationBar"
-            android:exported="false" />
+
 
         <service
             android:name="service.MovieDetailsService"
