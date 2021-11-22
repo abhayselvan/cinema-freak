@@ -102,12 +102,14 @@
             android:textSize="15sp"/>
     </ScrollView>
     <TextView
+        android:id="@+id/stream_heading"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Stream on"
         android:textColor="#e2e2e2"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:visibility="invisible"/>
     <HorizontalScrollView
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"

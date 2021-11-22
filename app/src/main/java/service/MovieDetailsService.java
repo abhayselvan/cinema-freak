@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 import database.DatabaseInstance;
 import service.model.Genre;
 import service.model.MovieDetails;
+import service.model.Result;
 import util.MovieDetailsServiceUtil;
 import util.TmdbIdMapper;
 
@@ -67,7 +68,6 @@ public class MovieDetailsService extends Service {
         List<MovieDetails> moviesInDatabase = new ArrayList<>();
         List<Integer> tmdbIdNotInDatabase =new ArrayList<>();
 
-
         DatabaseReference childRef = DatabaseInstance.DATABASE.getReference("movies");
         childRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -103,6 +103,8 @@ public class MovieDetailsService extends Service {
         md.setOverview(snapshot.child("overview").getValue(String.class));
         md.setTitle(snapshot.child("title").getValue(String.class));
         md.setPoster(snapshot.child("poster").getValue(String.class));
+        md.setWallpaper(snapshot.child("wallpaper").getValue(String.class));
+        md.setTrailer(snapshot.child("trailer").getValue(String.class));
         String genres = snapshot.child("genres").getValue(String.class);
         if(genres != null){
             List<Genre> genreList = new ArrayList<>();
@@ -127,7 +129,7 @@ public class MovieDetailsService extends Service {
                 try {
                     Log.d(TAG, "Fetching details for tmdb id "+tmdbId+" on thread "+Thread.currentThread().getName());
                     MovieDetails response = future.get(60, TimeUnit.SECONDS);
-                    Log.i(TAG, "Got response : "+response);
+                    Log.i(TAG, "Got response : " + response);
                     insertMovieDetailsInDatabase(response);
                     movieDetails.add(response);
                 } catch (Exception e) {
@@ -146,12 +148,28 @@ public class MovieDetailsService extends Service {
         childRef.child("overview").setValue(response.getOverview());
         childRef.child("title").setValue(response.getTitle());
         childRef.child("poster").setValue(response.getPoster());
+        childRef.child("wallpaper").setValue(response.getWallpaper());
         StringBuilder sb= new StringBuilder();
         response.getGenres().forEach(m -> sb.append(m).append(","));
         if(sb.length()>0)
             sb.delete(sb.length()-1, sb.length());
         childRef.child("genres").setValue(sb.toString());
 
+        String trailerLink = "";
+        List<Result> results = response.getVideos().getResults();
+        for (int i = 0; i < results.size(); i++){
+            String type = results.get(i).getType();
+            String site = results.get(i).getSite();
+            if (type.equals("Trailer") && site.equals("YouTube")){
+                trailerLink = results.get(i).getKey();
+                break;
+            }
+        }
+        if (trailerLink.length() > 0) {
+            childRef.child("trailer").setValue(trailerLink);
+        } else {
+            childRef.child("trailer").setValue("");
+        }
         Log.i(TAG, "Completed updating DB for tmdb Id "+response.getId());
     }
 

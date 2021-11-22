@@ -44,18 +44,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import data.MovieItem;
 import util.Constants;
 import util.YouTubeConfig;
 
 public class MovieDescription extends YouTubeBaseActivity {
 
-    //    public static final int DEFAULT_UPDATE_INTERVAL = 30;
-//    public static final int FAST_UPDATE_INTERVAL = 5;
     private static final int PERMISSIONS_COARSE_LOCATION = 1;
 
     String title, description, countryCode;
     String url, posterUrl, trailerLink;
-    TextView movieTitle, movieDescription;
+    TextView movieTitle, movieDescription, streamHeading;
     LinearLayout linearLayout;
     ImageView poster;
     JSONObject movieDetails;
@@ -74,7 +73,7 @@ public class MovieDescription extends YouTubeBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_description);
+        setContentView(R.layout.movie_description);
 
         Log.i("DescriptionActivity", "OnCreate");
 
@@ -85,6 +84,7 @@ public class MovieDescription extends YouTubeBaseActivity {
         queue = Volley.newRequestQueue(this);
         movieTitle = (TextView) findViewById(R.id.movie_title);
         movieDescription = (TextView) findViewById(R.id.movie_description);
+        streamHeading = (TextView) findViewById(R.id.stream_heading);
         mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.movie_trailer);
         poster = (ImageView) findViewById(R.id.poster);
         linearLayout = (LinearLayout) findViewById(R.id.providers);
@@ -92,6 +92,7 @@ public class MovieDescription extends YouTubeBaseActivity {
 
         url = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movieId + "?" + Constants.API_KEY_PARAM + "=" +Constants.API_KEY+ Constants.VIDEOS_WATCH_PROVIDERS;
         posterUrl = Constants.TMDB_POSTER_PATH;
+
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -150,6 +151,11 @@ public class MovieDescription extends YouTubeBaseActivity {
     }
 
     private void getProviderLogos(ArrayList<String> providerImages, ArrayList<String> providerNames) {
+
+        if (providerImages.size() == 0){
+            return;
+        }
+
         ArrayList<Bitmap> providerLogos = new ArrayList<>();
         ArrayList<ImageView> providerImageViews = new ArrayList<>();
         ArrayList<Thread> threads = new ArrayList<>();
@@ -187,6 +193,7 @@ public class MovieDescription extends YouTubeBaseActivity {
             }
         }
 
+        streamHeading.setVisibility(View.VISIBLE);
         for (int i = 0; i < providerLogos.size(); i++){
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
