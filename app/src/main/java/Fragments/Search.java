@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -55,6 +56,7 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
     Button searchButton;
     EditText query;
+    TextView textView;
     public Search() {
         // Required empty public constructor
     }
@@ -98,6 +100,7 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         searchRecyclerView = view.findViewById(R.id.search_list);
         searchRecyclerView.setLayoutManager(layoutManager);
         query = view.findViewById(R.id.searchquery);
+        textView = view.findViewById(R.id.noMovie);
         searchButton = view.findViewById(R.id.search_button);
         searchButton.setOnClickListener(this);
         return view;
@@ -162,6 +165,8 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         } else{
             ArrayList<MovieItem> searchedMovies = searchAllMovies(queryTxt);
             if(searchedMovies.size()>0){
+                if (textView.getVisibility() == View.VISIBLE)
+                    textView.setVisibility(View.INVISIBLE);
                 try {
                     movieDetailsService.getMoviesDetails(
                             searchedMovies.stream().map(r -> r.getId()).collect(Collectors.toList()), this);
@@ -172,7 +177,7 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
 //                searchRecyclerView.setAdapter(
 //                        new SearchRecyclerViewAdapter(getContext(),searchedMovies));
             }else{
-                Toast.makeText(getActivity(),"No Result",Toast.LENGTH_SHORT).show();
+                textView.setVisibility(View.VISIBLE);
             }
 
         }

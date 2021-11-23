@@ -64,8 +64,6 @@ public class MovieRecommendation extends AppCompatActivity {
 
             }
             return true;
-        });
+        }});
     }
-
-
 }
