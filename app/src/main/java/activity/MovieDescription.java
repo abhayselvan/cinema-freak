@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -98,6 +99,11 @@ public class MovieDescription extends YouTubeBaseActivity {
 
         providerUrl = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movie.getId() + Constants.WATCH_PROVIDERS + "?" + Constants.API_KEY_PARAM + "=" + Constants.API_KEY;
         posterUrl = Constants.TMDB_POSTER_PATH;
+
+        if (user.getLikedMovies().contains(movie))
+            like.setImageResource(R.drawable.ic_baseline_thumb_up_30_red);
+
+        Log.i(TAG, user.getLikedMovies().toString());
         getDetails();
         getTrailer();
 
@@ -119,7 +125,7 @@ public class MovieDescription extends YouTubeBaseActivity {
             if (!user.getLikedMovies().contains(movie)) {
                 user.addLikedMovieItem(movie);
                 like.setImageResource(R.drawable.ic_baseline_thumb_up_30_red);
-                DatabaseInstance.DATABASE.getReference().child("Users").child(user.getId()).setValue(user);
+                DatabaseInstance.DATABASE.getReference().child("Users").child(user.getId()).child("likedMovies").setValue(user.getLikedMovies());
             }
         });
     }

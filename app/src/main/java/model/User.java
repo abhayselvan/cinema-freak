@@ -93,6 +93,10 @@ public class User implements Serializable {
         this.likedMovies.addAll(likedMovieItems);
     }
 
+    public void setLikedMovies(ArrayList<MovieItem> likedMovies) {
+        this.likedMovies = likedMovies;
+    }
+
     public ArrayList<MovieItem> getLikedMovies() {
         return likedMovies;
     }
