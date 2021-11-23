@@ -15,7 +15,7 @@ import Fragments.Search;
 import Fragments.WatchLater;
 
 public class MovieRecommendation extends AppCompatActivity {
-    private static final String TAG = "CinemaFreak-OnDeviceRecommendationDemo";
+    private static final String TAG = "CinemaFreak-MovieRecommendation";
     AccountSetting accountSetting = new AccountSetting();
     WatchLater watchLater = new WatchLater();
     Search search = new Search();
