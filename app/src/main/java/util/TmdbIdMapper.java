@@ -10,14 +10,12 @@ import java.util.HashMap;
 
 public class TmdbIdMapper {
 
-    private HashMap<Integer, Integer> tmdbMap;
+    private HashMap<Integer, Integer> tmdbMap = new HashMap<>();;
     private static final TmdbIdMapper instance = new TmdbIdMapper();
     private final String fileName = "tmdb-map.csv";
     private final String TAG = "CinemaFreak-TmdbIdMapper";
 
-    private TmdbIdMapper() {
-        this.tmdbMap = new HashMap<>();
-    }
+    private TmdbIdMapper() { }
 
     public static TmdbIdMapper getInstance() {
         return instance;
@@ -28,7 +26,8 @@ public class TmdbIdMapper {
         if(tmdbMap.size() == 0){
             loadCsv(context);
         }
-        return tmdbMap.get(movieDbId);
+
+        return tmdbMap.getOrDefault(movieDbId, -1);
     }
 
     public void loadCsv(Context context){
