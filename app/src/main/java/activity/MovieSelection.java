@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -57,13 +58,15 @@ public class MovieSelection extends AppCompatActivity implements
     private Handler handler;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
-    private CardView cardView;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_selection_layout);
         Log.v(TAG, "onCreate.activity.MovieSelection");
+        button = findViewById(R.id.button);
+        button.setVisibility(Button.INVISIBLE);
 
         // Load config file.
         try {
@@ -150,6 +153,14 @@ public class MovieSelection extends AppCompatActivity implements
             // Recommend based on selected movies.
             recommend(selectedMovies);
         }
+    }
+
+    public void setVisibility(){
+        button.setVisibility(Button.VISIBLE);
+    }
+
+    public void setInvisibility(){
+        button.setVisibility(Button.INVISIBLE);
     }
 
 }
