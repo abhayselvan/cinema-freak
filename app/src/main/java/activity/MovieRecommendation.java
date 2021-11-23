@@ -1,9 +1,7 @@
 package activity;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -56,11 +54,10 @@ public class MovieRecommendation extends AppCompatActivity {
                     active = search;
                     return true;
 
-                case R.id.watch_later:
-                    fm.beginTransaction().hide(active).show(watchLater).commit();
-                    active = watchLater;
-                    return true;
-
+                    case R.id.watch_later:
+                        fm.beginTransaction().hide(active).show(watchLater).commit();
+                        active = watchLater;
+                        return true;
             }
             return true;
         });
