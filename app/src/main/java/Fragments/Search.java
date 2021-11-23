@@ -57,6 +57,7 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
     Button searchButton;
     EditText query;
     TextView textView;
+    SearchRecyclerViewAdapter adapter;
     public Search() {
         // Required empty public constructor
     }
@@ -177,6 +178,9 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
 //                searchRecyclerView.setAdapter(
 //                        new SearchRecyclerViewAdapter(getContext(),searchedMovies));
             }else{
+                adapter = new SearchRecyclerViewAdapter(getContext(),searchedMovies);
+                adapter.clear();
+                searchRecyclerView.setAdapter(null);
                 textView.setVisibility(View.VISIBLE);
             }
 
@@ -185,8 +189,9 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
 
     @Override
     public void dbMovieDetails(List<MovieItem> searchedMovies) {
-        searchRecyclerView.setAdapter(
-                new SearchRecyclerViewAdapter(getContext(),searchedMovies));
+        adapter = new SearchRecyclerViewAdapter(getContext(),searchedMovies);
+        //adapter.clear();
+        searchRecyclerView.setAdapter(adapter);
     }
 
     @Override

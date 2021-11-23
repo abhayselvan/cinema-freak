@@ -5,16 +5,18 @@
     android:layout_height="match_parent"
     tools:context="Fragments.Search"
     android:background="@color/backgroundBlack">
+
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/searchquery"
         android:hint="Search.."
-        android:textColorHint="@color/cardBackgroundGrey"
+        android:textColorHint="@color/textColorWhite"
         android:textSize="20dp"
         android:textColor="@color/textColorWhite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,16 +29,17 @@
 
     <TextView
         android:id="@+id/noMovie"
-        android:layout_gravity="right"
-        android:text="Oops, cannot find the movie."
-        android:textStyle="italic"
+        android:layout_gravity="center"
+        android:text="Oops,Cannot find the movie."
+        android:textStyle="bold"
+        android:textColor="@color/textColorWhite"
         android:textSize="30sp"
         android:visibility="invisible"
         android:typeface="serif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchquery"/>
+        app:layout_constraintTop_toBottomOf="@+id/search_button"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_list"
@@ -44,8 +47,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layoutManager="LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="parent"
-        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/search_button"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

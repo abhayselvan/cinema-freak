@@ -19,8 +19,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +27,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cinemaFreak.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import activity.MovieDescription;
@@ -38,7 +35,7 @@ import data.Result;
 import util.Constants;
 
 public class SearchRecyclerViewAdapter
-        extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder> implements Filterable {
+        extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder> {
 
     Context mContext;
     private final List<MovieItem> movies;
@@ -67,11 +64,14 @@ public class SearchRecyclerViewAdapter
                 v -> onClickRecommendedMovie(item));
     }
 
+    public void clear() {
+        int size = movies.size();
+        movies.clear();
+        notifyItemRangeRemoved(0, size);
+
+    }
 
     public void onClickRecommendedMovie(MovieItem item) {
-        // Show message for the clicked movie.
-//        String message = String.format("Clicked recommended movie: %s.", item.getTitle());
-//        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(mContext, MovieDescription.class);
         intent.putExtra("movieId",String.valueOf(item.getId()));
         mContext.startActivity(intent);
@@ -82,41 +82,7 @@ public class SearchRecyclerViewAdapter
         return movies.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return exampleFilter;
-    }
 
-    private Filter exampleFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<MovieItem> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(exampleListFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-
-                for (MovieItem item : exampleListFull) {
-                    if (item.getTitle().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            movies.clear();
-            movies.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
     /**
      * ViewHolder to display one movie in list view of recommendation result.
      */
