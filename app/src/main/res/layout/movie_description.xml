@@ -68,19 +68,9 @@
             android:layout_height="wrap_content"/>
 
     </RelativeLayout>
-    <LinearLayout
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="30dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        android:layout_height="30dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -102,6 +92,7 @@
             android:textSize="15sp"/>
     </ScrollView>
     <TextView
+        android:id="@+id/stream_heading"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

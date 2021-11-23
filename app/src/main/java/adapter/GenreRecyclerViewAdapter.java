@@ -14,6 +14,7 @@ import com.cinemaFreak.R;
 import java.util.List;
 import java.util.Map;
 
+import model.User;
 import data.MovieItem;
 
 public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecyclerViewAdapter.ViewHolder> {
@@ -21,11 +22,14 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
     Context mContext;
     private final Map<String, List<MovieItem>> movieGenreMap;
     private final List<String> genres;
+    private final User activeUser;
 
-    public GenreRecyclerViewAdapter(Context context, Map<String, List<MovieItem>> movieGenreMap, List<String> genres) {
+    public GenreRecyclerViewAdapter(Context context, Map<String, List<MovieItem>> movieGenreMap, List<String> genres,
+                                    User activeUser) {
         this.mContext = context;
         this.movieGenreMap = movieGenreMap;
         this.genres = genres;
+        this.activeUser = activeUser;
     }
 
     @Override
@@ -46,7 +50,8 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
             holder.recyclerView.setLayoutManager(layoutManager);
             Context temp = holder.recyclerView.getContext();
             holder.recyclerView.setAdapter(
-                    new RecommendationRecyclerViewAdapter(temp, movies));
+                    //pass user
+                    new RecommendationRecyclerViewAdapter(temp, movies, activeUser));
         }
 
 

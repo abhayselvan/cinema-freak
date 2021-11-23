@@ -19,6 +19,8 @@ public class MovieDetailsServiceUtil {
         builder.setHost(Constants.TMDB_HOST_URL);
         builder.setPath(Constants.MOVIE_PATH+"/"+tmdbId);
         builder.addParameter(Constants.API_KEY_PARAM, Constants.API_KEY);
+        builder.addParameter(Constants.VIDEOS_PARAM, Constants.VIDEOS);
+
         String url = "";
         try {
             url = builder.build().toURL().toString();
@@ -33,7 +35,7 @@ public class MovieDetailsServiceUtil {
     public static List<MovieItem> mapMovieDetailsToMovieItem(List<MovieDetails> movieDetails){
         List<MovieItem> movieItems = new ArrayList<>();
         for(MovieDetails md : movieDetails){
-            movieItems.add(new MovieItem(md.getId(), md.getTitle(), md.getGenres(), md.getPoster(), md.getOverview()));
+            movieItems.add(new MovieItem(md.getId(), md.getTitle(), md.getGenres(), md.getPoster(), md.getOverview(), md.getTrailer(), md.getWallpaper()));
         }
         return movieItems;
     }

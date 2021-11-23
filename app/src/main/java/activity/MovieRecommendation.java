@@ -33,10 +33,11 @@ public class MovieRecommendation extends AppCompatActivity {
         fm.beginTransaction().add(R.id.frameLayout, watchLater, "2").hide(watchLater).commit();
         fm.beginTransaction().add(R.id.frameLayout, search, "4").hide(search).commit();
         fm.beginTransaction().add(R.id.frameLayout,home, "1").commit();
-        //bottom navigation
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setItemIconTintList(null);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,9 +62,8 @@ public class MovieRecommendation extends AppCompatActivity {
                         active = watchLater;
                         return true;
 
-                }
-                return true;
             }
+            return true;
         });
     }
 
