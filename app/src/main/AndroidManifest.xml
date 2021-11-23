@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Recommendation">
 
+
         <activity
             android:name="activity.ForgotPassword"
             android:exported="true" />
@@ -36,7 +37,6 @@
         </intent-filter>
         </activity>
 
-
         <service
             android:name="service.MovieDetailsService"
             android:enabled="true"
@@ -45,9 +45,13 @@
         <activity
             android:name="activity.MovieDescription"
             android:exported="false" />
+
         <activity
             android:name="activity.MovieRecommendation"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
+
+
         <activity
             android:name="activity.MovieSelection"
             android:exported="true"
