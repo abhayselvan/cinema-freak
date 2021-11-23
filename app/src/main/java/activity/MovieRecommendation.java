@@ -13,13 +13,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import Fragments.AccountSetting;
 import Fragments.HomeScreen;
+import Fragments.Search;
 import Fragments.WatchLater;
 
 public class MovieRecommendation extends AppCompatActivity {
     private static final String TAG = "CinemaFreak-OnDeviceRecommendationDemo";
     AccountSetting accountSetting = new AccountSetting();
     WatchLater watchLater = new WatchLater();
-    //Search search = new Search();
+    Search search = new Search();
     HomeScreen home = new HomeScreen();
     FragmentManager fm = getSupportFragmentManager();
     Fragment active = home;
@@ -30,6 +31,7 @@ public class MovieRecommendation extends AppCompatActivity {
 
         fm.beginTransaction().add(R.id.frameLayout, accountSetting, "3").hide(accountSetting).commit();
         fm.beginTransaction().add(R.id.frameLayout, watchLater, "2").hide(watchLater).commit();
+        fm.beginTransaction().add(R.id.frameLayout, search, "4").hide(search).commit();
         fm.beginTransaction().add(R.id.frameLayout,home, "1").commit();
         //bottom navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -50,8 +52,10 @@ public class MovieRecommendation extends AppCompatActivity {
                         return true;
 
                     case R.id.search:
-                        // Toast.makeText(BottomNavigationBar.this, "Favorites", Toast.LENGTH_SHORT).show();
-                        break;
+                        fm.beginTransaction().hide(active).show(search).commit();
+                        active = search;
+                        return true;
+
                     case R.id.watch_later:
                         fm.beginTransaction().hide(active).show(watchLater).commit();
                         active = watchLater;
@@ -62,4 +66,6 @@ public class MovieRecommendation extends AppCompatActivity {
             }
         });
     }
+
+
 }
