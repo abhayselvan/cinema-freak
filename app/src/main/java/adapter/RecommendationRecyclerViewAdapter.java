@@ -41,12 +41,10 @@ public class RecommendationRecyclerViewAdapter
 
     Context mContext;
     private final List<MovieItem> movies;
-    private final User activeUser;
 
-    public RecommendationRecyclerViewAdapter(Context context, List<MovieItem> movies, User activeUser) {
+    public RecommendationRecyclerViewAdapter(Context context, List<MovieItem> movies) {
         this.mContext = context;
         this.movies = movies;
-        this.activeUser = activeUser;
     }
 
     @Override
@@ -71,7 +69,6 @@ public class RecommendationRecyclerViewAdapter
     public void onClickRecommendedMovie(MovieItem item) {
         Intent intent = new Intent(mContext, MovieDescription.class);
         intent.putExtra("movieId",item);
-        intent.putExtra(Constants.ACTIVE_USER_KEY, activeUser);
         mContext.startActivity(intent);
     }
 

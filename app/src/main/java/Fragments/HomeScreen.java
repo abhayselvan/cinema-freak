@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import main.CinemaFreakApplication;
 import model.User;
 import adapter.GenreRecyclerViewAdapter;
 import client.RecommendationClient;
@@ -109,7 +110,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
 
         userId = getActivity().getIntent().getStringExtra(Constants.ACTIVE_USER_KEY);
         recommendations = new ArrayList<>();
-        loadActiveUser(userId);
+        loadActiveUserFromDb(userId);
 
         // Load config file.
         try {
@@ -161,7 +162,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     private void showResult(final List<MovieItem> recommendations) {
         loadMap(recommendations);
         genreRecyclerView.setAdapter(
-                new GenreRecyclerViewAdapter(getContext(), movieGenreMap, genres, activeUser));
+                new GenreRecyclerViewAdapter(getContext(), movieGenreMap, genres));
         progressBar.setVisibility(View.GONE);
     }
 
@@ -249,12 +250,13 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
         isServiceConnected = false;
     }
 
-    private void loadActiveUser(String userId) {
+    private void loadActiveUserFromDb(String userId) {
         handler.post(() -> {
             Log.i(TAG, "Fetching user details from database");
             DatabaseInstance.DATABASE.getReference().child("Users").child(userId).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     activeUser = task.getResult().getValue(User.class);
+                    ((CinemaFreakApplication)getActivity().getApplication()).setActiveSessionUser(activeUser);
                     Log.d(TAG, "User " + userId + " fetched from database: " + activeUser);
                     movies = activeUser.getLikedMovies();
                     executeRecommendationEngine();

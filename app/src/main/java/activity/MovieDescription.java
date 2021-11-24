@@ -44,6 +44,7 @@ import java.util.List;
 
 import data.MovieItem;
 import database.DatabaseInstance;
+import main.CinemaFreakApplication;
 import model.User;
 import util.Constants;
 import util.YouTubeConfig;
@@ -85,16 +86,16 @@ public class MovieDescription extends YouTubeBaseActivity {
         Bundle bundle = intent.getExtras();
 
         movie = (MovieItem) bundle.get("movieId");
-        user = (User) bundle.get(Constants.ACTIVE_USER_KEY);
+        user = ((CinemaFreakApplication)getApplication()).getActiveSessionUser();
 
         queue = Volley.newRequestQueue(this);
-        movieTitle = (TextView) findViewById(R.id.movie_title);
-        movieDescription = (TextView) findViewById(R.id.movie_description);
-        streamHeading = (TextView) findViewById(R.id.stream_heading);
-        mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.movie_trailer);
-        poster = (ImageView) findViewById(R.id.poster);
-        linearLayout = (LinearLayout) findViewById(R.id.providers);
-        like = (ImageView) findViewById(R.id.like);
+        movieTitle = findViewById(R.id.movie_title);
+        movieDescription = findViewById(R.id.movie_description);
+        streamHeading = findViewById(R.id.stream_heading);
+        mYouTubePlayerView = findViewById(R.id.movie_trailer);
+        poster = findViewById(R.id.poster);
+        linearLayout = findViewById(R.id.providers);
+        like = findViewById(R.id.like);
         poster.setImageBitmap(null);
 
         providerUrl = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movie.getId() + Constants.WATCH_PROVIDERS + "?" + Constants.API_KEY_PARAM + "=" + Constants.API_KEY;

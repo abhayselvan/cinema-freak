@@ -22,14 +22,11 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
     Context mContext;
     private final Map<String, List<MovieItem>> movieGenreMap;
     private final List<String> genres;
-    private final User activeUser;
 
-    public GenreRecyclerViewAdapter(Context context, Map<String, List<MovieItem>> movieGenreMap, List<String> genres,
-                                    User activeUser) {
+    public GenreRecyclerViewAdapter(Context context, Map<String, List<MovieItem>> movieGenreMap, List<String> genres) {
         this.mContext = context;
         this.movieGenreMap = movieGenreMap;
         this.genres = genres;
-        this.activeUser = activeUser;
     }
 
     @Override
@@ -51,10 +48,8 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
             Context temp = holder.recyclerView.getContext();
             holder.recyclerView.setAdapter(
                     //pass user
-                    new RecommendationRecyclerViewAdapter(temp, movies, activeUser));
+                    new RecommendationRecyclerViewAdapter(temp, movies));
         }
-
-
     }
 
 
