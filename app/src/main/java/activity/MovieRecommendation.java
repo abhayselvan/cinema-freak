@@ -79,15 +79,13 @@ public class MovieRecommendation extends AppCompatActivity {
                     active = search;
                     return true;
 
-                    case R.id.watch_later:
-                        fm.beginTransaction().hide(active).show(watchLater).commit();
-                        active = watchLater;
-                        return true;
+                case R.id.watch_later:
+                    fm.beginTransaction().hide(active).show(watchLater).commit();
+                    active = watchLater;
+                    return true;
 
-            return true;
+                return true;
+            }
         });
-    }
-
-        
     }
 }
