@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/like"
             android:layout_centerInParent="true"
-            android:text="0 likes"
+            android:text=""
             android:textColor="#e2e2e2"
             android:textSize="10sp" />
 

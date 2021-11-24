@@ -35,14 +35,15 @@ public class MovieItem implements Serializable {
     private String description;
     private String trailerID;
     private String wallPaperUrl;
-
+    private int likes;
+    private int dislikes;
     public boolean selected = false; // For UI selection. Default item is not selected.
 
     private MovieItem() {
-        this(0, "", new ArrayList<>(), "", "", "", "");
+        this(0, "", new ArrayList<>(), "", "", "", "", 0,0);
     }
 
-    public MovieItem(int id, String title, List<String> genres, String imageUrl, String description, String trailerID, String wallPaperUrl) {
+    public MovieItem(int id, String title, List<String> genres, String imageUrl, String description, String trailerID, String wallPaperUrl, Integer likes, Integer dislikes) {
         this.id = id;
         this.title = title;
         this.genres = genres;
@@ -50,6 +51,8 @@ public class MovieItem implements Serializable {
         this.description = description;
         this.trailerID = trailerID;
         this.wallPaperUrl = wallPaperUrl;
+        this.likes = likes==null?0:likes;
+        this.dislikes = dislikes==null?0:dislikes;
     }
 
     public String getTrailerID() {
@@ -111,4 +114,27 @@ public class MovieItem implements Serializable {
         this.selected = selected;
     }
 
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
+    }
+
+    public void updateLikes(int delta){
+        this.likes = Math.max(0, likes+delta);
+    }
+
+    public void updateDislikes(int delta){
+        this.dislikes = Math.max(0, dislikes+delta);
+    }
 }

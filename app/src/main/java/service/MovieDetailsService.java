@@ -14,7 +14,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -106,7 +105,8 @@ public class MovieDetailsService extends Service {
         md.setPoster(snapshot.child("poster").getValue(String.class));
         md.setBackDrop(snapshot.child("backdrop").getValue(String.class));
         md.setTrailer(snapshot.child("trailer").getValue(String.class));
-
+        md.setLikes(snapshot.child("likes").getValue(Integer.class));
+        md.setDislikes(snapshot.child("dislikes").getValue(Integer.class));
         String genres = snapshot.child("genres").getValue(String.class);
         if(genres != null){
             List<Genre> genreList = new ArrayList<>();

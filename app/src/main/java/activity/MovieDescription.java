@@ -1,7 +1,6 @@
 package activity;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -62,6 +61,7 @@ public class MovieDescription extends YouTubeBaseActivity {
     private TextView movieTitle, movieDescription, streamHeading;
     private LinearLayout linearLayout;
     private ImageView poster, like, bookmark, dislike;
+    private TextView likeCount;
     private JSONObject providerDetails;
     private InputStream inputStream;
     private Bitmap bitmap;
@@ -97,6 +97,9 @@ public class MovieDescription extends YouTubeBaseActivity {
         like = findViewById(R.id.like);
         bookmark = findViewById(R.id.bookmark);
         dislike = findViewById(R.id.dislike);
+        likeCount = findViewById(R.id.like_count);
+
+        updateLikeText();
         poster.setImageBitmap(null);
         isMovieLiked = activeUser.getLikedMovies().stream().map(MovieItem::getId).collect(Collectors.toList()).contains(movie.getId());
         isMovieDisliked = activeUser.getDislikedMovies().stream().map(MovieItem::getId).collect(Collectors.toList()).contains(movie.getId());
@@ -122,10 +125,14 @@ public class MovieDescription extends YouTubeBaseActivity {
                     Log.i(TAG, "response error");
                     error.printStackTrace();
                 });
-
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_LOW_POWER);
         queue.add(jsonObjectRequest);
+    }
+
+    private void updateLikeText(){
+        if(movie.getLikes() > 0)
+            likeCount.setText(movie.getLikes()+" others liked this movie!");
     }
 
     private void onLikePressed(){
@@ -136,6 +143,7 @@ public class MovieDescription extends YouTubeBaseActivity {
                 removeDislike();
             activeUser.addLikedMovieItem(movie);
             like.setImageResource(R.drawable.ic_baseline_thumb_up_30_red);
+            movie.updateLikes(1);
             isMovieLiked=true;
         }
     }
@@ -143,12 +151,12 @@ public class MovieDescription extends YouTubeBaseActivity {
     private void onDislikePressed(){
         if (isMovieDisliked) {
             removeDislike();
-            //DatabaseInstance.DATABASE.getReference().child("Users").child(activeUser.getId()).child("likedMovies").setValue(activeUser.getLikedMovies());
         } else {
             if(isMovieLiked)
                 removeLike();
             activeUser.addDislikedMovieItem(movie);
             dislike.setImageResource(R.drawable.ic_baseline_thumb_down_30_red);
+            movie.updateDislikes(1);
             isMovieDisliked=true;
         }
     }
@@ -156,12 +164,14 @@ public class MovieDescription extends YouTubeBaseActivity {
     private void removeLike(){
         activeUser.removeLikedMovieItem(movie.getId());
         like.setImageResource(R.drawable.ic_baseline_thumb_up_30);
+        movie.updateLikes(-1);
         isMovieLiked=false;
     }
 
     private void removeDislike(){
         activeUser.removeDislikedMovie(movie.getId());
         dislike.setImageResource(R.drawable.ic_baseline_thumb_down_30);
+        movie.updateDislikes(-1);
         isMovieDisliked=false;
     }
 
@@ -353,13 +363,17 @@ public class MovieDescription extends YouTubeBaseActivity {
     protected void onPause() {
         super.onPause();
         ((CinemaFreakApplication)getApplication()).setActiveSessionUser(activeUser);
-        handler.post(() -> DatabaseInstance.DATABASE.getReference().child("Users").child(activeUser.getId()).setValue(activeUser).addOnCompleteListener(task -> {
-            if(task.isComplete()){
-                Log.i(TAG, "Updated user in db: "+activeUser);
-            } else {
-                Log.i(TAG, "Error in updating db: "+task.getException());
-            }
-        }));
+        handler.post(() -> {
+            DatabaseInstance.DATABASE.getReference().child("Users").child(activeUser.getId()).setValue(activeUser).addOnCompleteListener(task -> {
+                if (task.isComplete()) {
+                    Log.i(TAG, "Updated user in db: " + activeUser);
+                } else {
+                    Log.i(TAG, "Error in updating db for user: " + task.getException());
+                }
+            });
+            DatabaseInstance.DATABASE.getReference().child("movies").child(movie.getId()+"").child("likes").setValue(movie.getLikes());
+            DatabaseInstance.DATABASE.getReference().child("movies").child(movie.getId()+"").child("dislikes").setValue(movie.getDislikes());
+        });
     }
 
     @Override
