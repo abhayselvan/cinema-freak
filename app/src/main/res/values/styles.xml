@@ -9,7 +9,9 @@
   </style>
 
   <style name="AppTheme.Recommendation.NoActionBar">
-    <item name="windowActionBar">false</item>
+    <item name="colorPrimary">@color/red</item>
+    <item name="colorPrimaryDark">@color/red</item>
+    <item name="windowActionBar">true</item>
     <item name="windowNoTitle">true</item>
   </style>
 
