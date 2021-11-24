@@ -58,14 +58,15 @@
             android:text="0 likes"
             android:textColor="#e2e2e2"
             android:textSize="10sp" />
+
         <ImageView
-            android:layout_marginTop="12dp"
             android:id="@+id/bookmark"
-            android:layout_toRightOf="@id/like"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_bookmark_fill"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@id/like"
+            android:src="@drawable/ic_bookmark" />
 
     </RelativeLayout>
     <Space
