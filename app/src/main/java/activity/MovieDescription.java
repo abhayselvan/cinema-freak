@@ -117,8 +117,9 @@ public class MovieDescription extends YouTubeBaseActivity {
         getDetails();
         getTrailer();
 
+        Log.d(TAG, "Url for stream providers: "+providerUrl);
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, providerUrl, null, response -> {
-                    Log.i(TAG, "Movie API received");
+                    Log.i(TAG, "Provider details received");
                     providerDetails = response;
                     getLocation();
                 }, error -> {
@@ -326,9 +327,11 @@ public class MovieDescription extends YouTubeBaseActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             Log.i(TAG, "Location Permission granted");
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
+
                 if (location == null) {
                     countryName = "United States";
                     countryCode = "US";
+                    getProviders(countryCode);
                     return;
                 }
                 Log.i(TAG, "Location received");
