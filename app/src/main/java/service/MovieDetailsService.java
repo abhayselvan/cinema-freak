@@ -63,6 +63,7 @@ public class MovieDetailsService extends Service {
         Log.d(TAG, "Fetch movie details invoked");
         List<Integer> tmdbIds = movieIds.stream()
                 .map(movieId -> TmdbIdMapper.getInstance().getTmdbId(getApplicationContext(), movieId))
+                .filter(movieId -> movieId != -1)
                 .collect(Collectors.toList());
 
         List<MovieDetails> moviesInDatabase = new ArrayList<>();

@@ -71,8 +71,6 @@
         android:layout_marginRight="60dp"
         android:background="@drawable/edittext_frame"/>
 
-
-
     <TextView
         android:id="@+id/contactView"
         android:layout_width="wrap_content"
@@ -165,7 +163,7 @@
         android:textColor="#E2E2E2"
         android:textSize="19sp"
         android:layout_marginTop="30dp"
-        android:text="Register" />
+        android:text="Register/Sign In" />
 
 
 </RelativeLayout>
