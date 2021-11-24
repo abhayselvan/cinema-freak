@@ -3,6 +3,7 @@ package activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -46,6 +47,7 @@ public class ForgotPassword extends AppCompatActivity {
             return;
         }
 
+
         auth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
                 Toast.makeText(ForgotPassword.this,"Check your email for reset password link",Toast.LENGTH_LONG).show();
@@ -53,6 +55,7 @@ public class ForgotPassword extends AppCompatActivity {
             }
             else{
                 Toast.makeText(ForgotPassword.this,"Try again! Something went wrong",Toast.LENGTH_LONG).show();
+
             }
         });
     }
