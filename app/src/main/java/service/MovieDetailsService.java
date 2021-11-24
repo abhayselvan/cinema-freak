@@ -22,8 +22,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import database.DatabaseInstance;
 import service.model.Genre;
 import service.model.MovieDetails;
+import service.model.Result;
 import util.MovieDetailsServiceUtil;
 import util.TmdbIdMapper;
 
@@ -32,7 +34,6 @@ public class MovieDetailsService extends Service {
     private Binder movieDetailsBinder;
     private RequestQueue volleyRequestQueue;
     private final String TAG = "CinemaFreak--MovieDetailsService";
-    private FirebaseDatabase database;
 
     public MovieDetailsService() {
         this.movieDetailsBinder = new MovieDetailsBinder();
@@ -43,7 +44,6 @@ public class MovieDetailsService extends Service {
         super.onCreate();
         Log.d(TAG, "Create service invoked");
         volleyRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        database = FirebaseDatabase.getInstance("https://cinema-freak-default-rtdb.firebaseio.com/");
         TmdbIdMapper.getInstance().loadCsv(this);
     }
 
@@ -63,13 +63,13 @@ public class MovieDetailsService extends Service {
         Log.d(TAG, "Fetch movie details invoked");
         List<Integer> tmdbIds = movieIds.stream()
                 .map(movieId -> TmdbIdMapper.getInstance().getTmdbId(getApplicationContext(), movieId))
+                .filter(movieId -> movieId != -1)
                 .collect(Collectors.toList());
 
         List<MovieDetails> moviesInDatabase = new ArrayList<>();
         List<Integer> tmdbIdNotInDatabase =new ArrayList<>();
 
-
-        DatabaseReference childRef = database.getReference("movies");
+        DatabaseReference childRef = DatabaseInstance.DATABASE.getReference("movies");
         childRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -104,6 +104,22 @@ public class MovieDetailsService extends Service {
         md.setOverview(snapshot.child("overview").getValue(String.class));
         md.setTitle(snapshot.child("title").getValue(String.class));
         md.setPoster(snapshot.child("poster").getValue(String.class));
+        md.setWallpaper(snapshot.child("wallpaper").getValue(String.class));
+
+        String wallpaperUrl = snapshot.child("trailer").getValue(String.class);
+        if (wallpaperUrl == null){
+            md.setWallpaper("");
+        } else {
+            md.setWallpaper(wallpaperUrl);
+        }
+
+        String trailerID = snapshot.child("trailer").getValue(String.class);
+        if (trailerID == null){
+            md.setTrailer("");
+        } else {
+            md.setTrailer(trailerID);
+        }
+
         String genres = snapshot.child("genres").getValue(String.class);
         if(genres != null){
             List<Genre> genreList = new ArrayList<>();
@@ -128,7 +144,7 @@ public class MovieDetailsService extends Service {
                 try {
                     Log.d(TAG, "Fetching details for tmdb id "+tmdbId+" on thread "+Thread.currentThread().getName());
                     MovieDetails response = future.get(60, TimeUnit.SECONDS);
-                    Log.i(TAG, "Got response : "+response);
+                    Log.i(TAG, "Got response : " + response);
                     insertMovieDetailsInDatabase(response);
                     movieDetails.add(response);
                 } catch (Exception e) {
@@ -143,25 +159,41 @@ public class MovieDetailsService extends Service {
     }
 
     private void insertMovieDetailsInDatabase(MovieDetails response){
-        DatabaseReference childRef = database.getReference("movies").child(response.getId()+"");
+        DatabaseReference childRef = DatabaseInstance.DATABASE.getReference("movies").child(response.getId()+"");
         childRef.child("overview").setValue(response.getOverview());
         childRef.child("title").setValue(response.getTitle());
         childRef.child("poster").setValue(response.getPoster());
+        childRef.child("wallpaper").setValue(response.getWallpaper());
         StringBuilder sb= new StringBuilder();
         response.getGenres().forEach(m -> sb.append(m).append(","));
         if(sb.length()>0)
             sb.delete(sb.length()-1, sb.length());
         childRef.child("genres").setValue(sb.toString());
 
+        String trailerLink = "";
+        List<Result> results = response.getVideos().getResults();
+        for (int i = 0; i < results.size(); i++){
+            String type = results.get(i).getType();
+            String site = results.get(i).getSite();
+            if (type.equals("Trailer") && site.equals("YouTube")){
+                trailerLink = results.get(i).getKey();
+                break;
+            }
+        }
+        if (trailerLink.length() > 0) {
+            childRef.child("trailer").setValue(trailerLink);
+        } else {
+            childRef.child("trailer").setValue("");
+        }
         Log.i(TAG, "Completed updating DB for tmdb Id "+response.getId());
     }
 
     public class MovieDetailsBinder extends Binder {
 
         public MovieDetailsService getService(){
-            Log.d(TAG, "Fetch service called");
             return MovieDetailsService.this;
         }
     }
+
 
 }

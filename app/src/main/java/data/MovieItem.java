@@ -33,19 +33,39 @@ public class MovieItem implements Serializable {
     private final List<String> genres;
     private String imageUrl;
     private String description;
+    private String trailerID;
+    private String wallPaperUrl;
 
     public boolean selected = false; // For UI selection. Default item is not selected.
 
     private MovieItem() {
-        this(0, "", new ArrayList<>(), "", "");
+        this(0, "", new ArrayList<>(), "", "", "", "");
     }
 
-    public MovieItem(int id, String title, List<String> genres, String imageUrl, String description) {
+    public MovieItem(int id, String title, List<String> genres, String imageUrl, String description, String trailerID, String wallPaperUrl) {
         this.id = id;
         this.title = title;
         this.genres = genres;
         this.imageUrl = imageUrl;
         this.description = description;
+        this.trailerID = trailerID;
+        this.wallPaperUrl = wallPaperUrl;
+    }
+
+    public String getTrailerID() {
+        return trailerID;
+    }
+
+    public void setTrailerID(String trailerID) {
+        this.trailerID = trailerID;
+    }
+
+    public String getWallPaperUrl() {
+        return wallPaperUrl;
+    }
+
+    public void setWallPaperUrl(String wallPaperUrl) {
+        this.wallPaperUrl = wallPaperUrl;
     }
 
     @Override

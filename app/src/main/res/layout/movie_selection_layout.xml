@@ -13,7 +13,17 @@
       android:layout_marginLeft="10dp"
       android:textStyle="bold"
       android:textSize="20dp"
-      android:text="Welcome to Cinema Freak!\n Pick 5 or more movies"
+      android:text="Welcome to Cinema Freak!"
+      android:textColor="@color/textColorWhite"/>
+
+  <TextView
+      android:id="@+id/textView1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="22dp"
+      android:layout_marginLeft="10dp"
+      android:textSize="17dp"
+      android:text="Select 5 or more movies"
       android:textColor="@color/textColorWhite"/>
 
   <Button

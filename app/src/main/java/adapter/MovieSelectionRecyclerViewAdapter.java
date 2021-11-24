@@ -1,12 +1,15 @@
 package adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +18,7 @@ import com.cinemaFreak.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import activity.MovieSelection;
 import data.MovieItem;
 
 public class MovieSelectionRecyclerViewAdapter extends RecyclerView.Adapter<MovieSelectionRecyclerViewAdapter.ViewHolder> {
@@ -43,17 +47,26 @@ public class MovieSelectionRecyclerViewAdapter extends RecyclerView.Adapter<Movi
         holder.description.setText(item.getTitle());
         Glide.with(context).load(item.getImageUrl()).into(holder.imageView);
         holder.imageView.setOnClickListener(
-                v -> onClickRecommendedMovie(item));
+                v -> onClickRecommendedMovie(item, holder.imageView));
 
 
     }
 
-    public void onClickRecommendedMovie(MovieItem item){
+    public void onClickRecommendedMovie(MovieItem item, ImageView imageView){
         if (!selectedMovies.contains(item)) {
                 selectedMovies.add(item);
+                imageView.setBackgroundColor(Color.RED);
+                if(selectedMovies.size() >=5){
+                    ((MovieSelection)context).setVisibility();
+                }
+
         }
         else {
             selectedMovies.remove(item);
+            imageView.setBackgroundColor(Color.BLACK);
+            if(selectedMovies.size() <5){
+                ((MovieSelection)context).setInvisibility();
+            }
         }
     }
 

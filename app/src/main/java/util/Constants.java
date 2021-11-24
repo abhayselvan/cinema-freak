@@ -12,5 +12,12 @@ public class Constants {
 
     public final static String TMDB_POSTER_PATH = "https://image.tmdb.org/t/p/original";
 
-    public static final String VIDEOS_WATCH_PROVIDERS = "&append_to_response=videos,watch/providers";
+    public static final String ACTIVE_USER_KEY = "ActiveUserInstance";
+
+    public static final String WATCH_PROVIDERS = "/watch/providers";
+
+    public static final String VIDEOS_PARAM = "append_to_response";
+
+    public static final String VIDEOS = "videos";
+
 }

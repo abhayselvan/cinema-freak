@@ -25,35 +25,32 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-
 import com.cinemaFreak.R;
 
 import java.util.List;
 
 import activity.MovieDescription;
-import model.User;
 import data.MovieItem;
 import data.Result;
 import util.Constants;
 
-public class RecommendationRecyclerViewAdapter
-        extends RecyclerView.Adapter<RecommendationRecyclerViewAdapter.ViewHolder> {
+public class SearchRecyclerViewAdapter
+        extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder> {
 
     Context mContext;
     private final List<MovieItem> movies;
-    private final User activeUser;
+    private List<MovieItem> exampleListFull;
 
-    public RecommendationRecyclerViewAdapter(Context context, List<MovieItem> movies, User activeUser) {
+    public SearchRecyclerViewAdapter(Context context, List<MovieItem> movies) {
         this.mContext = context;
         this.movies = movies;
-        this.activeUser = activeUser;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view =
                 LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.movie_selection_card, parent, false);
+                        .inflate(R.layout.select_card, parent, false);
         return new ViewHolder(view);
     }
 
@@ -67,11 +64,16 @@ public class RecommendationRecyclerViewAdapter
                 v -> onClickRecommendedMovie(item));
     }
 
+    public void clear() {
+        int size = movies.size();
+        movies.clear();
+        notifyItemRangeRemoved(0, size);
+
+    }
 
     public void onClickRecommendedMovie(MovieItem item) {
         Intent intent = new Intent(mContext, MovieDescription.class);
-        intent.putExtra("movieId",item);
-        intent.putExtra(Constants.ACTIVE_USER_KEY, activeUser);
+        intent.putExtra("movieId",String.valueOf(item.getId()));
         mContext.startActivity(intent);
     }
 
@@ -79,6 +81,7 @@ public class RecommendationRecyclerViewAdapter
     public int getItemCount() {
         return movies.size();
     }
+
 
     /**
      * ViewHolder to display one movie in list view of recommendation result.
@@ -102,5 +105,8 @@ public class RecommendationRecyclerViewAdapter
         public String toString() {
             return super.toString() + " '" + name.getText() + "'";
         }
+
     }
+
+
 }

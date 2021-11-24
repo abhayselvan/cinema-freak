@@ -29,15 +29,17 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import model.User;
 import adapter.GenreRecyclerViewAdapter;
 import client.RecommendationClient;
 import data.Config;
 import data.FileUtil;
-import data.ItemDetailsWrapper;
 import data.MovieItem;
 import data.Result;
+import database.DatabaseInstance;
 import service.MovieDetailsCallback;
 import service.MovieDetailsService;
+import util.Constants;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +52,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final String TAG = "CinemaFreak-OnDeviceRecommendationDemo";
+    private static final String TAG = "CinemaFreak-HomeScreen";
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
     List<String> genres;
     TreeMap<String, List<MovieItem>> movieGenreMap;
@@ -64,6 +66,10 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     private ServiceConnection serviceConnection;
     private boolean isServiceConnected;
     private ProgressBar progressBar;
+    private String userId;
+    private User activeUser;
+    private List<Result> recommendations;
+    private boolean fetchRecommendations;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -93,13 +99,17 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        handler = new Handler();
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         movieGenreMap = new TreeMap<>();
-        ItemDetailsWrapper wrap = (ItemDetailsWrapper) getActivity().getIntent().getSerializableExtra("reco");
-        movies = wrap.getItemDetails();
+
+        userId = getActivity().getIntent().getStringExtra(Constants.ACTIVE_USER_KEY);
+        recommendations = new ArrayList<>();
+        loadActiveUser(userId);
 
         // Load config file.
         try {
@@ -108,12 +118,9 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
             Log.e(TAG, String.format("Error occurs when loading config %s: %s.", CONFIG_PATH, ex));
         }
         loadGenres();
-        handler = new Handler();
+
         client = new RecommendationClient(getContext(), config);
-        handler.post(
-                () -> {
-                    client.load();
-                });
+        handler.post(() -> client.load());
     }
 
     @Override
@@ -129,32 +136,32 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
         genreRecyclerView.setLayoutManager(layoutManager);
         return view;
     }
-    /**
-     * Sends selected movie list and get recommendations.
-     */
-    private void recommend(final List<MovieItem> movies) {
-        handler.post(
-                () -> {
-                    // Run inference with TF Lite.
-                    Log.d(TAG, "Run inference with TFLite model.");
-                    List<Result> recommendations = client.recommend(movies);
 
-                    List<Integer> selectedMovies = movies.stream().map(MovieItem::getId).collect(Collectors.toList());
-                    recommendations = recommendations.stream().filter(result -> !selectedMovies.contains(result.item.getId())).collect(Collectors.toList());
-
-                    movieDetailsService.getMoviesDetails(
-                            recommendations.stream().map(r -> r.item.getId()).collect(Collectors.toList()), this);
-
-                });
+    private void executeRecommendationEngine() {
+        Log.i(TAG, "Executing recommendation engine for selected movies");
+        // Run inference with TF Lite.
+        Log.d(TAG, "Run inference with TFLite model.");
+        recommendations = client.recommend(movies);
+        Log.d(TAG, "Recommendations loaded");
+        if (isServiceConnected && !fetchRecommendations) {
+            Log.d(TAG, "Entered from db");
+            fetchMovieDetailsForRecommendations();
+        }
     }
 
-    /**
-     * Shows result on the screen.
-     */
+    private void fetchMovieDetailsForRecommendations() {
+        fetchRecommendations = true;
+        List<Integer> selectedMovies = movies.stream().map(MovieItem::getId).collect(Collectors.toList());
+        recommendations = recommendations.stream().filter(result -> !selectedMovies.contains(result.item.getId())).collect(Collectors.toList());
+        Log.i(TAG, "Fetching movie details for all recommendations");
+        movieDetailsService.getMoviesDetails(
+                recommendations.stream().map(r -> r.item.getId()).collect(Collectors.toList()), this);
+    }
+
     private void showResult(final List<MovieItem> recommendations) {
         loadMap(recommendations);
         genreRecyclerView.setAdapter(
-                new GenreRecyclerViewAdapter(getContext(), movieGenreMap, genres));
+                new GenreRecyclerViewAdapter(getContext(), movieGenreMap, genres, activeUser));
         progressBar.setVisibility(View.GONE);
     }
 
@@ -207,7 +214,9 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
                     isServiceConnected = true;
                     MovieDetailsService.MovieDetailsBinder binder = (MovieDetailsService.MovieDetailsBinder) service;
                     movieDetailsService = binder.getService();
-                    recommend(movies);
+                    if (recommendations.size() > 0 && !fetchRecommendations) {
+                        fetchMovieDetailsForRecommendations();
+                    }
                 }
 
                 @Override
@@ -224,7 +233,6 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
 
     @Override
     public void dbMovieDetails(List<MovieItem> movieItems) {
-        // Show result on screen
         showResult(movieItems);
     }
 
@@ -239,5 +247,21 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
         getActivity().unbindService(serviceConnection);
         serviceConnection = null;
         isServiceConnected = false;
+    }
+
+    private void loadActiveUser(String userId) {
+        handler.post(() -> {
+            Log.i(TAG, "Fetching user details from database");
+            DatabaseInstance.DATABASE.getReference().child("Users").child(userId).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    activeUser = task.getResult().getValue(User.class);
+                    Log.d(TAG, "User " + userId + " fetched from database: " + activeUser);
+                    movies = activeUser.getLikedMovies();
+                    executeRecommendationEngine();
+                } else {
+                    Log.e(TAG, "Unable to fetch active user");
+                }
+            });
+        });
     }
 }
