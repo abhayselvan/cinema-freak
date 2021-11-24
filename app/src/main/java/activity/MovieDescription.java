@@ -326,6 +326,11 @@ public class MovieDescription extends YouTubeBaseActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             Log.i(TAG, "Location Permission granted");
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
+                if (location == null) {
+                    countryName = "United States";
+                    countryCode = "US";
+                    return;
+                }
                 Log.i(TAG, "Location received");
                 Geocoder geocoder = new Geocoder(MovieDescription.this);
                 try {
