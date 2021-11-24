@@ -48,9 +48,11 @@ public class ForgotPassword extends AppCompatActivity {
         }
 
 
+
         auth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
                 Toast.makeText(ForgotPassword.this,"Check your email for reset password link",Toast.LENGTH_LONG).show();
+
                 finish();
             }
             else{

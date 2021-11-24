@@ -3,12 +3,18 @@ package activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.cinemaFreak.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import Fragments.AccountSetting;
 import Fragments.HomeScreen;
@@ -16,6 +22,9 @@ import Fragments.Search;
 import Fragments.WatchLater;
 
 public class MovieRecommendation extends AppCompatActivity {
+
+    public FirebaseAuth mAuth;
+
     private static final String TAG = "CinemaFreak-MovieRecommendation";
     AccountSetting accountSetting = new AccountSetting();
     WatchLater watchLater = new WatchLater();
@@ -23,6 +32,7 @@ public class MovieRecommendation extends AppCompatActivity {
     HomeScreen home = new HomeScreen();
     FragmentManager fm = getSupportFragmentManager();
     Fragment active = home;
+
 
     @Override
     public void onBackPressed() {
@@ -45,6 +55,8 @@ public class MovieRecommendation extends AppCompatActivity {
         fm.beginTransaction().add(R.id.frameLayout, watchLater, "2").hide(watchLater).commit();
         fm.beginTransaction().add(R.id.frameLayout, search, "4").hide(search).commit();
         fm.beginTransaction().add(R.id.frameLayout, home, "1").commit();
+
+        mAuth = FirebaseAuth.getInstance();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -72,11 +84,10 @@ public class MovieRecommendation extends AppCompatActivity {
                         active = watchLater;
                         return true;
 
-
-            }
             return true;
         });
     }
 
+        
+    }
 }
-

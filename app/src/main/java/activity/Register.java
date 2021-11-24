@@ -114,7 +114,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                 .setValue(user).addOnCompleteListener(task1 -> {
                                     if(task1.isSuccessful()){
                                         Toast.makeText(Register.this,"User has been registered successfully!", Toast.LENGTH_LONG).show();
-
                                         Intent movieSelectionIntent = new Intent(Register.this, MovieSelection.class);
                                         startActivity(movieSelectionIntent);
                                     }
