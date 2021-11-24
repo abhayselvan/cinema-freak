@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.cinemaFreak.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import Fragments.AccountSetting;
 import Fragments.HomeScreen;
@@ -22,6 +23,7 @@ public class MovieRecommendation extends AppCompatActivity {
     HomeScreen home = new HomeScreen();
     FragmentManager fm = getSupportFragmentManager();
     Fragment active = home;
+    public FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MovieRecommendation extends AppCompatActivity {
         fm.beginTransaction().add(R.id.frameLayout, watchLater, "2").hide(watchLater).commit();
         fm.beginTransaction().add(R.id.frameLayout, search, "4").hide(search).commit();
         fm.beginTransaction().add(R.id.frameLayout, home, "1").commit();
+        mAuth = FirebaseAuth.getInstance();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home);
