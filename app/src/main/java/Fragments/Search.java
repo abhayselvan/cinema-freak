@@ -144,7 +144,6 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
                     FileUtil.loadMovieList(getContext().getAssets(), config.movieList);
             allMovies.clear();
             for (MovieItem item : collection) {
-                //Log.d(TAG, String.format("Load candidate: %s", item));
                 allMovies.add(item);
             }
             Log.v(TAG, "Candidate list loaded.");
@@ -170,7 +169,7 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
                     textView.setVisibility(View.INVISIBLE);
                 try {
                     movieDetailsService.getMoviesDetails(
-                            searchedMovies.stream().map(r -> r.getId()).collect(Collectors.toList()), this);
+                            searchedMovies.stream().map(MovieItem::getId).collect(Collectors.toList()), this);
                 }catch (Exception e){
                     Exception exception = e;
                 }

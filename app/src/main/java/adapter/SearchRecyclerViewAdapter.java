@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,7 +61,7 @@ public class SearchRecyclerViewAdapter
         holder.name.setText(item.getTitle());
         String imageUrl = Constants.TMDB_POSTER_PATH+item.getImageUrl();
         Glide.with(mContext).load(imageUrl).into(holder.image);
-        holder.image.setOnClickListener(
+        holder.layout.setOnClickListener(
                 v -> onClickRecommendedMovie(item));
     }
 
@@ -73,7 +74,7 @@ public class SearchRecyclerViewAdapter
 
     public void onClickRecommendedMovie(MovieItem item) {
         Intent intent = new Intent(mContext, MovieDescription.class);
-        intent.putExtra("movieId",String.valueOf(item.getId()));
+        intent.putExtra("movieItem", item);
         mContext.startActivity(intent);
     }
 
@@ -91,6 +92,7 @@ public class SearchRecyclerViewAdapter
         public final View view;
         public final TextView name;
         public Result result;
+        public LinearLayout layout;
         ImageView image;
 
         public ViewHolder(View view) {
@@ -98,6 +100,7 @@ public class SearchRecyclerViewAdapter
             this.view = view;
             this.name =
                     view.findViewById(R.id.name);
+            this.layout= view.findViewById(R.id.movieHolder);
             this.image = view.findViewById(R.id.image);
         }
 
