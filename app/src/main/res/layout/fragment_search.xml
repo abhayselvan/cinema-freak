@@ -4,10 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="Fragments.Search"
-    android:background="@color/backgroundBlack">
+    android:background="@color/backgroundBlack"
+    android:paddingVertical="20dp"
+    >
+
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="280dp"
+        android:layout_marginLeft="10dp"
         android:layout_height="wrap_content"
         android:id="@+id/searchquery"
         android:hint="Search.."
@@ -25,21 +29,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Search"
+        android:layout_marginRight="10dp"
         />
 
     <TextView
         android:id="@+id/noMovie"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Oops,Cannot find the movie."
-        android:textStyle="bold"
         android:textColor="@color/textColorWhite"
-        android:textSize="30sp"
-        android:visibility="invisible"
+        android:textSize="18sp"
         android:typeface="serif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/search_list"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_button"/>
+        app:layout_constraintTop_toBottomOf="@+id/search_button" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_list"

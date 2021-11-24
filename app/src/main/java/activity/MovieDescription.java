@@ -84,7 +84,7 @@ public class MovieDescription extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_description);
 
-        movie = (MovieItem) getIntent().getExtras().get("movieId");
+        movie = (MovieItem) getIntent().getExtras().get("movieItem");
         activeUser = ((CinemaFreakApplication)getApplication()).getActiveSessionUser();
 
         queue = Volley.newRequestQueue(this);

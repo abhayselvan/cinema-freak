@@ -68,7 +68,7 @@ public class RecommendationRecyclerViewAdapter
 
     public void onClickRecommendedMovie(MovieItem item) {
         Intent intent = new Intent(mContext, MovieDescription.class);
-        intent.putExtra("movieId",item);
+        intent.putExtra("movieItem",item);
         mContext.startActivity(intent);
     }
 
