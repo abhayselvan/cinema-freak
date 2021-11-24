@@ -104,21 +104,8 @@ public class MovieDetailsService extends Service {
         md.setOverview(snapshot.child("overview").getValue(String.class));
         md.setTitle(snapshot.child("title").getValue(String.class));
         md.setPoster(snapshot.child("poster").getValue(String.class));
-        md.setWallpaper(snapshot.child("wallpaper").getValue(String.class));
-
-        String wallpaperUrl = snapshot.child("wallpaper").getValue(String.class);
-        if (wallpaperUrl == null){
-            md.setWallpaper("");
-        } else {
-            md.setWallpaper(wallpaperUrl);
-        }
-
-        String trailerID = snapshot.child("trailer").getValue(String.class);
-        if (trailerID == null){
-            md.setTrailer("");
-        } else {
-            md.setTrailer(trailerID);
-        }
+        md.setBackDrop(snapshot.child("backdrop").getValue(String.class));
+        md.setTrailer(snapshot.child("trailer").getValue(String.class));
 
         String genres = snapshot.child("genres").getValue(String.class);
         if(genres != null){
@@ -163,7 +150,7 @@ public class MovieDetailsService extends Service {
         childRef.child("overview").setValue(response.getOverview());
         childRef.child("title").setValue(response.getTitle());
         childRef.child("poster").setValue(response.getPoster());
-        childRef.child("wallpaper").setValue(response.getWallpaper());
+        childRef.child("backdrop").setValue(response.getBackDrop());
         StringBuilder sb= new StringBuilder();
         response.getGenres().forEach(m -> sb.append(m).append(","));
         if(sb.length()>0)

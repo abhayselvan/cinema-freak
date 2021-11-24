@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MovieDetails {
@@ -16,10 +15,18 @@ public class MovieDetails {
     @SerializedName("poster_path")
     private String poster;
     @SerializedName("backdrop_path")
-    private String wallpaper;
+    private String backDrop;
     private List<Genre> genres;
     private Videos videos;
     private String trailer;
+
+    public String getBackDrop() {
+        return backDrop;
+    }
+
+    public void setBackDrop(String backDrop) {
+        this.backDrop = backDrop;
+    }
 
     public String getTrailer() {
         return trailer;
@@ -35,14 +42,6 @@ public class MovieDetails {
 
     public void setVideos(Videos videos) {
         this.videos = videos;
-    }
-
-    public String getWallpaper() {
-        return wallpaper;
-    }
-
-    public void setWallpaper(String wallpaper) {
-        this.wallpaper = wallpaper;
     }
 
     public MovieDetails(){
