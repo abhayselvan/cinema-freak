@@ -106,7 +106,7 @@ public class MovieDetailsService extends Service {
         md.setPoster(snapshot.child("poster").getValue(String.class));
         md.setWallpaper(snapshot.child("wallpaper").getValue(String.class));
 
-        String wallpaperUrl = snapshot.child("trailer").getValue(String.class);
+        String wallpaperUrl = snapshot.child("wallpaper").getValue(String.class);
         if (wallpaperUrl == null){
             md.setWallpaper("");
         } else {
