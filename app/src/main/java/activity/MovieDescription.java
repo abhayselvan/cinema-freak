@@ -1,7 +1,6 @@
 package activity;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,12 +9,12 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -28,6 +27,8 @@ import com.cinemaFreak.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -41,9 +42,11 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import data.MovieItem;
 import database.DatabaseInstance;
+import main.CinemaFreakApplication;
 import model.User;
 import util.Constants;
 import util.YouTubeConfig;
@@ -52,18 +55,20 @@ public class MovieDescription extends YouTubeBaseActivity {
 
     private static final int PERMISSIONS_COARSE_LOCATION = 1;
     public static final String TAG = "DescriptionActivity";
-
-    String title, description, countryCode, countryName;
-    String providerUrl, posterUrl, trailerLink;
-    TextView movieTitle, movieDescription, streamHeading;
-    LinearLayout linearLayout;
-    ImageView poster, like;
-    JSONObject providerDetails;
-    InputStream inputStream;
-    Bitmap bitmap;
+    private Handler handler;
+    private String title, description, countryCode, countryName;
+    private String providerUrl, posterUrl, trailerLink;
+    private TextView movieTitle, movieDescription, streamHeading;
+    private LinearLayout linearLayout;
+    private ImageView poster, like, bookmark, dislike;
+    private TextView likeCount;
+    private JSONObject providerDetails;
+    private InputStream inputStream;
+    private Bitmap bitmap;
+    private boolean isMovieLiked, isMovieDisliked, isMovieBookmarked;
 
     MovieItem movie;
-    User user;
+    User activeUser;
 
     YouTubePlayerView mYouTubePlayerView;
     YouTubePlayer.OnInitializedListener mOnInitializedListener;
@@ -79,36 +84,40 @@ public class MovieDescription extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_description);
 
-        Log.i(TAG, "OnCreate");
-
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
-        movie = (MovieItem) bundle.get("movieId");
-        user = (User) bundle.get(Constants.ACTIVE_USER_KEY);
+        movie = (MovieItem) getIntent().getExtras().get("movieId");
+        activeUser = ((CinemaFreakApplication)getApplication()).getActiveSessionUser();
 
         queue = Volley.newRequestQueue(this);
-        movieTitle = (TextView) findViewById(R.id.movie_title);
-        movieDescription = (TextView) findViewById(R.id.movie_description);
-        streamHeading = (TextView) findViewById(R.id.stream_heading);
-        mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.movie_trailer);
-        poster = (ImageView) findViewById(R.id.poster);
-        linearLayout = (LinearLayout) findViewById(R.id.providers);
-        like = (ImageView) findViewById(R.id.like);
-        poster.setImageBitmap(null);
+        movieTitle = findViewById(R.id.movie_title);
+        movieDescription = findViewById(R.id.movie_description);
+        streamHeading = findViewById(R.id.stream_heading);
+        mYouTubePlayerView = findViewById(R.id.movie_trailer);
+        poster = findViewById(R.id.poster);
+        linearLayout = findViewById(R.id.providers);
+        like = findViewById(R.id.like);
+        bookmark = findViewById(R.id.bookmark);
+        dislike = findViewById(R.id.dislike);
+        likeCount = findViewById(R.id.like_count);
 
+        updateLikeText();
+        poster.setImageBitmap(null);
+        isMovieLiked = activeUser.getLikedMovies().stream().map(MovieItem::getId).collect(Collectors.toList()).contains(movie.getId());
+        isMovieDisliked = activeUser.getDislikedMovies().stream().map(MovieItem::getId).collect(Collectors.toList()).contains(movie.getId());
+        isMovieBookmarked = activeUser.getBookmarkedMovies().stream().map(MovieItem::getId).collect(Collectors.toList()).contains(movie.getId());
+
+        updateIcons();
+        bookmark.setOnClickListener(view -> onBookmarkPress());
+        like.setOnClickListener(view -> onLikePressed());
+        dislike.setOnClickListener(view -> onDislikePressed());
+
+        handler = new Handler();
         providerUrl = "https://" + Constants.TMDB_HOST_URL + Constants.MOVIE_PATH + "/" + movie.getId() + Constants.WATCH_PROVIDERS + "?" + Constants.API_KEY_PARAM + "=" + Constants.API_KEY;
         posterUrl = Constants.TMDB_POSTER_PATH;
 
-        if (user.getLikedMovies().contains(movie))
-            like.setImageResource(R.drawable.ic_baseline_thumb_up_30_red);
-
-        Log.i(TAG, user.getLikedMovies().toString());
         getDetails();
         getTrailer();
 
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, providerUrl, null,
-                response -> {
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, providerUrl, null, response -> {
                     Log.i(TAG, "Movie API received");
                     providerDetails = response;
                     getLocation();
@@ -116,18 +125,65 @@ public class MovieDescription extends YouTubeBaseActivity {
                     Log.i(TAG, "response error");
                     error.printStackTrace();
                 });
-
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_LOW_POWER);
         queue.add(jsonObjectRequest);
+    }
 
-        like.setOnClickListener(view -> {
-            if (!user.getLikedMovies().contains(movie)) {
-                user.addLikedMovieItem(movie);
-                like.setImageResource(R.drawable.ic_baseline_thumb_up_30_red);
-                DatabaseInstance.DATABASE.getReference().child("Users").child(user.getId()).child("likedMovies").setValue(user.getLikedMovies());
-            }
-        });
+    private void updateLikeText(){
+        if(movie.getLikes() > 0)
+            likeCount.setText(movie.getLikes()+" others liked this movie!");
+    }
+
+    private void onLikePressed(){
+        if (isMovieLiked) {
+            removeLike();
+        } else {
+            if(isMovieDisliked)
+                removeDislike();
+            activeUser.addLikedMovieItem(movie);
+            like.setImageResource(R.drawable.ic_baseline_thumb_up_30_red);
+            movie.updateLikes(1);
+            isMovieLiked=true;
+        }
+    }
+
+    private void onDislikePressed(){
+        if (isMovieDisliked) {
+            removeDislike();
+        } else {
+            if(isMovieLiked)
+                removeLike();
+            activeUser.addDislikedMovieItem(movie);
+            dislike.setImageResource(R.drawable.ic_baseline_thumb_down_30_red);
+            movie.updateDislikes(1);
+            isMovieDisliked=true;
+        }
+    }
+
+    private void removeLike(){
+        activeUser.removeLikedMovieItem(movie.getId());
+        like.setImageResource(R.drawable.ic_baseline_thumb_up_30);
+        movie.updateLikes(-1);
+        isMovieLiked=false;
+    }
+
+    private void removeDislike(){
+        activeUser.removeDislikedMovie(movie.getId());
+        dislike.setImageResource(R.drawable.ic_baseline_thumb_down_30);
+        movie.updateDislikes(-1);
+        isMovieDisliked=false;
+    }
+
+    private void onBookmarkPress(){
+        if (isMovieBookmarked) {
+            activeUser.removeBookmarkedMovies(movie.getId());
+            bookmark.setImageResource(R.drawable.ic_bookmark);
+        } else {
+            activeUser.addBookmarkedMovies(movie);
+            bookmark.setImageResource(R.drawable.ic_bookmark_fill);
+        }
+        isMovieBookmarked = !isMovieBookmarked;
     }
 
     private void getDetails() {
@@ -216,7 +272,7 @@ public class MovieDescription extends YouTubeBaseActivity {
     private void getTrailer() {
         trailerLink = movie.getTrailerID();
         Log.i(TAG, "Trailer or poster");
-        if (trailerLink.length() > 0){
+        if (trailerLink != null){
             Log.i(TAG, "Load Trailer");
             loadTrailer();
         } else {
@@ -229,7 +285,7 @@ public class MovieDescription extends YouTubeBaseActivity {
             try  {
                 Log.i(TAG, "Loading image");
                 String imagePath = movie.getWallPaperUrl();
-                if (imagePath.length() > 0) {
+                if (imagePath != null) {
                     inputStream = new URL(posterUrl + imagePath).openStream();
                     bitmap = BitmapFactory.decodeStream(inputStream);
                     runOnUiThread(() -> {
@@ -270,6 +326,11 @@ public class MovieDescription extends YouTubeBaseActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             Log.i(TAG, "Location Permission granted");
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
+                if (location == null) {
+                    countryName = "United States";
+                    countryCode = "US";
+                    return;
+                }
                 Log.i(TAG, "Location received");
                 Geocoder geocoder = new Geocoder(MovieDescription.this);
                 try {
@@ -290,6 +351,34 @@ public class MovieDescription extends YouTubeBaseActivity {
             }
         }
 
+    }
+
+    private void updateIcons(){
+        if (isMovieLiked)
+            like.setImageResource(R.drawable.ic_baseline_thumb_up_30_red);
+
+        if (isMovieDisliked)
+            dislike.setImageResource(R.drawable.ic_baseline_thumb_down_30_red);
+
+        if (isMovieBookmarked)
+            bookmark.setImageResource(R.drawable.ic_bookmark_fill);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ((CinemaFreakApplication)getApplication()).setActiveSessionUser(activeUser);
+        handler.post(() -> {
+            DatabaseInstance.DATABASE.getReference().child("Users").child(activeUser.getId()).setValue(activeUser).addOnCompleteListener(task -> {
+                if (task.isComplete()) {
+                    Log.i(TAG, "Updated user in db: " + activeUser);
+                } else {
+                    Log.i(TAG, "Error in updating db for user: " + task.getException());
+                }
+            });
+            DatabaseInstance.DATABASE.getReference().child("movies").child(movie.getId()+"").child("likes").setValue(movie.getLikes());
+            DatabaseInstance.DATABASE.getReference().child("movies").child(movie.getId()+"").child("dislikes").setValue(movie.getDislikes());
+        });
     }
 
     @Override

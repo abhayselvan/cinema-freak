@@ -13,14 +13,22 @@
     </queries>
 
     <application
+        android:name="main.CinemaFreakApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="CinemaFreak"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Recommendation">
-
-
+        <activity
+            android:name="activity.SplashScreen"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="activity.ForgotPassword"
             android:exported="true" />
@@ -29,12 +37,8 @@
             android:exported="true" />
         <activity
             android:name="activity.Login"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:exported="true">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
 
         <service
@@ -45,22 +49,21 @@
         <activity
             android:name="activity.MovieDescription"
             android:exported="false" />
-
         <activity
             android:name="activity.MovieRecommendation"
-            android:exported="true">
-        </activity>
-
-
+            android:exported="true"
+            android:theme="@style/AppTheme.Recommendation.NoActionBar"></activity>
         <activity
             android:name="activity.MovieSelection"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

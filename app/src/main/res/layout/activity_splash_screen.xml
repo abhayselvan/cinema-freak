@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="activity.SplashScreen"
+    android:background="@color/red">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_top"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_movie"
+        android:layout_centerInParent="true"
+       />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:text="Cinema"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/textColorWhite"
+        android:layout_below="@+id/iv_top"
+        android:layout_marginLeft="120dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:text="Freak"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/textColorWhite"
+        android:layout_below="@+id/iv_top"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/textView1"/>
+</RelativeLayout>

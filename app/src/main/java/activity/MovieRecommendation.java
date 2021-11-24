@@ -1,9 +1,12 @@
 package activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -19,7 +22,9 @@ import Fragments.Search;
 import Fragments.WatchLater;
 
 public class MovieRecommendation extends AppCompatActivity {
+
     public FirebaseAuth mAuth;
+
     private static final String TAG = "CinemaFreak-MovieRecommendation";
     AccountSetting accountSetting = new AccountSetting();
     WatchLater watchLater = new WatchLater();
@@ -30,9 +35,21 @@ public class MovieRecommendation extends AppCompatActivity {
 
 
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MovieRecommendation.this, MovieRecommendation.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_recommendation);
+
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            finish();
+        }
 
         fm.beginTransaction().add(R.id.frameLayout, accountSetting, "3").hide(accountSetting).commit();
         fm.beginTransaction().add(R.id.frameLayout, watchLater, "2").hide(watchLater).commit();
@@ -66,30 +83,11 @@ public class MovieRecommendation extends AppCompatActivity {
                         fm.beginTransaction().hide(active).show(watchLater).commit();
                         active = watchLater;
                         return true;
-            }
+
             return true;
         });
     }
 
-    public void editDetails(View view) {
-        EditText nameView,ageView,contactView,passwordView;
-        nameView = (EditText) findViewById(R.id.name2);
-        ageView = (EditText) findViewById(R.id.age3);
-        contactView = (EditText)findViewById(R.id.contact3);
-        passwordView = (EditText) findViewById(R.id.password3);
-
-        Button edit;
-
-        edit = view.findViewById(R.id.editBtn);
-        edit.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                nameView.setFocusable(true);
-                ageView.setFocusable(true);
-                contactView.setFocusable(true);
-                passwordView.setFocusable(true);
-            }
-        });
+        
     }
 }
