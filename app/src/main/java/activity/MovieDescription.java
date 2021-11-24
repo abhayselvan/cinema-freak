@@ -216,7 +216,7 @@ public class MovieDescription extends YouTubeBaseActivity {
     private void getTrailer() {
         trailerLink = movie.getTrailerID();
         Log.i(TAG, "Trailer or poster");
-        if (trailerLink.length() > 0){
+        if (trailerLink != null){
             Log.i(TAG, "Load Trailer");
             loadTrailer();
         } else {
@@ -229,7 +229,7 @@ public class MovieDescription extends YouTubeBaseActivity {
             try  {
                 Log.i(TAG, "Loading image");
                 String imagePath = movie.getWallPaperUrl();
-                if (imagePath.length() > 0) {
+                if (imagePath != null) {
                     inputStream = new URL(posterUrl + imagePath).openStream();
                     bitmap = BitmapFactory.decodeStream(inputStream);
                     runOnUiThread(() -> {
