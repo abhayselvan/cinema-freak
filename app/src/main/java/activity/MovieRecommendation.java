@@ -83,9 +83,8 @@ public class MovieRecommendation extends AppCompatActivity {
                     fm.beginTransaction().hide(active).show(watchLater).commit();
                     active = watchLater;
                     return true;
-
-                return true;
             }
+            return true;
         });
     }
 }
