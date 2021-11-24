@@ -1,13 +1,30 @@
 package Fragments;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.cinemaFreak.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import activity.Login;
+import model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,6 +32,12 @@ import com.cinemaFreak.R;
  * create an instance of this fragment.
  */
 public class AccountSetting extends Fragment {
+
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
+
+    private Button logout;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +76,60 @@ public class AccountSetting extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            logout = (Button)getView().findViewById(R.id.logout);
+            logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    FirebaseAuth.getInstance().signOut();
+//                    startActivity(new Intent(this, Login.class));
+                    Intent redirect=new Intent(getActivity(),Login.class);
+                    getActivity().startActivity(redirect);
+
+                }
+            });
+
+//            user = FirebaseAuth.getInstance().getCurrentUser();
+//            reference = FirebaseDatabase.getInstance().getReference("Users");
+//            userID = user.getUid();
+
+            EditText nameView,emailView,ageView,contactView,passwordView;
+            nameView = (EditText) getView().findViewById(R.id.name2);
+            emailView = (EditText) getView().findViewById(R.id.editEmail3);
+            ageView = (EditText) getView().findViewById(R.id.age3);
+            contactView = (EditText) getView().findViewById(R.id.contact3);
+            passwordView = (EditText) getView().findViewById(R.id.password3);
+
+//            reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    User userProfile = snapshot.getValue(User.class);
+//
+//                    if(userProfile != null){
+//                        String Name = userProfile.getName();
+//                        String email = userProfile.getEmail();
+//                        String age = userProfile.getAge();
+//                        String contact = userProfile.getContact();
+//                        String password = userProfile.getPassword();
+//
+//                        Log.i(TAG,"Name");
+//                        Log.i(TAG,"email");
+//                        nameView.setHint(Name);
+//                        emailView.setHint(email);
+//                        ageView.setHint(age);
+//                        contactView.setHint(contact);
+//                        passwordView.setHint(password);
+//
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+
+
         }
     }
 
@@ -63,3 +140,4 @@ public class AccountSetting extends Fragment {
         return inflater.inflate(R.layout.fragment_account_setting, container, false);
     }
 }
+

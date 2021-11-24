@@ -24,6 +24,7 @@ public class MovieRecommendation extends AppCompatActivity {
     HomeScreen home = new HomeScreen();
     FragmentManager fm = getSupportFragmentManager();
     Fragment active = home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class MovieRecommendation extends AppCompatActivity {
         fm.beginTransaction().add(R.id.frameLayout, accountSetting, "3").hide(accountSetting).commit();
         fm.beginTransaction().add(R.id.frameLayout, watchLater, "2").hide(watchLater).commit();
         fm.beginTransaction().add(R.id.frameLayout, search, "4").hide(search).commit();
-        fm.beginTransaction().add(R.id.frameLayout,home, "1").commit();
+        fm.beginTransaction().add(R.id.frameLayout, home, "1").commit();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -62,10 +63,11 @@ public class MovieRecommendation extends AppCompatActivity {
                         active = watchLater;
                         return true;
 
+                }
+                return true;
             }
-            return true;
         });
     }
-
-
 }
+
+
