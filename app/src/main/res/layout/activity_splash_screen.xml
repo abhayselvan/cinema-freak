@@ -8,13 +8,12 @@
     android:background="@color/red">
 
     <ImageView
+        android:id="@+id/iv_top"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/iv_top"
-        android:adjustViewBounds="true"
-        android:src="@drawable/ic_movie"
         android:layout_centerInParent="true"
-       />
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_movie" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
