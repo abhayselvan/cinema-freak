@@ -253,6 +253,8 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     private void loadActiveUserFromDb(String userId) {
         handler.post(() -> {
             Log.i(TAG, "Fetching user details from database");
+            if(userId == null)
+                return;
             DatabaseInstance.DATABASE.getReference().child("Users").child(userId).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     activeUser = task.getResult().getValue(User.class);
