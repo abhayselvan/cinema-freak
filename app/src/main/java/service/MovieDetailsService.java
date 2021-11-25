@@ -151,6 +151,8 @@ public class MovieDetailsService extends Service {
         childRef.child("title").setValue(response.getTitle());
         childRef.child("poster").setValue(response.getPoster());
         childRef.child("backdrop").setValue(response.getBackDrop());
+        childRef.child("likes").setValue(0);
+        childRef.child("dislikes").setValue(0);
         StringBuilder sb= new StringBuilder();
         response.getGenres().forEach(m -> sb.append(m).append(","));
         if(sb.length()>0)
