@@ -33,6 +33,10 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -133,7 +137,7 @@ public class MovieDescription extends YouTubeBaseActivity {
 
     private void updateLikeText(){
         if(movie.getLikes() > 0)
-            likeCount.setText(movie.getLikes()+" others liked this movie!");
+            likeCount.setText(movie.getLikes()+ "K people liked this movie!");
     }
 
     private void onLikePressed(){
@@ -379,8 +383,30 @@ public class MovieDescription extends YouTubeBaseActivity {
                     Log.i(TAG, "Error in updating db for user: " + task.getException());
                 }
             });
-            DatabaseInstance.DATABASE.getReference().child("movies").child(movie.getId()+"").child("likes").setValue(movie.getLikes());
-            DatabaseInstance.DATABASE.getReference().child("movies").child(movie.getId()+"").child("dislikes").setValue(movie.getDislikes());
+            DatabaseReference moviesDbSnapshot = DatabaseInstance.DATABASE.getReference().child("movies").child(movie.getId() + "");
+            moviesDbSnapshot.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(isMovieLiked){
+                        int existingLikes = snapshot.child("likes").getValue(Integer.class);
+                        Log.i(TAG, "Existing likes "+existingLikes+" will be updated to "+existingLikes+1);
+                        moviesDbSnapshot.child("likes").setValue(existingLikes+1);
+                    }
+
+
+                    if(isMovieDisliked){
+                        int existingDislikes = snapshot.child("dislikes").getValue(Integer.class);
+                        Log.i(TAG, "Existing dislikes "+existingDislikes+" will be updated to "+existingDislikes+1);
+                        moviesDbSnapshot.child("dislikes").setValue(existingDislikes+1);
+                    }
+                    Log.i(TAG, "Likes/Dislikes updated");
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e(TAG, "Unable to fetch like/dislike count. Likes/Dislikes not updated");
+                }
+            });
         });
     }
 
