@@ -1,5 +1,6 @@
 package activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,8 +13,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cinemaFreak.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import main.CinemaFreakApplication;
 import model.User;
@@ -129,6 +133,5 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                         Toast.makeText(Register.this,"Failed to register! Try again!",Toast.LENGTH_LONG).show();
                     }
                 });
-
     }
 }
