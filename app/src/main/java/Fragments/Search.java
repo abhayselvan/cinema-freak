@@ -119,6 +119,16 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         bindMovieDetailsService();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        query.setText("");
+        emptyState.setVisibility(View.VISIBLE);
+        emptyStateNoResult.setVisibility(View.INVISIBLE);
+        textView.setVisibility(View.INVISIBLE);
+        adapter.clear();
+    }
+
     private void bindMovieDetailsService(){
         Intent serviceIntent = new Intent(getActivity(), MovieDetailsService.class);
         getActivity().startService(serviceIntent);
@@ -162,22 +172,6 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         return result;
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-
-        super.setUserVisibleHint(isVisibleToUser);
-
-        // Refresh tab data:
-
-        if (getFragmentManager() != null) {
-
-            getFragmentManager()
-                    .beginTransaction()
-                    .detach(this)
-                    .attach(this)
-                    .commit();
-        }
-    }
 
     @Override
     public void onClick(View v) {
@@ -188,9 +182,10 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         } else{
             ArrayList<MovieItem> searchedMovies = searchAllMovies(queryTxt);
             if(searchedMovies.size()>0){
-                if (textView.getVisibility() == View.VISIBLE)
+                if (textView.getVisibility() == View.VISIBLE || emptyStateNoResult.getVisibility() == View.VISIBLE ) {
                     textView.setVisibility(View.INVISIBLE);
-                    emptyStateNoResult.setVisibility(View.VISIBLE);
+                    emptyStateNoResult.setVisibility(View.INVISIBLE);
+                }
                 try {
                     movieDetailsService.getMoviesDetails(
                             searchedMovies.stream().map(MovieItem::getId).collect(Collectors.toList()), this);
