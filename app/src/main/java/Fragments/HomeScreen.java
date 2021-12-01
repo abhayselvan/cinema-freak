@@ -135,6 +135,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         genreRecyclerView = view.findViewById(R.id.recommendation_genre);
         genreRecyclerView.setLayoutManager(layoutManager);
+
         return view;
     }
 

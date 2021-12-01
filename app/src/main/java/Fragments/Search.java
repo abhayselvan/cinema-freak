@@ -119,15 +119,15 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         bindMovieDetailsService();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        query.setText("");
-        emptyState.setVisibility(View.VISIBLE);
-        emptyStateNoResult.setVisibility(View.INVISIBLE);
-        textView.setVisibility(View.INVISIBLE);
-        adapter.clear();
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        query.setText("");
+//        emptyState.setVisibility(View.VISIBLE);
+//        emptyStateNoResult.setVisibility(View.INVISIBLE);
+//        textView.setVisibility(View.INVISIBLE);
+//        searchRecyclerView.setAdapter(null);
+//    }
 
     private void bindMovieDetailsService(){
         Intent serviceIntent = new Intent(getActivity(), MovieDetailsService.class);
@@ -192,9 +192,6 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
                 }catch (Exception e){
                     Exception exception = e;
                 }
-
-//                searchRecyclerView.setAdapter(
-//                        new SearchRecyclerViewAdapter(getContext(),searchedMovies));
             }else{
                 adapter = new SearchRecyclerViewAdapter(getContext(),searchedMovies);
                 adapter.clear();
@@ -209,7 +206,6 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
     @Override
     public void dbMovieDetails(List<MovieItem> searchedMovies) {
         adapter = new SearchRecyclerViewAdapter(getContext(),searchedMovies);
-        //adapter.clear();
         searchRecyclerView.setAdapter(adapter);
     }
 
