@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -27,8 +28,6 @@ import com.cinemaFreak.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -45,7 +44,9 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import data.MovieItem;
@@ -136,8 +137,11 @@ public class MovieDescription extends YouTubeBaseActivity {
     }
 
     private void updateLikeText(){
-        if(movie.getLikes() > 0)
-            likeCount.setText(movie.getLikes()+ "K people liked this movie!");
+        int likes = movie.getLikes();
+        if(likes > 0){
+            String text = likes > 1 ? " people liked this movie!": " person liked this movie!";
+            likeCount.setText(likes + text);
+        }
     }
 
     private void onLikePressed(){
@@ -388,15 +392,29 @@ public class MovieDescription extends YouTubeBaseActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(isMovieLiked){
-                        int existingLikes = snapshot.child("likes").getValue(Integer.class);
-                        Log.i(TAG, "Existing likes "+existingLikes+" will be updated to "+existingLikes+1);
+                        int existingLikes = 0;
+                        try {
+                            existingLikes = snapshot.child("likes").getValue(Integer.class);
+                        } catch (NullPointerException e){
+                            e.printStackTrace();
+                        }
+                        Log.i(TAG, "Existing likes "+existingLikes+" will be updated to "+ (existingLikes + 1));
                         moviesDbSnapshot.child("likes").setValue(existingLikes+1);
+
+
+                        if (existingLikes+1 == 5){
+                            sendNotification(movie.getTitle());
+                        }
                     }
 
-
                     if(isMovieDisliked){
-                        int existingDislikes = snapshot.child("dislikes").getValue(Integer.class);
-                        Log.i(TAG, "Existing dislikes "+existingDislikes+" will be updated to "+existingDislikes+1);
+                        int existingDislikes = 0;
+                        try {
+                            existingDislikes = snapshot.child("dislikes").getValue(Integer.class);
+                        } catch (NullPointerException e){
+                            e.printStackTrace();
+                        }
+                        Log.i(TAG, "Existing dislikes "+existingDislikes+" will be updated to "+ (existingDislikes + 1));
                         moviesDbSnapshot.child("dislikes").setValue(existingDislikes+1);
                     }
                     Log.i(TAG, "Likes/Dislikes updated");
@@ -410,11 +428,36 @@ public class MovieDescription extends YouTubeBaseActivity {
         });
     }
 
+    private void sendNotification(String title) {
+
+        JSONObject body = new JSONObject();
+        JSONObject notification =new JSONObject();
+
+        try {
+            body.put("to","/topics/movies");
+            notification.put("title","Checkout "+title+"! New trending movie!" );
+            notification.put("text",title);
+            body.put("notification",notification);
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        String postUrl = "https://fcm.googleapis.com/fcm/send";
+        JsonObjectRequest post = new JsonObjectRequest(Request.Method.POST, postUrl, body, response -> Log.i(TAG,"Successfully sent notification to movies topic"), error -> Log.i(TAG,"Failed to send notification to movies topic")){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map <String, String> params = new HashMap<>();
+                params.put("Content-Type","application/json");
+                params.put("Authorization","key=AAAAriRT7Po:APA91bG8F1X4X7mxbjtmz-gONIF_cL_moNIFUfXGwGtzXTJWO8famKp1vInQRZRSX-5J7YooGnycphhdCz6oP6RW6MRUflXWL7CZhMSzQrLZxJtDWpyxD_iP57UY-Ecj65GeYfbdXcZI");
+                return params;
+            }
+        };
+        queue.add(post);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.i(TAG, "onRequest function called");
         getLocation();
     }
-
 }
