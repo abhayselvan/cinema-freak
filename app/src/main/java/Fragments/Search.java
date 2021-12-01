@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,8 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
     Button searchButton;
     EditText query;
     TextView textView;
+    ImageView emptyState;
+    ImageView emptyStateNoResult;
     SearchRecyclerViewAdapter adapter;
     public Search() {
         // Required empty public constructor
@@ -103,6 +106,8 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         query = view.findViewById(R.id.searchquery);
         textView = view.findViewById(R.id.noMovie);
         searchButton = view.findViewById(R.id.search_button);
+        emptyState = view.findViewById(R.id.emptyState);
+        emptyStateNoResult = view.findViewById(R.id.noResult);
         searchButton.setOnClickListener(this);
         return view;
     }
@@ -158,8 +163,26 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+
+        super.setUserVisibleHint(isVisibleToUser);
+
+        // Refresh tab data:
+
+        if (getFragmentManager() != null) {
+
+            getFragmentManager()
+                    .beginTransaction()
+                    .detach(this)
+                    .attach(this)
+                    .commit();
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         String queryTxt = query.getText().toString();
+        emptyState.setVisibility(View.INVISIBLE);
         if(queryTxt.equals("")){
             Toast.makeText(getActivity(),"Enter a movie name to search",Toast.LENGTH_SHORT).show();
         } else{
@@ -167,6 +190,7 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
             if(searchedMovies.size()>0){
                 if (textView.getVisibility() == View.VISIBLE)
                     textView.setVisibility(View.INVISIBLE);
+                    emptyStateNoResult.setVisibility(View.VISIBLE);
                 try {
                     movieDetailsService.getMoviesDetails(
                             searchedMovies.stream().map(MovieItem::getId).collect(Collectors.toList()), this);
@@ -181,6 +205,7 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
                 adapter.clear();
                 searchRecyclerView.setAdapter(null);
                 textView.setVisibility(View.VISIBLE);
+                emptyStateNoResult.setVisibility(View.VISIBLE);
             }
 
         }
