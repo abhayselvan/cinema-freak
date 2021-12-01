@@ -119,15 +119,15 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         bindMovieDetailsService();
     }
 
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        query.setText("");
-//        emptyState.setVisibility(View.VISIBLE);
-//        emptyStateNoResult.setVisibility(View.INVISIBLE);
-//        textView.setVisibility(View.INVISIBLE);
-//        searchRecyclerView.setAdapter(null);
-//    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        query.setText("");
+        emptyState.setVisibility(View.VISIBLE);
+        emptyStateNoResult.setVisibility(View.INVISIBLE);
+        textView.setVisibility(View.INVISIBLE);
+        //searchRecyclerView.setAdapter(null);
+    }
 
     private void bindMovieDetailsService(){
         Intent serviceIntent = new Intent(getActivity(), MovieDetailsService.class);
