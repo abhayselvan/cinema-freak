@@ -126,7 +126,7 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         emptyState.setVisibility(View.VISIBLE);
         emptyStateNoResult.setVisibility(View.INVISIBLE);
         textView.setVisibility(View.INVISIBLE);
-        adapter.clear();
+//        adapter.clear();
     }
 
     private void bindMovieDetailsService(){
