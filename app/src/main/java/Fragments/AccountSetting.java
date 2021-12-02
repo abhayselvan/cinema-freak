@@ -3,6 +3,8 @@ package Fragments;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -233,7 +235,17 @@ public class AccountSetting extends Fragment implements View.OnClickListener {
                     nameView.setFocusableInTouchMode(true);
                     ageView.setFocusableInTouchMode(true);
                     contactView.setFocusableInTouchMode(true);
+                    nameView.setTextColor(Color.parseColor("#AB0800"));
+                    ageView.setTextColor(Color.parseColor("#a81b1b"));
+                    contactView.setTextColor(Color.parseColor("#a81b1b"));
+//                    nameView.setBackground(Drawable.createFromPath("@drawable/edittext_frame"));
+//                    nameView.requestFocus();
+
+//                    nameView.setTextColor(Color.parseColor("#a81b1b"));
+//                    ageView.setTextColor(Color.parseColor("#a81b1b"));
+//                    contactView.setTextColor(Color.parseColor("#a81b1b"));
 //                    passwordView.setFocusableInTouchMode(true);
+
                     break;
 
                 case R.id.save:
@@ -243,15 +255,16 @@ public class AccountSetting extends Fragment implements View.OnClickListener {
         }
 
     private void save() {
-        EditText nameView,ageView,contactView,passwordView;
+        EditText nameView,ageView,contactView,emailView,passwordView;
         nameView = (EditText) getView().findViewById(R.id.name2);
+        emailView = (EditText) getView().findViewById(R.id.editEmail3);
         ageView = (EditText) getView().findViewById(R.id.age3);
         contactView = (EditText) getView().findViewById(R.id.contact3);
-//        passwordView = (EditText) getView().findViewById(R.id.password3);
+        passwordView = (EditText) getView().findViewById(R.id.password3);
 
         reference = FirebaseDatabase.getInstance().getReference("Users");
 
-        Toast.makeText(getActivity(),"Data changes saved",Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),"Account details updated",Toast.LENGTH_LONG).show();
 
 
         reference.child(userId).child("name").setValue(nameView.getEditableText().toString());
@@ -261,6 +274,16 @@ public class AccountSetting extends Fragment implements View.OnClickListener {
         reference.child(userId).child("contact").setValue(contactView.getEditableText().toString());
 
 //        reference.child(userId).child("password").setValue(passwordView.getEditableText().toString());
+
+        nameView.setFocusable(false);
+        emailView.setFocusable(false);
+        ageView.setFocusable(false);
+        contactView.setFocusable(false);
+        passwordView.setFocusable(false);
+
+        nameView.setTextColor(Color.parseColor("#E2E2E2"));
+        ageView.setTextColor(Color.parseColor("#E2E2E2"));
+        contactView.setTextColor(Color.parseColor("#E2E2E2"));
 
 
 

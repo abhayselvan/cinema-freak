@@ -14,16 +14,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Account Details"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="40dp"
         android:textColor="#E2E2E2"
         android:textSize="24sp"
-        android:layout_margin="30dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="35dp"/>
     <Button
         android:id="@+id/editBtn"
-        android:onClick="editDetails"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:text="EDIT"
         android:textColor="#E2E2E2"
         android:textSize="19sp"
@@ -31,13 +29,15 @@
         android:backgroundTint="#AB0800"
         android:layout_toRightOf="@id/accountDetailsView"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="70dp"/>
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="20dp"/>
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:layout_marginLeft="10dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <TableRow>
             <TextView
@@ -57,12 +57,14 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:focusable="false"
                 android:textColor="#E2E2E2"
                 android:textSize="19sp"
                 android:layout_toRightOf="@+id/nameView2"
                 android:layout_below="@id/accountDetailsView"
                 android:background="@drawable/edittext_frame"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginLeft="30dp"/>
 
         </TableRow>
@@ -89,6 +91,7 @@
                 android:textSize="19sp"
                 android:background="@drawable/edittext_frame"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginLeft="30dp"/>
         </TableRow>
 
@@ -110,10 +113,12 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:focusable="false"
                 android:textColor="#E2E2E2"
-                android:textSize="19sp"
                 android:background="@drawable/edittext_frame"
+                android:textSize="19sp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginLeft="30dp"/>
         </TableRow>
 
@@ -135,11 +140,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:focusable="false"
                 android:inputType="textPersonName"
                 android:textColor="#E2E2E2"
                 android:textSize="19sp"
                 android:background="@drawable/edittext_frame"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginLeft="30dp"/>
         </TableRow>
 
@@ -163,9 +170,10 @@
                 android:inputType="textPersonName"
                 android:text="*******"
                 android:textColor="#E2E2E2"
-                android:textSize="19sp"
                 android:background="@drawable/edittext_frame"
+                android:textSize="19sp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginLeft="30dp"/>
         </TableRow>
     </TableLayout>

@@ -71,25 +71,25 @@ public class MovieRecommendation extends AppCompatActivity {
         });
     }
 
-    public void editDetails(View view) {
-        EditText nameView,ageView,contactView,passwordView;
-        nameView = (EditText) findViewById(R.id.name2);
-        ageView = (EditText) findViewById(R.id.age3);
-        contactView = (EditText)findViewById(R.id.contact3);
-        passwordView = (EditText) findViewById(R.id.password3);
-
-        Button edit;
-
-        edit = view.findViewById(R.id.editBtn);
-        edit.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                nameView.setFocusable(true);
-                ageView.setFocusable(true);
-                contactView.setFocusable(true);
-                passwordView.setFocusable(true);
-            }
-        });
-    }
+//    public void editDetails(View view) {
+//        EditText nameView,ageView,contactView,passwordView;
+//        nameView = (EditText) findViewById(R.id.name2);
+//        ageView = (EditText) findViewById(R.id.age3);
+//        contactView = (EditText)findViewById(R.id.contact3);
+//        passwordView = (EditText) findViewById(R.id.password3);
+//
+//        Button edit;
+//
+//        edit = view.findViewById(R.id.editBtn);
+//        edit.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                nameView.setFocusable(false);
+//                ageView.setFocusable(false);
+//                contactView.setFocusable(false);
+//                passwordView.setFocusable(false);
+//            }
+//        });
+//    }
 }

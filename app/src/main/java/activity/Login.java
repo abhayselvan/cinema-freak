@@ -73,14 +73,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         if(email.isEmpty())
         {
-            editTextUsername.setError("Username/Email is required!");
+            editTextUsername.setError("Please provide username");
             editTextUsername.requestFocus();
             return;
         }
 
         if(password.isEmpty())
         {
-            editTextPassword.setError("Password is required!");
+            editTextPassword.setError("Please provide password");
             editTextPassword.requestFocus();
             return;
         }
