@@ -59,26 +59,26 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         if(name.isEmpty())
         {
-            editTextName.setError("Name is required");
+            editTextName.setError("Please provide your name");
             editTextName.requestFocus();
             return;
         }
         if(age.isEmpty())
         {
-            editTextAge.setError("Age is required");
+            editTextAge.setError("Please provide your age");
             editTextAge.requestFocus();
             return;
         }
 
         if(email.isEmpty())
         {
-            editTextEmail.setError("Email is required");
+            editTextEmail.setError("Please provide your email");
             editTextEmail.requestFocus();
             return;
         }
         if(contact.isEmpty())
         {
-            editTextContact.setError("Contact is required");
+            editTextContact.setError("Please provide your contact");
             editTextContact.requestFocus();
             return;
         }
@@ -97,7 +97,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         }
         if(password.isEmpty())
         {
-            editTextPassword.setError("Password is required");
+            editTextPassword.setError("Please provide password");
             editTextPassword.requestFocus();
             return;
         }
@@ -123,7 +123,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                     }
                                     else{
                                         Log.e(TAG, "Unable to update database with user details: "+task1.getException());
-                                        Toast.makeText(Register.this,"Failed to register! Try again!",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Register.this,"Failed to register! Try again with different email!",Toast.LENGTH_LONG).show();
                                     }
 
                                 });
