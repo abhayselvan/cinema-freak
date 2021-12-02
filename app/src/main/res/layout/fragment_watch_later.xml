@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:text="Watch Later"
         android:textColor="@color/textColorWhite"/>
 

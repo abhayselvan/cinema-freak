@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,13 +80,10 @@ public class WatchLater extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        //adapter = new MovieSelectionRecyclerViewAdapter(getContext(), watchLaterMoviesList);
-        //recyclerView.setAdapter(adapter);
         return view;
     }
 
     public void displayMovies(List<MovieItem> bookmarkedMovies){
-
         adapter = new MovieWatchLaterRecyclerViewAdapter(getContext(), bookmarkedMovies);
         recyclerView.setAdapter(adapter);
     }
