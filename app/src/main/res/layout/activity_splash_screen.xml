@@ -5,34 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="activity.SplashScreen"
-    android:background="@color/red">
+    android:background="#960018">
 
-    <ImageView
-        android:id="@+id/iv_top"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:adjustViewBounds="true"
-        android:src="@drawable/ic_movie" />
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:backgroundTint="#960018"
+        android:backgroundTintMode="multiply"/>
+
     <TextView
+        android:id="@+id/cinema_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:text="Cinema"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="@color/textColorWhite"
-        android:layout_below="@+id/iv_top"
-        android:layout_marginLeft="120dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:text="Freak"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="@color/textColorWhite"
-        android:layout_below="@+id/iv_top"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/textView1"/>
+        android:layout_below="@+id/videoView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:text="CinemaFreak"
+        android:typeface="serif"
+        android:textColor="#e2e2e2"
+        android:shadowColor="@color/textColorWhite"
+        android:shadowDx="-2"
+        android:shadowDy="-2"
+        android:shadowRadius="1"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>
