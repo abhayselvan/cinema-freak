@@ -1,8 +1,5 @@
 package activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,16 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.cinemaFreak.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import main.CinemaFreakApplication;
 import model.User;
-import util.Constants;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
@@ -130,7 +125,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                     }else{
                         Log.e(TAG, "Unable to authenticate: "+task.getException());
-                        Toast.makeText(Register.this,"Failed to register! Try again!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Register.this,"Failed to register! Try again with different email!",Toast.LENGTH_LONG).show();
                     }
                 });
     }
