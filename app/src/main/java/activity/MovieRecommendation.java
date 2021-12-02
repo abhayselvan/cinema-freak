@@ -2,6 +2,7 @@ package activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import com.cinemaFreak.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import Fragments.AccountSetting;
 import Fragments.HomeScreen;
@@ -52,6 +54,14 @@ public class MovieRecommendation extends AppCompatActivity {
         fm.beginTransaction().add(R.id.frameLayout, home, "1").commit();
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseMessaging.getInstance().subscribeToTopic("movies")
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.i(TAG,"Subscription to movies topic failed");
+                    } else {
+                        Log.i(TAG,"Subscribed to movies topic successfully");
+                    }
+                });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home);
