@@ -3,9 +3,10 @@
   <!-- Base application theme. -->
   <style name="AppTheme.Recommendation" parent="Theme.MaterialComponents.Light.NoActionBar">
     <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/red</item>
-    <item name="colorPrimaryDark">@color/red</item>
+    <item name="colorPrimary">@color/backgroundBlack</item>
+    <item name="colorPrimaryDark">@color/backgroundBlack</item>
     <item name="colorAccent">@color/red</item>
+    <item name="android:navigationBarColor">@color/backgroundBlack</item>
   </style>
 
   <style name="AppTheme.Recommendation.NoActionBar">
@@ -13,10 +14,12 @@
     <item name="colorPrimaryDark">@color/red</item>
     <item name="windowActionBar">true</item>
     <item name="windowNoTitle">true</item>
+    <item name="android:navigationBarColor">@color/backgroundBlack</item>
   </style>
 
   <style name="AppTheme.Recommendation.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
   <style name="AppTheme.Recommendation.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 </resources>
