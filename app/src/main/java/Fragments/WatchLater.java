@@ -52,6 +52,7 @@ public class WatchLater extends Fragment {
     private boolean allowRefresh;
     private ImageView imageView;
     private TextView textView;
+    private boolean refereshView;
 
     public WatchLater() {
         // Required empty public constructor
@@ -80,11 +81,18 @@ public class WatchLater extends Fragment {
         super.onCreate(savedInstanceState);
         handler= new Handler();
         loader = new LoaderDialogFragment();
+        refereshView = false;
         userId = getActivity().getIntent().getStringExtra(Constants.ACTIVE_USER_KEY);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        refereshView = true;
     }
 
     @Override
@@ -98,6 +106,7 @@ public class WatchLater extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
+        loadAndFetch();
         return view;
     }
 
@@ -105,7 +114,10 @@ public class WatchLater extends Fragment {
     public void onResume() {
         Log.i(TAG, "did i come here back?");
         super.onResume();
-        loadAndFetch();
+        if(refereshView){
+            loadAndFetch();
+        }
+
     }
 
 
@@ -119,6 +131,9 @@ public class WatchLater extends Fragment {
         if(bookmarkedMovies.isEmpty()){
             Log.i(TAG, "User does not have any bookmarked movies");
             loader.dismissAllowingStateLoss();
+            imageView.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.VISIBLE);
+            recyclerView.setAdapter(new MovieWatchLaterRecyclerViewAdapter(getContext(), new ArrayList<>()));
             return;
         }
         imageView.setVisibility(View.INVISIBLE);
