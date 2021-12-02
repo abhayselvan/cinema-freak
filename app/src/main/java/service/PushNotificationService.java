@@ -3,9 +3,6 @@ package service;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -13,8 +10,6 @@ import com.cinemaFreak.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class PushNotificationService extends FirebaseMessagingService {
 
@@ -32,7 +27,7 @@ public class PushNotificationService extends FirebaseMessagingService {
         Notification.Builder notification = new Notification.Builder(this, CHANNEL_ID)
                 .setContentTitle(title)
                 .setContentText(text)
-                .setSmallIcon(R.drawable.ic_movie)
+                .setSmallIcon(R.drawable.ic_baseline_movie_red)
                 .setAutoCancel(true);
         NotificationManagerCompat.from(this).notify(1, notification.build());
         super.onMessageReceived(remoteMessage);
