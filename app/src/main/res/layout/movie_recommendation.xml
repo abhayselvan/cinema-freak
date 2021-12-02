@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="activity.MovieRecommendation">
+    tools:context="activity.MovieRecommendation"
+    android:background="@color/backgroundBlack">
 
 <!--    <ProgressBar-->
 <!--        android:id="@+id/pBar"-->

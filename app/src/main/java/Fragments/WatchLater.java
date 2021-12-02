@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.MovieSelectionRecyclerViewAdapter;
+import adapter.MovieWatchLaterRecyclerViewAdapter;
 import data.MovieItem;
 import main.CinemaFreakApplication;
 import model.User;
@@ -32,7 +33,7 @@ public class WatchLater extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
-    private MovieSelectionRecyclerViewAdapter adapter;
+    private MovieWatchLaterRecyclerViewAdapter adapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -85,7 +86,7 @@ public class WatchLater extends Fragment {
 
     public void displayMovies(List<MovieItem> bookmarkedMovies){
 
-        adapter = new MovieSelectionRecyclerViewAdapter(getContext(), bookmarkedMovies);
+        adapter = new MovieWatchLaterRecyclerViewAdapter(getContext(), bookmarkedMovies);
         recyclerView.setAdapter(adapter);
     }
 }
