@@ -57,7 +57,6 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     private static final String CONFIG_PATH = "config.json";  // Default config path in assets.
     List<String> genres;
     TreeMap<String, List<MovieItem>> movieGenreMap;
-    //private RecommendationFragment recommendationFragment;
     private Handler handler;
     private RecommendationClient client;
     private List<MovieItem> movies;
@@ -66,7 +65,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     private MovieDetailsService movieDetailsService;
     private ServiceConnection serviceConnection;
     private boolean isServiceConnected;
-    private ProgressBar progressBar;
+    private LoaderDialogFragment loader;
     private String userId;
     private User activeUser;
     private List<Result> recommendations;
@@ -130,8 +129,8 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
         // Inflate the layout for this fragment
         //image view
         View view = inflater.inflate(R.layout.fragment_home_screen, container, false);
-        progressBar = view.findViewById(R.id.pBar);
-        progressBar.setVisibility(View.VISIBLE);
+        loader = new LoaderDialogFragment();
+        loader.show(getActivity().getSupportFragmentManager(), "loader");
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         genreRecyclerView = view.findViewById(R.id.recommendation_genre);
         genreRecyclerView.setLayoutManager(layoutManager);
@@ -164,7 +163,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
         loadMap(recommendations);
         genreRecyclerView.setAdapter(
                 new GenreRecyclerViewAdapter(getContext(), movieGenreMap, genres));
-        progressBar.setVisibility(View.GONE);
+            loader.dismissAllowingStateLoss();
     }
 
     private void loadGenres() {
