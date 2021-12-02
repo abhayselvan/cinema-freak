@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import data.MovieItem;
 
@@ -14,7 +15,9 @@ public class User implements Serializable {
     private String email;
     private String username;
     private String password;
-    private ArrayList<MovieItem> likedMovies;
+    private List<MovieItem> likedMovies = new ArrayList<>();
+    private List<MovieItem> dislikedMovies = new ArrayList<>();
+    private List<MovieItem> bookmarkedMovies = new ArrayList<>();
 
     public User(){}
 
@@ -25,7 +28,6 @@ public class User implements Serializable {
         this.contact = contact;
         this.email = email;
         this.password = password;
-        likedMovies = new ArrayList<>();
 
     }
 
@@ -85,21 +87,51 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public List<MovieItem> getLikedMovies() {
+        return likedMovies;
+    }
+
     public void addLikedMovieItem(MovieItem movieItem) {
         this.likedMovies.add(movieItem);
+    }
+
+    public void removeLikedMovieItem(int movieItemId){
+        this.likedMovies = this.likedMovies.stream()
+                .filter(movie -> movieItemId != movie.getId()).collect(Collectors.toList());
     }
 
     public void addAllLikedMovieItem(List<MovieItem> likedMovieItems) {
         this.likedMovies.addAll(likedMovieItems);
     }
 
-    public void setLikedMovies(ArrayList<MovieItem> likedMovies) {
-        this.likedMovies = likedMovies;
+
+    public List<MovieItem> getDislikedMovies() {
+        return dislikedMovies;
     }
 
-    public ArrayList<MovieItem> getLikedMovies() {
-        return likedMovies;
+    public void addDislikedMovieItem(MovieItem movieItem) {
+        this.dislikedMovies.add(movieItem);
     }
+
+    public void removeDislikedMovie(int movieItemId){
+        this.dislikedMovies = this.dislikedMovies.stream()
+                .filter(movie -> movieItemId != movie.getId()).collect(Collectors.toList());
+    }
+
+    public List<MovieItem> getBookmarkedMovies() {
+        return bookmarkedMovies;
+    }
+
+    public void addBookmarkedMovies(MovieItem movieItem) {
+        this.bookmarkedMovies.add(movieItem);
+    }
+
+    public void removeBookmarkedMovies(int movieItemId){
+        this.bookmarkedMovies = this.bookmarkedMovies.stream()
+                .filter(movie -> movieItemId != movie.getId()).collect(Collectors.toList());
+    }
+
+
 
     @Override
     public String toString() {
@@ -111,6 +143,8 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", dislikedMovies='" + dislikedMovies + '\'' +
+                ", bookmarkedMovies='" + bookmarkedMovies + '\'' +
                 ", likedMovies=" + likedMovies +
                 '}';
     }

@@ -1,5 +1,6 @@
 package activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,9 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cinemaFreak.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
+import main.CinemaFreakApplication;
 import model.User;
 import util.Constants;
 
@@ -29,22 +34,19 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
-        Register = (Button) findViewById(R.id.registerBtn);
+        Register = findViewById(R.id.registerBtn);
         Register.setOnClickListener(this);
-        editTextName = (EditText)findViewById(R.id.name);
-        editTextPassword = (EditText) findViewById(R.id.password);
-        editTextAge = (EditText) findViewById(R.id.age);
-        editTextEmail = (EditText) findViewById(R.id.email);
-        editTextContact = (EditText) findViewById(R.id.contact);
+        editTextName = findViewById(R.id.name);
+        editTextPassword = findViewById(R.id.password);
+        editTextAge = findViewById(R.id.age);
+        editTextEmail = findViewById(R.id.email);
+        editTextContact = findViewById(R.id.contact);
     }
 
     @Override
     public void onClick(View view) {
-        switch(view.getId())
-        {
-            case R.id.registerBtn:
-                registerUser();
-                break;
+        if (view.getId() == R.id.registerBtn) {
+            registerUser();
         }
     }
 
@@ -110,13 +112,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     if(task.isSuccessful()){
                         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                         User user = new User(userId, name,age,contact,email,password);
+                        ((CinemaFreakApplication)getApplication()).setActiveSessionUser(user);
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(userId)
                                 .setValue(user).addOnCompleteListener(task1 -> {
                                     if(task1.isSuccessful()){
                                         Toast.makeText(Register.this,"User has been registered successfully!", Toast.LENGTH_LONG).show();
                                         Intent movieSelectionIntent = new Intent(Register.this, MovieSelection.class);
-                                        movieSelectionIntent.putExtra(Constants.ACTIVE_USER_KEY, user);
                                         startActivity(movieSelectionIntent);
                                     }
                                     else{
@@ -131,6 +133,5 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                         Toast.makeText(Register.this,"Failed to register! Try again!",Toast.LENGTH_LONG).show();
                     }
                 });
-
     }
 }

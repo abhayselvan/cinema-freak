@@ -4,4 +4,5 @@
   <color name="backgroundBlack">#000000</color>
   <color name="textColorWhite">#e2e2e2</color>
   <color name="cardBackgroundGrey">#171616</color>
+  <color name="textHint">#8b8989</color>
 </resources>

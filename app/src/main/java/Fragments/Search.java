@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,8 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
     Button searchButton;
     EditText query;
     TextView textView;
+    ImageView emptyState;
+    ImageView emptyStateNoResult;
     SearchRecyclerViewAdapter adapter;
     public Search() {
         // Required empty public constructor
@@ -103,6 +106,8 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         query = view.findViewById(R.id.searchquery);
         textView = view.findViewById(R.id.noMovie);
         searchButton = view.findViewById(R.id.search_button);
+        emptyState = view.findViewById(R.id.emptyState);
+        emptyStateNoResult = view.findViewById(R.id.noResult);
         searchButton.setOnClickListener(this);
         return view;
     }
@@ -113,6 +118,16 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         Log.v(TAG, "onStart.activity.MovieRecommendation");
         bindMovieDetailsService();
     }
+
+//     @Override
+//     public void onPause() {
+//         super.onPause();
+//         query.setText("");
+//         emptyState.setVisibility(View.VISIBLE);
+//         emptyStateNoResult.setVisibility(View.INVISIBLE);
+//         textView.setVisibility(View.INVISIBLE);
+// //        adapter.clear();
+//     }
 
     private void bindMovieDetailsService(){
         Intent serviceIntent = new Intent(getActivity(), MovieDetailsService.class);
@@ -144,7 +159,6 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
                     FileUtil.loadMovieList(getContext().getAssets(), config.movieList);
             allMovies.clear();
             for (MovieItem item : collection) {
-                //Log.d(TAG, String.format("Load candidate: %s", item));
                 allMovies.add(item);
             }
             Log.v(TAG, "Candidate list loaded.");
@@ -158,30 +172,32 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
         return result;
     }
 
+
     @Override
     public void onClick(View v) {
         String queryTxt = query.getText().toString();
+        emptyState.setVisibility(View.INVISIBLE);
         if(queryTxt.equals("")){
             Toast.makeText(getActivity(),"Enter a movie name to search",Toast.LENGTH_SHORT).show();
         } else{
             ArrayList<MovieItem> searchedMovies = searchAllMovies(queryTxt);
             if(searchedMovies.size()>0){
-                if (textView.getVisibility() == View.VISIBLE)
+                if (textView.getVisibility() == View.VISIBLE || emptyStateNoResult.getVisibility() == View.VISIBLE ) {
                     textView.setVisibility(View.INVISIBLE);
+                    emptyStateNoResult.setVisibility(View.INVISIBLE);
+                }
                 try {
                     movieDetailsService.getMoviesDetails(
-                            searchedMovies.stream().map(r -> r.getId()).collect(Collectors.toList()), this);
+                            searchedMovies.stream().map(MovieItem::getId).collect(Collectors.toList()), this);
                 }catch (Exception e){
                     Exception exception = e;
                 }
-
-//                searchRecyclerView.setAdapter(
-//                        new SearchRecyclerViewAdapter(getContext(),searchedMovies));
             }else{
                 adapter = new SearchRecyclerViewAdapter(getContext(),searchedMovies);
                 adapter.clear();
                 searchRecyclerView.setAdapter(null);
                 textView.setVisibility(View.VISIBLE);
+                emptyStateNoResult.setVisibility(View.VISIBLE);
             }
 
         }
@@ -190,7 +206,6 @@ public class Search extends Fragment implements View.OnClickListener, MovieDetai
     @Override
     public void dbMovieDetails(List<MovieItem> searchedMovies) {
         adapter = new SearchRecyclerViewAdapter(getContext(),searchedMovies);
-        //adapter.clear();
         searchRecyclerView.setAdapter(adapter);
     }
 

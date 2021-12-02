@@ -38,6 +38,7 @@ import data.Config;
 import data.FileUtil;
 import data.MovieItem;
 import database.DatabaseInstance;
+import main.CinemaFreakApplication;
 import model.User;
 import util.Constants;
 
@@ -67,7 +68,7 @@ public class MovieSelection extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_selection_layout);
-        activeUser = (User) getIntent().getExtras().get(Constants.ACTIVE_USER_KEY);
+        activeUser = ((CinemaFreakApplication)getApplication()).getActiveSessionUser();
         Log.v(TAG, "onCreate.activity.MovieSelection");
         button = findViewById(R.id.button);
         button.setVisibility(Button.INVISIBLE);
@@ -90,7 +91,7 @@ public class MovieSelection extends AppCompatActivity implements
             Log.e(TAG, String.format("Error occurs when loading movies %s: %s.", config.movieSelectionList, ex));
         }
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
         gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
 
