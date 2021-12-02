@@ -379,6 +379,7 @@ public class MovieDescription extends YouTubeBaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Log.i(TAG, "Updating user changes in application");
         ((CinemaFreakApplication)getApplication()).setActiveSessionUser(activeUser);
         handler.post(() -> {
             DatabaseInstance.DATABASE.getReference().child("Users").child(activeUser.getId()).setValue(activeUser).addOnCompleteListener(task -> {

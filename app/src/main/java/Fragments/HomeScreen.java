@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,7 +68,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     private String userId;
     private User activeUser;
     private List<Result> recommendations;
-    private boolean fetchRecommendations;
+    private boolean recommendationsHaveBeenFetched;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -109,7 +108,6 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
 
         userId = getActivity().getIntent().getStringExtra(Constants.ACTIVE_USER_KEY);
         recommendations = new ArrayList<>();
-        loadActiveUserFromDb(userId);
 
         // Load config file.
         try {
@@ -131,6 +129,8 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
         View view = inflater.inflate(R.layout.fragment_home_screen, container, false);
         loader = new LoaderDialogFragment();
         loader.show(getActivity().getSupportFragmentManager(), "loader");
+        recommendationsHaveBeenFetched = false;
+        loadActiveUserFromDb(userId);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         genreRecyclerView = view.findViewById(R.id.recommendation_genre);
         genreRecyclerView.setLayoutManager(layoutManager);
@@ -144,14 +144,14 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
         Log.d(TAG, "Run inference with TFLite model.");
         recommendations = client.recommend(movies);
         Log.d(TAG, "Recommendations loaded");
-        if (isServiceConnected && !fetchRecommendations) {
+        if (isServiceConnected && !recommendationsHaveBeenFetched) {
             Log.d(TAG, "Entered from db");
             fetchMovieDetailsForRecommendations();
         }
     }
 
     private void fetchMovieDetailsForRecommendations() {
-        fetchRecommendations = true;
+        recommendationsHaveBeenFetched = true;
         List<Integer> selectedMovies = movies.stream().map(MovieItem::getId).collect(Collectors.toList());
         recommendations = recommendations.stream().filter(result -> !selectedMovies.contains(result.item.getId())).collect(Collectors.toList());
         Log.i(TAG, "Fetching movie details for all recommendations");
@@ -160,6 +160,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
     }
 
     private void showResult(final List<MovieItem> recommendations) {
+
         loadMap(recommendations);
         genreRecyclerView.setAdapter(
                 new GenreRecyclerViewAdapter(getContext(), movieGenreMap, genres));
@@ -215,7 +216,7 @@ public class HomeScreen extends Fragment implements Serializable, MovieDetailsCa
                     isServiceConnected = true;
                     MovieDetailsService.MovieDetailsBinder binder = (MovieDetailsService.MovieDetailsBinder) service;
                     movieDetailsService = binder.getService();
-                    if (recommendations.size() > 0 && !fetchRecommendations) {
+                    if (recommendations.size() > 0 && !recommendationsHaveBeenFetched) {
                         fetchMovieDetailsForRecommendations();
                     }
                 }

@@ -33,9 +33,7 @@ public class MovieRecommendation extends AppCompatActivity {
     private Search search;
     private HomeScreen home;
     private FragmentManager fm;
-    private Fragment active;
     private String userId;
-    private User activeUser;
     private Handler handler;
 
 
@@ -57,18 +55,14 @@ public class MovieRecommendation extends AppCompatActivity {
         }
         userId = getIntent().getStringExtra(Constants.ACTIVE_USER_KEY);
         handler = new Handler();
-        loadActiveUserFromDb(userId);
 
         fm = getSupportFragmentManager();
         home = new HomeScreen();
         search = new Search();
         watchLater = new WatchLater();
         accountSetting = new AccountSetting();
-        active = home;
-        fm.beginTransaction().add(R.id.frameLayout, accountSetting, "3").hide(accountSetting).commit();
-        fm.beginTransaction().add(R.id.frameLayout, watchLater, "2").hide(watchLater).commit();
-        fm.beginTransaction().add(R.id.frameLayout, search, "4").hide(search).commit();
         fm.beginTransaction().add(R.id.frameLayout, home, "1").commit();
+
         mAuth = FirebaseAuth.getInstance();
         FirebaseMessaging.getInstance().subscribeToTopic("movies")
                 .addOnCompleteListener(task -> {
@@ -86,46 +80,23 @@ public class MovieRecommendation extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
-                    fm.beginTransaction().hide(active).show(home).commit();
-                    active = home;
+                    fm.beginTransaction().replace(R.id.frameLayout, home).commit();
                     return true;
 
                 case R.id.account:
-                    fm.beginTransaction().hide(active).show(accountSetting).commit();
-                    active = accountSetting;
+                    Log.i("Check", "here");
+                    fm.beginTransaction().replace(R.id.frameLayout, accountSetting).commit();
                     return true;
 
                 case R.id.search:
-                    fm.beginTransaction().hide(active).show(search).commit();
-                    active = search;
+                    fm.beginTransaction().replace(R.id.frameLayout, search).commit();
                     return true;
 
                 case R.id.watch_later:
-                    watchLater.displayMovies(activeUser.getBookmarkedMovies());
-                    fm.beginTransaction().hide(active).show(watchLater).commit();
-                    active = watchLater;
+                    fm.beginTransaction().replace(R.id.frameLayout, watchLater).commit();
                     return true;
             }
             return true;
-        });
-    }
-
-    private void loadActiveUserFromDb(String userId) {
-        handler.post(() -> {
-            Log.i(TAG, "Fetching user details from database");
-            if(userId == null){
-                Log.i(TAG, "User id NOT found. Not loading active user profile");
-                return;
-            }
-            DatabaseInstance.DATABASE.getReference().child("Users").child(userId).get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    activeUser = task.getResult().getValue(User.class);
-                    ((CinemaFreakApplication)getApplication()).setActiveSessionUser(activeUser);
-                    Log.d(TAG, "User " + userId + " fetched from database: " + activeUser);
-                } else {
-                    Log.e(TAG, "Unable to fetch active user");
-                }
-            });
         });
     }
 
