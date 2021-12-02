@@ -91,7 +91,7 @@ public class MovieSelection extends AppCompatActivity implements
             Log.e(TAG, String.format("Error occurs when loading movies %s: %s.", config.movieSelectionList, ex));
         }
 
-        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.selection_recycler_view);
         gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
 
