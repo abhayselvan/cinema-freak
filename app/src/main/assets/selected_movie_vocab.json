@@ -1,6 +1,6 @@
 [
   {
-    "title": "Jurassic Park (1993)",
+    "title": "Jurassic Park",
     "id": 480,
     "genres": [
       "Action",
@@ -11,7 +11,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg"
   },
   {
-    "title": "Matrix, The (1999)",
+    "title": "The Matrix",
     "id": 2571,
     "genres": [
       "Action",
@@ -22,7 +22,7 @@
     "imageUrl":"https://m.media-amazon.com/images/M/MV5BYzUzOTA5ZTMtMTdlZS00MmQ5LWFmNjEtMjE5MTczN2RjNjE3XkEyXkFqcGdeQXVyNTc2ODIyMzY@._V1_SX300.jpg"
   },
   {
-    "title": "Back to the Future (1985)",
+    "title": "Back to the Future",
     "id": 1270,
     "genres": [
       "Comedy",
@@ -32,7 +32,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
   },
   {
-    "title": "Silence of the Lambs, The (1991)",
+    "title": "The Silence of the Lambs",
     "id": 593,
     "genres": [
       "Drama",
@@ -42,7 +42,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BNjNhZTk0ZmEtNjJhMi00YzFlLWE1MmEtYzM1M2ZmMGMwMTU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
   },
   {
-    "title": "Raiders of the Lost Ark (1981)",
+    "title": "Raiders of the Lost Ark",
     "id": 1198,
     "genres": [
       "Action",
@@ -52,7 +52,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjA0ODEzMTc1Nl5BMl5BanBnXkFtZTcwODM2MjAxNA@@._V1_SX300.jpg"
   },
   {
-    "title": "Fargo (1996)",
+    "title": "Fargo",
     "id": 608,
     "genres": [
       "Crime",
@@ -63,7 +63,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BNDJiZDgyZjctYmRjMS00ZjdkLTkwMTEtNGU1NDg3NDQ0Yzk1XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
   },
   {
-    "title": "Schindler's List (1993)",
+    "title": "Schindler's List",
     "id": 527,
     "genres": [
       "Drama",
@@ -73,7 +73,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
   },
   {
-    "title": "E.T. the Extra-Terrestrial (1982)",
+    "title": "E.T. the Extra-Terrestrial",
     "id": 1097,
     "genres": [
       "Children's",
@@ -85,7 +85,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTQ2ODFlMDAtNzdhOC00ZDYzLWE3YTMtNDU4ZGFmZmJmYTczXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
   },
   {
-    "title": "Shawshank Redemption, The (1994)",
+    "title": "The Shawshank Redemption",
     "id": 318,
     "genres": [
       "Drama"
@@ -94,7 +94,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg"
   },
   {
-    "title": "Godfather, The (1972)",
+    "title": "The Godfather",
     "id": 858,
     "genres": [
       "Action",
@@ -105,7 +105,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
   },
   {
-    "title": "Forrest Gump (1994)",
+    "title": "Forrest Gump",
     "id": 356,
     "genres": [
       "Comedy",
@@ -116,7 +116,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
   },
   {
-    "title": "Ghostbusters (1984)",
+    "title": "Ghostbusters",
     "id": 2716,
     "genres": [
       "Comedy",
@@ -126,7 +126,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTkxMjYyNzgwMl5BMl5BanBnXkFtZTgwMTE3MjYyMTE@._V1_SX300.jpg"
   },
   {
-    "title": "Pulp Fiction (1994)",
+    "title": "Pulp Fiction",
     "id": 296,
     "genres": [
       "Crime",
@@ -136,7 +136,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
   },
   {
-    "title": "Toy Story (1995)",
+    "title": "Toy Story",
     "id": 1,
     "genres": [
       "Animation",
@@ -147,7 +147,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BMDU2ZWJlMjktMTRhMy00ZTA5LWEzNDgtYmNmZTEwZTViZWJkXkEyXkFqcGdeQXVyNDQ2OTk4MzI@._V1_SX300.jpg"
   },
   {
-    "title": "One Flew Over the Cuckoo's Nest (1975)",
+    "title": "One Flew Over the Cuckoo's Nest",
     "id": 1193,
     "genres": [
       "Drama"
@@ -156,7 +156,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BZjA0OWVhOTAtYWQxNi00YzNhLWI4ZjYtNjFjZTEyYjJlNDVlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
   },
   {
-    "title": "Wizard of Oz, The (1939)",
+    "title": "The Wizard of Oz",
     "id": 919,
     "genres": [
       "Adventure",
@@ -168,7 +168,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BNjUyMTc4MDExMV5BMl5BanBnXkFtZTgwNDg0NDIwMjE@._V1_SX300.jpg"
   },
   {
-    "title": "Die Hard (1988)",
+    "title": "Die Hard",
     "id": 1036,
     "genres": [
       "Action",
@@ -178,7 +178,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BZjRlNDUxZjAtOGQ4OC00OTNlLTgxNmQtYTBmMDgwZmNmNjkxXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
   },
   {
-    "title": "Taxi Driver (1976)",
+    "title": "Taxi Driver",
     "id": 111,
     "genres": [
       "Drama",
@@ -188,7 +188,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BM2M1MmVhNDgtNmI0YS00ZDNmLTkyNjctNTJiYTQ2N2NmYzc2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
   },
   {
-    "title": "Star Wars: Episode I - The Phantom Menace (1999)",
+    "title": "Star Wars: Episode I - The Phantom Menace",
     "id": 2628,
     "genres": [
       "Action",
@@ -200,7 +200,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
   },
   {
-    "title": "Gladiator (2000)",
+    "title": "Gladiator",
     "id": 3578,
     "genres": [
       "Action",
@@ -210,7 +210,7 @@
     "imageUrl": "https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
   },
   {
-    "title": "Jaws (1975)",
+    "title": "Jaws",
     "id": 1387,
     "genres": [
       "Action",

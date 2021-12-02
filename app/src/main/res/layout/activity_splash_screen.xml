@@ -10,8 +10,8 @@
     <VideoView
         android:id="@+id/videoView"
         android:layout_marginTop="200dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_alignParentLeft="true"
