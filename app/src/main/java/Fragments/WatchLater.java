@@ -6,8 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.cinemaFreak.R;
+
+import java.util.List;
+
+import adapter.MovieSelectionRecyclerViewAdapter;
+import data.MovieItem;
+import main.CinemaFreakApplication;
+import model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +29,11 @@ public class WatchLater extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerView;
+    private GridLayoutManager gridLayoutManager;
+    private MovieSelectionRecyclerViewAdapter adapter;
+    private User activeUser;
+    private List<MovieItem> watchLaterMoviesList;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -60,6 +74,22 @@ public class WatchLater extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_watch_later, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_watch_later, container, false);
+        recyclerView = view.findViewById(R.id.recycler_view);
+        gridLayoutManager = new GridLayoutManager(getContext(), 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        adapter = new MovieSelectionRecyclerViewAdapter(getContext(), watchLaterMoviesList);
+        recyclerView.setAdapter(adapter);
+        return view;
+    }
+
+    public void displayMovies(){
+        activeUser = ((CinemaFreakApplication)getActivity().getApplication()).getActiveSessionUser();
+        if(!activeUser.getBookmarkedMovies().isEmpty())
+            watchLaterMoviesList.addAll(activeUser.getBookmarkedMovies());
+        adapter = new MovieSelectionRecyclerViewAdapter(getContext(), watchLaterMoviesList);
+        recyclerView.setAdapter(adapter);
+
     }
 }

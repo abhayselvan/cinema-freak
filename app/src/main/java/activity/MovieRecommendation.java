@@ -85,6 +85,7 @@ public class MovieRecommendation extends AppCompatActivity {
                     return true;
 
                 case R.id.watch_later:
+                    watchLater.displayMovies();
                     fm.beginTransaction().hide(active).show(watchLater).commit();
                     active = watchLater;
                     return true;
