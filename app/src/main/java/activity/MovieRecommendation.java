@@ -2,6 +2,7 @@ package activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,18 +18,25 @@ import Fragments.AccountSetting;
 import Fragments.HomeScreen;
 import Fragments.Search;
 import Fragments.WatchLater;
+import database.DatabaseInstance;
+import main.CinemaFreakApplication;
+import model.User;
+import util.Constants;
 
 public class MovieRecommendation extends AppCompatActivity {
 
     public FirebaseAuth mAuth;
 
     private static final String TAG = "CinemaFreak-MovieRecommendation";
-    AccountSetting accountSetting = new AccountSetting();
-    WatchLater watchLater = new WatchLater();
-    Search search = new Search();
-    HomeScreen home = new HomeScreen();
-    FragmentManager fm = getSupportFragmentManager();
-    Fragment active = home;
+    private AccountSetting accountSetting;
+    private WatchLater watchLater;
+    private Search search;
+    private HomeScreen home;
+    private FragmentManager fm;
+    private Fragment active;
+    private String userId;
+    private User activeUser;
+    private Handler handler;
 
 
     @Override
@@ -47,12 +55,20 @@ public class MovieRecommendation extends AppCompatActivity {
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();
         }
+        userId = getIntent().getStringExtra(Constants.ACTIVE_USER_KEY);
+        handler = new Handler();
+        loadActiveUserFromDb(userId);
 
+        fm = getSupportFragmentManager();
+        home = new HomeScreen();
+        search = new Search();
+        watchLater = new WatchLater();
+        accountSetting = new AccountSetting();
+        active = home;
         fm.beginTransaction().add(R.id.frameLayout, accountSetting, "3").hide(accountSetting).commit();
         fm.beginTransaction().add(R.id.frameLayout, watchLater, "2").hide(watchLater).commit();
         fm.beginTransaction().add(R.id.frameLayout, search, "4").hide(search).commit();
         fm.beginTransaction().add(R.id.frameLayout, home, "1").commit();
-
         mAuth = FirebaseAuth.getInstance();
         FirebaseMessaging.getInstance().subscribeToTopic("movies")
                 .addOnCompleteListener(task -> {
@@ -85,7 +101,7 @@ public class MovieRecommendation extends AppCompatActivity {
                     return true;
 
                 case R.id.watch_later:
-                    watchLater.displayMovies();
+                    watchLater.displayMovies(activeUser.getBookmarkedMovies());
                     fm.beginTransaction().hide(active).show(watchLater).commit();
                     active = watchLater;
                     return true;
@@ -94,27 +110,25 @@ public class MovieRecommendation extends AppCompatActivity {
         });
     }
 
+    private void loadActiveUserFromDb(String userId) {
+        handler.post(() -> {
+            Log.i(TAG, "Fetching user details from database");
+            if(userId == null){
+                Log.i(TAG, "User id NOT found. Not loading active user profile");
+                return;
+            }
+            DatabaseInstance.DATABASE.getReference().child("Users").child(userId).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    activeUser = task.getResult().getValue(User.class);
+                    ((CinemaFreakApplication)getApplication()).setActiveSessionUser(activeUser);
+                    Log.d(TAG, "User " + userId + " fetched from database: " + activeUser);
+                } else {
+                    Log.e(TAG, "Unable to fetch active user");
+                }
+            });
+        });
+    }
 
-//    public void editDetails(View view) {
-//        EditText nameView,ageView,contactView,passwordView;
-//        nameView = (EditText) findViewById(R.id.name2);
-//        ageView = (EditText) findViewById(R.id.age3);
-//        contactView = (EditText)findViewById(R.id.contact3);
-//        passwordView = (EditText) findViewById(R.id.password3);
-//
-//        Button edit;
-//
-//        edit = view.findViewById(R.id.editBtn);
-//        edit.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                nameView.setFocusable(false);
-//                ageView.setFocusable(false);
-//                contactView.setFocusable(false);
-//                passwordView.setFocusable(false);
-//            }
-//        });
-//    }
+
 }
 

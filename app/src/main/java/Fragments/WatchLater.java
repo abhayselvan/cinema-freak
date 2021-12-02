@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cinemaFreak.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import adapter.MovieSelectionRecyclerViewAdapter;
@@ -32,8 +33,6 @@ public class WatchLater extends Fragment {
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
     private MovieSelectionRecyclerViewAdapter adapter;
-    private User activeUser;
-    private List<MovieItem> watchLaterMoviesList;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -79,17 +78,14 @@ public class WatchLater extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        adapter = new MovieSelectionRecyclerViewAdapter(getContext(), watchLaterMoviesList);
-        recyclerView.setAdapter(adapter);
+        //adapter = new MovieSelectionRecyclerViewAdapter(getContext(), watchLaterMoviesList);
+        //recyclerView.setAdapter(adapter);
         return view;
     }
 
-    public void displayMovies(){
-        activeUser = ((CinemaFreakApplication)getActivity().getApplication()).getActiveSessionUser();
-        if(!activeUser.getBookmarkedMovies().isEmpty())
-            watchLaterMoviesList.addAll(activeUser.getBookmarkedMovies());
-        adapter = new MovieSelectionRecyclerViewAdapter(getContext(), watchLaterMoviesList);
-        recyclerView.setAdapter(adapter);
+    public void displayMovies(List<MovieItem> bookmarkedMovies){
 
+        adapter = new MovieSelectionRecyclerViewAdapter(getContext(), bookmarkedMovies);
+        recyclerView.setAdapter(adapter);
     }
 }
