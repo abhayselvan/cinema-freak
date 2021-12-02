@@ -33,20 +33,15 @@ public class MovieRecommendation extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(MovieRecommendation.this, MovieRecommendation.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("EXIT", true);
-        startActivity(intent);
+        super.onBackPressed();
+        moveTaskToBack(true);
+        finish();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_recommendation);
-
-        if (getIntent().getBooleanExtra("EXIT", false)) {
-            finish();
-        }
 
         fm.beginTransaction().add(R.id.frameLayout, accountSetting, "3").hide(accountSetting).commit();
         fm.beginTransaction().add(R.id.frameLayout, watchLater, "2").hide(watchLater).commit();
@@ -92,4 +87,28 @@ public class MovieRecommendation extends AppCompatActivity {
             return true;
         });
     }
+
+
+//    public void editDetails(View view) {
+//        EditText nameView,ageView,contactView,passwordView;
+//        nameView = (EditText) findViewById(R.id.name2);
+//        ageView = (EditText) findViewById(R.id.age3);
+//        contactView = (EditText)findViewById(R.id.contact3);
+//        passwordView = (EditText) findViewById(R.id.password3);
+//
+//        Button edit;
+//
+//        edit = view.findViewById(R.id.editBtn);
+//        edit.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                nameView.setFocusable(false);
+//                ageView.setFocusable(false);
+//                contactView.setFocusable(false);
+//                passwordView.setFocusable(false);
+//            }
+//        });
+//    }
 }
+

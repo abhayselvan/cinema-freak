@@ -1,6 +1,7 @@
 package activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -435,8 +436,8 @@ public class MovieDescription extends YouTubeBaseActivity {
 
         try {
             body.put("to","/topics/movies");
-            notification.put("title","Checkout "+title+"! New trending movie!" );
-            notification.put("text",title);
+            notification.put("title","Checkout "+title+"!" );
+            notification.put("body",title + " is currently trending on CinemaFreak!");
             body.put("notification",notification);
         } catch (JSONException e){
             e.printStackTrace();
