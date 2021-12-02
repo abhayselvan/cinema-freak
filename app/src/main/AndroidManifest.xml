@@ -15,9 +15,9 @@
     <application
         android:name="main.CinemaFreakApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_logo_foreground"
+        android:icon="@mipmap/ic_launcher"
         android:label="CinemaFreak"
-        android:roundIcon="@mipmap/ic_logo_round"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Recommendation">
         <activity
