@@ -6,15 +6,32 @@
     android:background="@color/backgroundBlack">
 
 
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/watchLater"
+        android:src="@drawable/watch_later_image"
+        android:alpha="0.3"
+        android:scaleType="fitCenter"
+        android:visibility="visible"/>
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/noMovieToWatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:text="Watch Later"
-        android:textColor="@color/textColorWhite"/>
+        android:layout_gravity="center"
+        android:text="Nothing to see here!"
+        android:textColor="@color/textColorWhite"
+        android:textSize="30sp"
+        android:typeface="serif"
+        android:gravity="center"
+        android:layout_marginLeft="55dp"
+        android:layout_centerInParent="@id/watchLater"
+        android:visibility="visible"
+        android:layout_marginTop="500dp"
+        android:alpha="0.3"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
